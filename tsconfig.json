@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "strict": true,
+    "strictNullChecks": false,
+    "baseUrl": "./",
+    "paths": {
+      "/-/*": ["*"],
+      "vue": ["node_modules/vue"]
+    },
+    "types": ["vite/client"],
+    "outDir": "./tscompiled/"
+  },
+  "include": [
+    "components/**/*.ts",
+    "directives/**/*.ts",
+    "plugins/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "files": [
+    "./types/shims.d.ts"
+  ],
+  "lib": [
+    "es2020"
+  ]
+}
