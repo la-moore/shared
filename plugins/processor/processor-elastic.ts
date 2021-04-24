@@ -20,22 +20,17 @@ export default class ProcessorElastic extends Processor {
       return false
     }
 
-    const { items, _meta } = await this.fetch(this.pagination.current_page, {
+    const { data, meta } = await this.fetch(this.pagination.current_page, {
       timestamp: this.timestamp,
       filter: this.filter,
       ...this.params
     })
-    let hits = items || []
+    let hits = data || []
 
-    this.pagination = {
-      total: _meta?.totalCount,
-      per_page: _meta?.perPage,
-      current_page: _meta?.currentPage,
-      last_page: _meta?.pageCount,
-    }
+    this.pagination = meta
 
-    if (this.mapping instanceof Function && items) {
-      hits = items.map(item => this.mapping ? this.mapping(item) : item)
+    if (this.mapping instanceof Function && data) {
+      hits = data.map(item => this.mapping ? this.mapping(item) : item)
     }
 
     this.entries += 1
