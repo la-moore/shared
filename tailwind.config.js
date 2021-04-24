@@ -35,7 +35,7 @@ module.exports = {
     alignItems: ['responsive', 'important'],
     padding: ['responsive', 'important'],
     margin: ['responsive', 'first', 'last'],
-    borderRadius: ['first', 'last'],
+    borderRadius: ['responsive', 'first', 'last'],
   },
   plugins: [
     plugin(({ addVariant }) => {
