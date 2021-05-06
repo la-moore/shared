@@ -13,14 +13,14 @@ export default class ProcessorStatic extends Processor {
       return false
     }
 
-    const items = await this.fetch(this.pagination.current_page, {
+    const { data } = await this.fetch(this.pagination.current_page, {
       timestamp: this.timestamp,
       ...this.params
     })
-    let hits = items || []
+    let hits = data || []
 
-    if (this.mapping instanceof Function && items) {
-      hits = items.map(item => this.mapping ? this.mapping(item) : item)
+    if (this.mapping instanceof Function && data) {
+      hits = data.map(item => this.mapping ? this.mapping(item) : item)
     }
 
     this.entries += 1
