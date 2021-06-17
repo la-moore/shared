@@ -1,32 +1,31 @@
 <template>
-  <nav v-if="Object.keys(pages).length > 1"
-       class="px-4 flex items-center justify-center sticky bottom-0 bg-white rounded-t-md border-2 border-b-0 border-gray-100 py-3">
+  <nav class="border-t border-gray-200 px-4 flex items-center justify-between sticky bottom-0 bg-white">
     <div v-if="!hidePrevNext"
-         class="w-0 flex-1 flex">
-      <button class="focus:outline-none py-3 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700"
+         class="-mt-px w-0 flex-1 flex">
+      <button class="border-t-2 border-transparent focus:outline-none py-3 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
               :class="[
                 firstPageSelected && 'pointer-events-none opacity-30'
               ]"
               @click="prevPage()">
-        <BaseIcon name="outline_chevron_left"
-                  class="mr-2 text-gray-400"
+        <BaseIcon name="outline_arrow_narrow_left"
+                  class="mr-3 text-gray-400"
                   size="sm" />
 
         {{ locale.previous }}
       </button>
     </div>
 
-    <div class="hidden md:-mt-px md:flex space-x-3">
+    <div class="hidden md:-mt-px md:flex">
       <template v-for="(page, i) in pages"
                 :key="i">
         <div v-if="page.breakView"
-             class="w-10 h-10 inline-flex items-center justify-center text-sm font-medium text-gray-500">
+             class="border-t-2 border-transparent py-3 px-4 inline-flex items-center text-sm font-medium text-gray-500">
           ...
         </div>
         <button v-else
-                class="rounded-full w-10 h-10 focus:outline-none transition inline-flex items-center justify-center text-sm font-medium"
+                class="border-t-2 border-transparent focus:outline-none py-3 px-4 inline-flex items-center text-sm font-medium"
                 :class="[
-                  page.selected ? 'text-gray-100 bg-indigo-600 hover:bg-indigo-700' : 'bg-white hover:bg-gray-100'
+                  page.selected ? 'border-indigo-500 text-indigo-600' : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 ]"
                 @click="() => goToPage(page.content)">
           {{ page.content }}
@@ -35,16 +34,16 @@
     </div>
 
     <div v-if="!hidePrevNext"
-         class="w-0 flex-1 flex justify-end">
-      <button class="focus:outline-none py-3 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700"
+         class="-mt-px w-0 flex-1 flex justify-end">
+      <button class="border-t-2 border-transparent focus:outline-none py-3 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
               :class="[
                 lastPageSelected && 'pointer-events-none opacity-30'
               ]"
               @click="nextPage()">
         {{ locale.next }}
 
-        <BaseIcon name="outline_chevron_right"
-                  class="ml-2 text-gray-400"
+        <BaseIcon name="outline_arrow_narrow_right"
+                  class="ml-3 text-gray-400"
                   size="sm" />
       </button>
     </div>
@@ -53,8 +52,8 @@
 
 <script lang="ts">
 import ProcessorElastic from '/-/plugins/processor/processor-elastic'
-import { setup } from '../pagination-setup'
 import BaseIcon from '/-/components/icon/base-icon.vue'
+import { setup } from '../pagination-setup'
 
 export default {
   name: 'BasePagination',

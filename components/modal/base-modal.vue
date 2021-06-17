@@ -1,69 +1,58 @@
 <template>
-  <transition
-    enter-active-class="transition-opacity ease-out"
-    enter-from-class="opacity-0"
-    enter-to-class="opacity-100"
-    leave-active-class="transition-opacity ease-in"
-    leave-from-class="opacity-100"
-    leave-to-class="opacity-0">
-    <div v-if="show"
-         class="fixed inset-0 transition-opacity z-40"
-         :class="`duration-${speed}`"
-         aria-hidden="true"
-         @click="close">
-      <div class="absolute inset-0 bg-gray-500 opacity-75" />
-    </div>
-  </transition>
+  <div class="fixed z-40 inset-0 overflow-y-auto"
+       :class="!show && 'pointer-events-none'">
+    <div class="flex items-end justify-center min-h-screen pt-4 sm:block sm:p-0 text-center"
+         :class="[!fullscreen && 'px-4 pb-20']">
+      <transition
+        enter-active-class="ease-out duration-300"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="ease-out duration-300"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0">
+        <div v-if="show"
+             class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+             aria-hidden="true"
+             @click="close" />
+      </transition>
 
-  <transition
-    enter-active-class="transition ease-in-out transform"
-    enter-from-class="translate-y-10 opacity-0"
-    enter-to-class="translate-y-0 opacity-100"
-    leave-active-class="transition ease-in-out transform"
-    leave-from-class="translate-y-0 opacity-100"
-    leave-to-class="translate-y-10 opacity-0">
-    <div v-if="show"
-         class="fixed z-40 inset-0 overflow-y-auto pointer-events-none"
-         :class="`duration-${speed}`">
-      <div class="flex items-end justify-center min-h-screen text-center sm:block">
-        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
-              aria-hidden="true">
-          &#8203;
-        </span>
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true">
+        &#8203;
+      </span>
 
-        <div class="text-left inline-block align-bottom sm:align-middle w-full h-screen sm:px-4">
-          <slot name="dialog">
-            <div class="w-full h-full flex items-center justify-around">
-              <div class="bg-white rounded-t-lg sm:rounded-lg shadow-xl mx-auto z-10 relative sm:my-8 pointer-events-auto max-h-full overflow-y-scroll"
-                   :class="[proxySize]"
-                   role="dialog"
-                   aria-modal="true"
-                   aria-labelledby="modal-headline">
-                <slot name="header">
-                  <div class="flex justify-between items-center px-6 h-16 border-b">
-                    <div class="font-medium leading-6 text-gray-900 truncate">
-                      {{ title }}
-                    </div>
-                    <BaseButton theme="white"
-                                size="sm"
-                                class="w-8 !p-0"
-                                @click="close">
-                      <BaseIcon name="outline_x" />
-                    </BaseButton>
-                  </div>
-                </slot>
-                <slot name="body">
-                  <div class="p-6">
-                    <slot />
-                  </div>
-                </slot>
+      <transition
+        enter-active-class="transition ease-out transform"
+        enter-from-class="translate-y-10 opacity-0"
+        enter-to-class="translate-y-0 opacity-100"
+        leave-active-class="transition ease-out transform"
+        leave-from-class="translate-y-0 opacity-100"
+        leave-to-class="translate-y-10 opacity-0">
+        <div v-if="show"
+             class="relative inline-block text-left align-bottom bg-white rounded-lg shadow-xl transform sm:my-8 sm:align-middle w-full"
+             :class="[proxySize]">
+          <slot name="header">
+            <div class="flex justify-between items-center px-6 h-16 border-b">
+              <div class="font-medium leading-6 text-gray-900 truncate">
+                {{ title }}
               </div>
+              <BaseButton theme="white"
+                          size="sm"
+                          class="w-8 !p-0"
+                          @click="close">
+                <BaseIcon name="outline_x" />
+              </BaseButton>
+            </div>
+          </slot>
+          <slot name="body">
+            <div class="p-6">
+              <slot />
             </div>
           </slot>
         </div>
-      </div>
+      </transition>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script lang="ts">
@@ -100,6 +89,10 @@ export default {
     size: {
       type: [String, Boolean],
       default: 'md'
+    },
+    fullscreen: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['close'],
@@ -115,11 +108,9 @@ export default {
   },
   methods: {
     open() {
-      document.body.classList.add('overflow-hidden')
       this.show = true
     },
     close() {
-      document.body.classList.remove('overflow-hidden')
       this.show = false
       this.$emit('close')
     }

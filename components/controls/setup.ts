@@ -30,8 +30,12 @@ export function setup(props: InputProps, ctx: SetupContext) {
       if (props.type === 'number') {
         value = parseFloat(value || 0)
       }
+      if (props.type === 'number') {
+        value = parseFloat(value || 0)
+      } else {
+        localValue.value = value.replace(/<(.|\n)*?>/g, '')
+      }
 
-      localValue.value = value.replace(/<(.|\n)*?>/g, '')
       emit('update:modelValue', value)
     },
     keypress(e) {
