@@ -95,13 +95,17 @@ import BaseIcon from '/-/components/icon/base-icon.vue'
 import BaseButton from '/-/components/button/base-button.vue'
 
 export default defineComponent({
-  name: 'BaseInput',
+  name: 'BaseTextarea',
   components: {
     BaseIcon,
     BaseButton
   },
   props: {
     modelValue: {
+      type: [String, Number],
+      default: '',
+    },
+    value: {
       type: [String, Number],
       default: '',
     },
