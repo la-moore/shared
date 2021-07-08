@@ -1,5 +1,6 @@
 <template>
-  <div class="relative inline-block">
+  <div class="relative inline-block"
+       v-clickaway="hide">
     <div @click="show">
       <slot />
     </div>
@@ -13,14 +14,14 @@
       leave-to-class="transform scale-95 opacity-0">
       <div v-show="isVisible"
            ref="menu"
-           class="absolute w-48 my-2"
+           class="absolute max-w-xs my-2"
            :class="[
              proxyLevel,
              canOpenLeft ? 'right-0' : 'left-0',
              canOpenBottom ? 'top-full' : 'bottom-full',
              `origin-${canOpenBottom ? 'top' : 'bottom'}-${canOpenLeft ? 'right' : 'left'}`
            ]"
-           @click="hide">
+           @click="onClick">
         <slot name="menu" />
       </div>
     </transition>
@@ -40,6 +41,10 @@ export default defineComponent({
     level: {
       type: [String, Number],
       default: 10
+    },
+    hideOnClick: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -52,40 +57,6 @@ export default defineComponent({
   computed: {
     proxyLevel() {
       return this.level && `z-${this.level}`
-    }
-  },
-  mounted() {
-    const el = this.$el
-
-    function handler(e: any) {
-      const elements = e.path || (e.composedPath && e.composedPath())
-
-      if (elements && elements.length > 0) {
-        elements.unshift(e.target)
-      }
-
-      if (el.__clickaway__ && !el.contains(e.target)) {
-        el.__clickaway__.callback(e)
-      }
-    }
-
-    el.__clickaway__ = {
-      handler: handler,
-      callback: this.hide,
-    }
-
-    setTimeout(() => {
-      const clickHandler = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click'
-
-      document.addEventListener(clickHandler, handler, true)
-    }, 0)
-  },
-  beforeUnmount() {
-    const clickHandler = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click'
-
-    if (this.$el.__clickaway__) {
-      document.removeEventListener(clickHandler, this.$el.__clickaway__.handler, true)
-      delete this.$el.__clickaway__
     }
   },
   methods: {
@@ -126,6 +97,11 @@ export default defineComponent({
         this.canOpenBottom = rectEl.top + rectMenu.height + 50 < rectParent.bottom
       } else {
         this.canOpenBottom = window.innerHeight - rectEl.top > rectMenu.height + 50
+      }
+    },
+    onClick() {
+      if (this.hideOnClick) {
+        this.hide()
       }
     }
   }

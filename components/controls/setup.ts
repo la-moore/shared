@@ -3,6 +3,7 @@ import { useField } from 'vee-validate'
 import './rules'
 
 interface InputProps {
+  value?: string
   modelValue?: string
   maxlength?: number
   name?: string
@@ -21,18 +22,24 @@ export interface OptionInterface {
 
 export function setup(props: InputProps, ctx: SetupContext) {
   const { emit } = ctx
-  const localValue = ref(null)
+  const localValue = ref(props.modelValue || props.value || false)
   const needValidation = ref(false)
   const handlers: Record<string, any> = reactive({
     input(e) {
       let value = e.target?.value || e.target?.innerText
+
+      if (e.target?.getAttribute('type') === 'checkbox') {
+        localValue.value = !localValue.value
+
+        return emit('update:modelValue', localValue.value)
+      }
 
       if (props.type === 'number') {
         value = parseFloat(value || 0)
       }
       if (props.type === 'number') {
         value = parseFloat(value || 0)
-      } else {
+      } else if (props.type === 'string') {
         localValue.value = value.replace(/<(.|\n)*?>/g, '')
       }
 

@@ -10,12 +10,12 @@ function validate(binding: DirectiveBinding) {
 }
 
 interface IClickAway {
-  handler: Function,
-  callback: Function
+  handler: (e: any) => void,
+  callback: (e: any) => void
 }
 
 interface HTMLClickawayElement extends HTMLElement {
-  __clickaway__: IClickAway
+  clickAway: IClickAway
 }
 
 const index: ObjectDirective = {
@@ -29,12 +29,12 @@ const index: ObjectDirective = {
         elements.unshift(e.target)
       }
 
-      if (el.__clickaway__ && !el.contains(e.target)) {
-        el.__clickaway__.callback(e)
+      if (el.clickAway && !el.contains(e.target)) {
+        el.clickAway.callback(e)
       }
     }
 
-    el.__clickaway__ = {
+    el.clickAway = {
       handler: handler,
       callback: binding.value,
     }
@@ -47,11 +47,11 @@ const index: ObjectDirective = {
   },
   updated(el: HTMLClickawayElement, binding) {
     if (validate(binding)) {
-      el.__clickaway__.callback = binding.value
+      el.clickAway.callback = binding.value
     }
   },
   unmounted(el) {
-    const clickHandler = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
+    const clickHandler = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click'
 
     if (el.__clickaway__) {
       document.removeEventListener(clickHandler, el.__clickaway__.handler, true)

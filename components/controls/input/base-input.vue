@@ -81,6 +81,7 @@ import { defineComponent } from 'vue'
 import { setup } from '../setup'
 import BaseIcon from '/-/components/icon/base-icon.vue'
 import BaseButton from '/-/components/button/base-button.vue'
+import BaseControlCore from '../base-control-core.vue'
 
 export default defineComponent({
   name: 'BaseInput',
@@ -88,62 +89,12 @@ export default defineComponent({
     BaseIcon,
     BaseButton
   },
-  props: {
-    value: {
-      type: [String, Number],
-      default: '',
-    },
-    modelValue: {
-      type: [String, Number],
-      default: '',
-    },
-    placeholder: {
-      type: String,
-      default: '',
-    },
-    type: {
-      type: String,
-      default: 'text',
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    name: {
-      type: String,
-      default: '',
-    },
-    rules: {
-      type: [String, Function, Object],
-      default: '',
-    },
-    error: {
-      type: String,
-      default: '',
-    },
-    mask: {
-      type: Object,
-      default: null,
-    },
-    maxlength: {
-      type: Number,
-      default: undefined,
-    },
-    required: {
-      type: Boolean,
-      default: false,
-    },
-  },
+  extends: BaseControlCore,
   emits: ['update:modelValue', 'unmasked'],
   setup,
   data() {
     return {
-      showPassword: false,
-      isFocused: false
+      showPassword: false
     }
   },
   computed: {

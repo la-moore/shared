@@ -2,9 +2,9 @@ import { Plugin } from 'vue'
 import { useColor, ColorType } from './state'
 
 const plugin: Plugin = function(app, color: ColorType | string = 'indigo') {
-    const { setColor } = useColor()
+  const { setColor } = useColor()
 
-    setColor(color)
+  setColor(color)
 }
 
 export default plugin

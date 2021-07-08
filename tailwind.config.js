@@ -2,7 +2,9 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   purge: [
-    './docs/**/*.{vue,js,ts,jsx,tsx}'
+    './components/**/*.{vue,js,ts,jsx,tsx}',
+    './directives/**/*.{vue,js,ts,jsx,tsx}',
+    './plugins/**/*.{vue,js,ts,jsx,tsx}'
   ],
   darkMode: 'class',
   theme: {
@@ -26,6 +28,14 @@ module.exports = {
         md: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
         lg: '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
         xl: '0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        'inner-border': 'inset 0 0 0 1px rgba(0, 0, 0, 0.10)',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+        '5xl': '3rem',
+        '6xl': '4rem',
+        '7xl': '8rem',
+        '8xl': '12rem',
       }
     }
   },

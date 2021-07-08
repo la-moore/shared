@@ -38,6 +38,7 @@ Use attribute `multiple` and array for v-model
     <base-select v-model="select1"
                  multiple
                  label="Select Label"
+                 placeholder="Click To Select"
                  :options="[{ label: 'Item 1', value: 1 }, { label: 'Item 2', value: 2 }]"></base-select>
 </div>
 

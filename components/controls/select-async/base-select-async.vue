@@ -26,9 +26,9 @@
                 :disabled="disabled"
                 @click="toggle"
                 @keydown="onKeydown">
-          <span v-if="selectedOptions.length > 0"
+          <span v-if="selectedLabels.length > 0 || empty"
                 class="flex-1 text-left truncate">
-            {{ selectedLabels.join(', ') }}
+            {{ selectedLabels.join(', ') || empty }}
           </span>
           <span v-else
                 class="flex-1 text-left text-gray-400">
@@ -44,7 +44,7 @@
           </span>
         </button>
 
-        <BaseButton v-if="multiple && selectedOptions.length > 0"
+        <BaseButton v-if="multiple && selected.length > 0"
                     theme="white"
                     class="w-10 !p-0 ml-3 flex-shrink-0"
                     tabindex="-1"
@@ -62,42 +62,57 @@
         <div v-if="expanded"
              class="absolute z-10 left-0 w-full mt-2 origin-top-left rounded-md shadow-lg">
           <div class="rounded-md whitespace-nowrap shadow-xs bg-white max-h-64 overflow-y-auto">
+            <div class="px-2 pt-2">
+              <input ref="search"
+                     v-model="search"
+                     class="appearance-none block w-full px-3 h-10 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                     aria-label=""
+                     :placeholder="searchPlaceholder"
+                     @keydown="onKeydown">
+            </div>
+
             <div class="py-2"
                  role="menu"
                  aria-orientation="vertical">
-              <div v-if="proxyOptions.length === 0"
+              <div v-if="loading"
+                   class="truncate px-4 py-2 text-gray-500">
+                <BaseSpinner class="mx-auto" />
+              </div>
+              <div v-else-if="proxyOptions.length === 0"
                    class="truncate px-4 py-2 text-gray-500">
                 {{ emptyPlaceholder }}
               </div>
-              <div v-for="(option, idx) in proxyOptions"
-                   :key="idx"
-                   class="flex truncate items-center px-4 py-2 cursor-pointer text-gray-500 focus:outline-none"
-                   :class="[
-                     (focusedOption && focusedOption.value === option.value) && 'bg-gray-100 text-gray-800',
-                     selectedValues.includes(option.value) ?
-                       'text-primary-500 bg-primary-100' :
-                       'hover:bg-gray-100 hover:text-gray-800'
-                   ]"
-                   role="menuitem"
-                   @click="onSelect(option)">
-                <BaseButton v-if="multiple"
-                            class="w-6 !p-0 mr-3 flex-shrink-0"
-                            size="xs"
-                            tabindex="-1"
-                            :look="selectedValues.includes(option.value) ? 'solid' : 'border'"
-                            :theme="selectedValues.includes(option.value) ? 'primary' : 'white'">
-                  <BaseIcon v-if="selectedValues.includes(option.value)"
-                            name="outline_check" />
-                </BaseButton>
+              <template v-else>
+                <div v-for="(option, idx) in proxyOptions"
+                     :key="idx"
+                     class="flex truncate items-center px-4 py-2 cursor-pointer text-gray-500 focus:outline-none"
+                     :class="[
+                       (focusedOption && focusedOption.value === option.value) && 'bg-gray-100 text-gray-800',
+                       selectedValues.includes(option.value) ?
+                         'text-primary-500 bg-primary-100' :
+                         'hover:bg-gray-100 hover:text-gray-800'
+                     ]"
+                     role="menuitem"
+                     @click="onSelect(option)">
+                  <BaseButton v-if="multiple"
+                              class="w-6 !p-0 mr-3 flex-shrink-0"
+                              size="xs"
+                              tabindex="-1"
+                              :look="selectedValues.includes(option.value) ? 'solid' : 'border'"
+                              :theme="selectedValues.includes(option.value) ? 'primary' : 'white'">
+                    <BaseIcon v-if="selectedValues.includes(option.value)"
+                              name="outline_check" />
+                  </BaseButton>
 
-                <slot :option="option"
-                      name="option">
-                  <span class="flex-1 truncate"
-                        :title="option.label || option.value">
-                    {{ option.label || option.value }}
-                  </span>
-                </slot>
-              </div>
+                  <slot :option="option"
+                        name="option">
+                    <span class="flex-1 truncate"
+                          :title="option.label || option.value">
+                      {{ option.label || option.value }}
+                    </span>
+                  </slot>
+                </div>
+              </template>
             </div>
           </div>
         </div>
@@ -123,11 +138,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { setup } from '../setup'
 import BaseIcon from '/-/components/icon/base-icon.vue'
 import BaseButton from '/-/components/button/base-button.vue'
 import BaseSpinner from '/-/components/spinner/base-spinner.vue'
-import { OptionInterface } from '/-/components/controls/setup'
-import { setup } from '../setup'
+import { debounce } from '/-/plugins/helpers'
 
 export default defineComponent({
   name: 'BaseSelect',
@@ -153,6 +168,10 @@ export default defineComponent({
       type: String,
       default: 'Nothing to show',
     },
+    searchPlaceholder: {
+      type: String,
+      default: 'Search...',
+    },
     label: {
       type: String,
       default: '',
@@ -161,11 +180,11 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    multiple: {
+    fetchOnOpen: {
       type: Boolean,
-      default: false,
+      default: true,
     },
-    loading: {
+    multiple: {
       type: Boolean,
       default: false,
     },
@@ -189,8 +208,12 @@ export default defineComponent({
       type: String,
       default: undefined,
     },
-    options: {
-      type: Array as () => OptionInterface[],
+    minLength: {
+      type: Number,
+      default: 0,
+    },
+    fetch: {
+      type: Function,
       default: () => [],
     },
   },
@@ -199,8 +222,12 @@ export default defineComponent({
   data() {
     return {
       focused: -1,
+      options: [],
+      selected: [],
+      loading: false,
       expanded: false,
       isFocused: false,
+      search: '',
     }
   },
   computed: {
@@ -208,7 +235,7 @@ export default defineComponent({
       let value = this.modelValue || this.value
 
       if (this.multiple && !Array.isArray(value)) {
-        value = [value]
+        value = value ? [value] : []
       }
 
       return value
@@ -225,26 +252,22 @@ export default defineComponent({
 
       return options
     },
-    selectedOptions() {
-      const value = this.parsedValue
-
-      return this.options.filter((option) => {
-        if (this.multiple && Array.isArray(value)) {
-          return value.includes(option.value) ||
-            value.includes(option.value?.toString())
-        }
-
-        return option.value === value
-      })
-    },
     selectedValues() {
-      return this.selectedOptions.map(({ value }) => value)
+      return this.selected.map(({ value }) => value)
     },
     selectedLabels() {
-      return this.selectedOptions.map(({ label }) => label)
+      return this.selected.map(({ label }) => label)
     },
     focusedOption() {
       return this.proxyOptions[this.focused]
+    }
+  },
+  watch: {
+    search(search = '') {
+      if (search.length >= this.minLength && !this.selectedLabels.includes(search)) {
+        this.loading = true
+        this.debounceFetch(search)
+      }
     }
   },
   mounted() {
@@ -257,18 +280,43 @@ export default defineComponent({
     })
   },
   methods: {
+    debounceFetch: debounce(async function(search) {
+      this.options = await this.fetch(search || undefined)
+      this.loading = false
+    }, 400),
     open() {
       this.expanded = true
+
+      if (this.fetchOnOpen && this.options.length === 0) {
+        this.loading = true
+        this.debounceFetch('')
+      }
+
+      if (this.search.length > this.minLength) {
+        this.search = ''
+        this.loading = true
+        this.debounceFetch('')
+      }
+
+      this.$nextTick(() => {
+        this.$refs.search?.focus()
+      })
     },
     close() {
       this.focused = -1
       this.expanded = false
     },
     toggle() {
-      this.expanded = !this.expanded
+      if (this.expanded) {
+        this.close()
+      } else {
+        this.open()
+      }
     },
     clear() {
       const value = this.parsedValue
+
+      this.selected = []
 
       if (Array.isArray(value)) {
         this.$emit('update:modelValue', [])
@@ -284,8 +332,6 @@ export default defineComponent({
       })
     },
     onKeydown(event) {
-      event.preventDefault()
-
       if (event.key === 'ArrowDown') {
         this.focused++
 
@@ -329,9 +375,20 @@ export default defineComponent({
 
             return v !== option.value
           })
+
+          this.selected = this.selected.filter((item) => {
+            if (parseInt(item.value)) {
+              return parseInt(item.value) !== option.value
+            }
+
+            return item.value !== option.value
+          })
         } else {
           result = [...value, option.value]
+          this.selected = [...this.selected, option]
         }
+      } else {
+        this.selected = [option]
       }
 
       this.$emit('update:modelValue', result)

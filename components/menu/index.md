@@ -4,7 +4,7 @@
     <base-menu>
         <base-button>Click to open</base-button>
         <template #menu>
-          <div class="rounded-md bg-white shadow-lg mr-2 divide-y divide-gray-200">
+          <div class="w-48 rounded-md bg-white shadow-lg mr-2 divide-y divide-gray-200">
             <div class="py-1">
               <div class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
                 Item 1

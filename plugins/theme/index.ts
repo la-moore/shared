@@ -2,9 +2,9 @@ import { Plugin } from 'vue'
 import { useTheme, ThemeType } from './state'
 
 const plugin: Plugin = function(app, theme: ThemeType = 'main') {
-    const { setTheme } = useTheme()
+  const { setTheme } = useTheme()
 
-    setTheme(theme)
+  setTheme(theme)
 }
 
 export default plugin

@@ -2,7 +2,7 @@
 const path = require('path')
 
 module.exports = {
-  title: 'WnHub Shared',
+  title: 'LaMoore Shared',
   base: '/',
   alias: {
     '/-': path.join(__dirname, '../'),
@@ -22,10 +22,6 @@ module.exports = {
       ],
       '/': [
         {
-          text: 'Settings',
-          link: '/settings'
-        },
-        {
           text: 'Components',
           link: '/components/',
           children: [
@@ -35,16 +31,25 @@ module.exports = {
             { text: 'Button', link: '/components/button/' },
             { text: 'Form', link: '/components/form/' },
             { text: 'dialog', link: '/components/dialog/' },
-            { text: 'Icon', link: '/components/icon/' },
             { text: 'Link', link: '/components/link/' },
-            { text: 'Input', link: '/components/controls/input/' },
-            { text: 'Textarea', link: '/components/controls/textarea/' },
             { text: 'Menu', link: '/components/menu/' },
             { text: 'Modal', link: '/components/modal/' },
             { text: 'Ratio', link: '/components/ratio/' },
-            { text: 'Select', link: '/components/controls/select/' },
             { text: 'Spinner', link: '/components/spinner/' },
-            { text: 'Table', link: '/components/table/' }
+            { text: 'Table', link: '/components/table/' },
+            { text: 'Tabs', link: '/components/tabs/' }
+          ],
+        },
+        {
+          text: 'Controls',
+          link: '/components/controls/',
+          children: [
+            { text: 'Input', link: '/components/controls/input/' },
+            { text: 'Toggle', link: '/components/controls/toggle/' },
+            { text: 'Select', link: '/components/controls/select/' },
+            { text: 'Checkbox', link: '/components/controls/checkbox/' },
+            { text: 'Textarea', link: '/components/controls/textarea/' },
+            { text: 'SelectAsync', link: '/components/controls/select-async/' }
           ],
         },
         {
@@ -69,7 +74,10 @@ module.exports = {
             { text: 'Local Storage', link: '/plugins/local-storage/' },
             { text: 'Locale', link: '/plugins/locale/' },
             { text: 'Processor', link: '/plugins/processor/' },
-            { text: 'Theme', link: '/plugins/theme/' }
+            { text: 'Icons', link: '/plugins/icons/' },
+            { text: 'Theme', link: '/plugins/theme/' },
+            { text: 'Color Picker', link: '/plugins/color-picker/' },
+            { text: 'Backgrounds', link: '/plugins/backgrounds/' }
           ],
         },
       ]
