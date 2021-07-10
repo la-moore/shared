@@ -1,5 +1,11 @@
 # Backgrounds
 
+```ts
+import backgrounds from '/-/plugins/backgrounds'
+
+app.use(backgrounds)
+```
+
 <div class="mt-4 w-full h-56 rounded-2xl overflow-hidden">
     <base-background-box></base-background-box>
 </div>

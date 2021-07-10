@@ -9,6 +9,7 @@ import theme from '../../plugins/theme'
 import icons from '../../plugins/icons'
 import ColorPicker from '../../plugins/color-picker'
 import Backgrounds from '../../plugins/backgrounds'
+import Slider from '../../plugins/slider'
 import './layout.css';
 import './tailwind.postcss'
 
@@ -22,5 +23,6 @@ export default {
 
     app.use(ColorPicker)
     app.use(Backgrounds)
+    app.use(Slider)
   },
 }

@@ -30,7 +30,7 @@ module.exports = {
             { text: 'Badge', link: '/components/badge/' },
             { text: 'Button', link: '/components/button/' },
             { text: 'Form', link: '/components/form/' },
-            { text: 'dialog', link: '/components/dialog/' },
+            { text: 'Dialog', link: '/components/dialog/' },
             { text: 'Link', link: '/components/link/' },
             { text: 'Menu', link: '/components/menu/' },
             { text: 'Modal', link: '/components/modal/' },
@@ -77,7 +77,8 @@ module.exports = {
             { text: 'Icons', link: '/plugins/icons/' },
             { text: 'Theme', link: '/plugins/theme/' },
             { text: 'Color Picker', link: '/plugins/color-picker/' },
-            { text: 'Backgrounds', link: '/plugins/backgrounds/' }
+            { text: 'Backgrounds', link: '/plugins/backgrounds/' },
+            { text: 'Slider', link: '/plugins/slider/' }
           ],
         },
       ]
