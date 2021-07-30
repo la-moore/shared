@@ -18,21 +18,13 @@ app.use(icons, localIcons)
 
 <div class="h-12"></div>
 
-## Integration
-
-Use plugin `icons`
-
-```html
-
-```
-
 | Param   | Size      | Look                                                  |
 | ------- | --------- | ----------------------------------------------------- |
-| xs      | h-4 w-4   | <base-icon name="outline_check_circle" size="xs" />   |
-| sm      | h-5 w-5   | <base-icon name="outline_check_circle" size="sm" />   |
-| md      | h-6 w-6   | <base-icon name="outline_check_circle" size="md" />   |
-| lg      | h-8 w-8   | <base-icon name="outline_check_circle" size="lg" />   |
-| xl      | h-10 w-10 | <base-icon name="outline_check_circle" size="xl" />   |
+| xs      | h-4 w-4   | <base-icon name="outline/add-circle" size="xs" />   |
+| sm      | h-5 w-5   | <base-icon name="outline/add-circle" size="sm" />   |
+| md      | h-6 w-6   | <base-icon name="outline/add-circle" size="md" />   |
+| lg      | h-8 w-8   | <base-icon name="outline/add-circle" size="lg" />   |
+| xl      | h-10 w-10 | <base-icon name="outline/add-circle" size="xl" />   |
 
 <div class="h-12"></div>
 
@@ -47,11 +39,11 @@ Use attribute `size`
 
 | Param   | Size      | Look                                                  |
 | ------- | --------- | ----------------------------------------------------- |
-| xs      | h-4 w-4   | <base-icon name="outline_check_circle" size="xs" />   |
-| sm      | h-5 w-5   | <base-icon name="outline_check_circle" size="sm" />   |
-| md      | h-6 w-6   | <base-icon name="outline_check_circle" size="md" />   |
-| lg      | h-8 w-8   | <base-icon name="outline_check_circle" size="lg" />   |
-| xl      | h-10 w-10 | <base-icon name="outline_check_circle" size="xl" />   |
+| xs      | h-4 w-4   | <base-icon name="outline/arrow-square-up" size="xs" />   |
+| sm      | h-5 w-5   | <base-icon name="outline/arrow-square-up" size="sm" />   |
+| md      | h-6 w-6   | <base-icon name="outline/arrow-square-up" size="md" />   |
+| lg      | h-8 w-8   | <base-icon name="outline/arrow-square-up" size="lg" />   |
+| xl      | h-10 w-10 | <base-icon name="outline/arrow-square-up" size="xl" />   |
 
 <div class="h-12"></div>
 
@@ -64,11 +56,11 @@ Use attribute `size`
 
 <div class="mt-4 flex flex-wrap -mx-1">
     <div v-for="(icon, idx) in visibleIcons"
-         :key="idx"
+         :key="icon"
          class="w-1/12 p-1">
-        <base-ratio class="bg-gray-100 rounded-md cursor-pointer" @click="() => onClick(icon)">
+        <base-ratio v-tooltip :content="icon" class="bg-gray-100 rounded-md cursor-pointer" @click="() => onClick(icon)">
             <base-icon :name="icon" />
-            <div class="absolute inset-0 rounded-md border-2 border-transparent hover:border-green-500"></div>
+            <div class="absolute inset-0 rounded-md border-2 border-transparent active:opacity-50 hover:border-green-500"></div>
         </base-ratio>
     </div>
 </div>

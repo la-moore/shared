@@ -20,8 +20,9 @@ const arr = {}
 
 files.forEach((file) => {
   let fileContent = fs.readFileSync(`${ICONS_DIR}/${file}.svg`, 'utf8')
+  let name = file.replace(/(\\)/g, '/')
 
-  arr[file.replace(/(\\)|(-)|(\/)/g, '_')] = fileContent
+  arr[name] = fileContent
       .replace((/"/gm), "'")
 })
 

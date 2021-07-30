@@ -12,7 +12,7 @@
             <div v-if="color === colorItem"
                  class="absolute top-0 right-0 p-1">
               <div class="w-5 h-5 bg-white flex items-center justify-center rounded-md">
-                <BaseIcon name="outline_check" size="xs"></BaseIcon>
+                <BaseIcon name="outline/check" size="xs"></BaseIcon>
               </div>
             </div>
           </BaseRatio>

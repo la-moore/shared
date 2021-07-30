@@ -74,7 +74,7 @@ Use attribute `class`, `stub-class`, `avatar-class`
     <base-avatar title="Title"
                  text="Text"
                  class="text-primary-500"
-                 stub-class="bg-primary-300 text-primary-700"></base-avatar>
+                 stub-class="bg-primary-300 p-1 text-primary-700"></base-avatar>
 </div>
 
 ```html

@@ -6,7 +6,7 @@
       {{ required ? '*' : '' }}
     </label>
     <div v-clickaway="close"
-         class="rounded-full">
+         class="rounded-md">
       <div class="flex truncate relative">
         <input type="text"
                class="absolute h-0 w-0 pointer-events-none opacity-0"
@@ -16,7 +16,7 @@
 
         <button ref="input"
                 tabindex="-1"
-                class="shadow-sm flex items-center w-full px-6 h-10 border border-gray-300 rounded-full focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 truncate"
+                class="flex items-center w-full px-3 h-10 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 truncate"
                 :class="[
                   errorMessage ? 'border-red-400' : 'border-gray-300',
                   disabled ? 'bg-gray-200 cursor-not-allowed' : 'bg-white',
@@ -38,7 +38,7 @@
             <BaseSpinner v-if="loading"
                          size="xs" />
             <BaseIcon v-else
-                      name="outline_chevron_down"
+                      name="outline/arrow-down"
                       :class="expanded && 'transform rotate-180'"
                       size="xs" />
           </span>

@@ -101,11 +101,11 @@ export default defineComponent({
     BaseButton
   },
   props: {
-    modelValue: {
+    value: {
       type: [String, Number],
       default: '',
     },
-    value: {
+    modelValue: {
       type: [String, Number],
       default: '',
     },
@@ -160,6 +160,7 @@ export default defineComponent({
   },
   data() {
     return {
+      showPassword: false,
       isFocused: false
     }
   },
@@ -178,6 +179,6 @@ export default defineComponent({
         this.$refs.input.focus()
       }, 100)
     }
-  }
+  },
 })
 </script>

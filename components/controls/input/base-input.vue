@@ -5,7 +5,7 @@
       {{ label }}
       {{ required ? '*' : '' }}
     </label>
-    <div class="rounded-md shadow-sm border border-gray-300 flex transition duration-150 ease-in-out items-center"
+    <div class="rounded-md border border-gray-300 flex transition duration-150 ease-in-out items-center"
          :class="[
            (isFocused && !errorMessage) && 'border-blue-300',
            errorMessage ? 'border-red-400' : 'border-gray-300',
@@ -23,7 +23,7 @@
              :class="[
                disabled && 'pointer-events-none'
              ]"
-             :value="modelValue || value"
+             :value="typeof modelValue === 'undefined' ? value : modelValue"
              :type="proxyType"
              :disabled="disabled"
              :maxlength="maxlength"
@@ -44,7 +44,7 @@
                       theme="dark"
                       rounded="md"
                       @click="showPassword = !showPassword">
-            <BaseIcon :name="showPassword ? 'outline_eye_off' : 'outline_eye'"
+            <BaseIcon :name="showPassword ? 'outline/eye-slash' : 'outline/eye'"
                       size="sm" />
           </BaseButton>
         </slot>

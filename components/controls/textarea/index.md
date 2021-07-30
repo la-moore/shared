@@ -22,7 +22,7 @@ Use attribute `disabled`, `required`
 | Param    | Look                                                                         |
 | -------- | ---------------------------------------------------------------------------- |
 | disabled | <base-textarea class="w-40" disabled label="Textarea Label"></base-textarea> |
-| required | <base-textarea class="w-40" required label="Textarea Label"></base-textarea> |
+| required | <base-textarea class="w-40" v-model="text" required label="Textarea Label"></base-textarea> |
 
 <div class="h-12"></div>
 
@@ -31,7 +31,7 @@ Use attribute `disabled`, `required`
 Use attribute `placeholder` like html input placeholder
 
 <div class="mt-4">
-    <base-textarea placeholder="Type here..." label="Textarea Label"></base-textarea>
+    <base-textarea v-model="text" placeholder="Type here..." label="Textarea Label"></base-textarea>
 </div>
 
 ```html
@@ -46,7 +46,7 @@ Use attribute `placeholder` like html input placeholder
 Use attribute `error`
 
 <div class="mt-4">
-    <base-textarea error="Some error text" label="Textarea Label"></base-textarea>
+    <base-textarea v-model="text" error="Some error text" label="Textarea Label"></base-textarea>
 </div>
 
 ```html
@@ -73,7 +73,8 @@ Use attribute `maxlength`
 export default {
   data () {
     return {
-      maxlength: ''
+      maxlength: '',
+      text: '',
     }
   }
 }

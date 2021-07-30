@@ -82,11 +82,11 @@ export default defineComponent({
     },
     stubClass: {
       type: String,
-      default: 'bg-gray-400'
+      default: 'bg-gray-400 p-1'
     },
     icon: {
       type: [String, Boolean],
-      default: 'solid_user_circle'
+      default: 'solid/profile'
     },
     align: {
       type: [String, Boolean],

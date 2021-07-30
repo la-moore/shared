@@ -40,6 +40,7 @@ module.exports = {
     }
   },
   variants: {
+    opacity: ['active'],
     width: ['responsive', 'important'],
     justifyContent: ['responsive', 'important'],
     alignItems: ['responsive', 'important'],

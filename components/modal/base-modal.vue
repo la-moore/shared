@@ -40,7 +40,7 @@
                           size="sm"
                           class="w-8 !p-0"
                           @click="close">
-                <BaseIcon name="outline_x" />
+                <BaseIcon name="outline/close" />
               </BaseButton>
             </div>
           </slot>
