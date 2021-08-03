@@ -14,7 +14,7 @@
       leave-to-class="transform scale-95 opacity-0">
       <div v-show="isVisible"
            ref="menu"
-           class="absolute max-w-xs my-2"
+           class="absolute w-full my-2"
            :class="[
              proxyLevel,
              canOpenLeft ? 'right-0' : 'left-0',
