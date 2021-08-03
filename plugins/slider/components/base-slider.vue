@@ -6,20 +6,23 @@
       <slot />
     </div>
 
-    <div v-if="showNav"
-         class="flex space-x-1 justify-center mt-4">
-      <template v-for="(item, idx) in slidesPositions.length"
-                :key="idx">
-        <slot name="nav-dot"
-              v-bind="{ index, isActive: index === idx, slides: slidesPositions.length }">
-          <div class="w-3 h-3 rounded-full cursor-pointer transition"
-               :class="[
-                 index === idx ? 'bg-primary-500' : 'bg-gray-200'
-               ]"
-               @click="() => slideTo(idx)" />
-        </slot>
-      </template>
-    </div>
+    <slot name="nav"
+          v-bind="{ index, slides: slidesPositions.length }">
+      <div v-if="showNav"
+           class="flex space-x-1 justify-center mt-4">
+        <template v-for="(item, idx) in slidesPositions.length"
+                  :key="idx">
+          <slot name="nav-dot"
+                v-bind="{ index, isActive: index === idx, slides: slidesPositions.length }">
+            <div class="w-3 h-3 rounded-full cursor-pointer transition"
+                 :class="[
+                   index === idx ? 'bg-primary-500' : 'bg-gray-200'
+                 ]"
+                 @click="() => slideTo(idx)" />
+          </slot>
+        </template>
+      </div>
+    </slot>
   </div>
 </template>
 
