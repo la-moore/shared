@@ -5,63 +5,66 @@
       {{ label }}
       {{ required ? '*' : '' }}
     </label>
-    <div v-clickaway="close"
-         class="rounded-md">
-      <div class="flex truncate relative">
-        <input type="text"
-               class="absolute h-0 w-0 pointer-events-none opacity-0"
-               aria-label=""
-               @focus="open"
-               @blur="close">
 
-        <button ref="input"
-                tabindex="-1"
-                class="flex items-center w-full px-3 h-10 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 truncate"
-                :class="[
-                  errorMessage ? 'border-red-400' : 'border-gray-300',
-                  disabled ? 'bg-gray-200 cursor-not-allowed' : 'bg-white',
-                  loading && 'pointer-events-none'
-                ]"
-                type="button"
-                :disabled="disabled"
-                @click="toggle"
-                @keydown="onKeydown">
-          <span v-if="selectedLabels.length > 0 || empty"
-                class="flex-1 text-left truncate">
-            {{ selectedLabels.join(', ') || empty }}
-          </span>
-          <span v-else
-                class="flex-1 text-left text-gray-400">
-            {{ placeholder }}
-          </span>
-          <span class="flex-shrink-0 ml-3">
-            <BaseSpinner v-if="loading"
-                         size="xs" />
-            <BaseIcon v-else
-                      name="outline/arrow-down"
-                      :class="expanded && 'transform rotate-180'"
-                      size="xs" />
-          </span>
-        </button>
+    <BaseMenu ref="menu"
+              class="w-full"
+              animation="translate"
+              :hide-on-click="false"
+              toggle
+              @show="open"
+              @hide="focused = -1">
+      <template #default="{ isVisible }">
+        <div class="flex truncate relative">
+          <input type="text"
+                 class="absolute h-0 w-0 pointer-events-none opacity-0"
+                 aria-label=""
+                 @focus="open"
+                 @blur="close">
 
-        <BaseButton v-if="multiple && selected.length > 0"
-                    theme="white"
-                    class="w-10 !p-0 ml-3 flex-shrink-0"
-                    tabindex="-1"
-                    @click="clear">
-          <BaseIcon name="outline_trash" />
-        </BaseButton>
-      </div>
+          <button ref="input"
+                  tabindex="-1"
+                  class="flex items-center w-full px-3 h-10 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 truncate"
+                  :class="[
+                    errorMessage ? 'border-red-400' : 'border-gray-300',
+                    disabled ? 'bg-gray-200 cursor-not-allowed' : 'bg-white',
+                    loading && 'pointer-events-none'
+                  ]"
+                  type="button"
+                  :disabled="disabled"
+                  @keydown="onKeydown">
+            <span v-if="selectedLabels.length > 0 || empty"
+                  class="flex-1 text-left truncate">
+              {{ selectedLabels.join(', ') || empty }}
+            </span>
+            <span v-else
+                  class="flex-1 text-left text-gray-400">
+              {{ placeholder }}
+            </span>
+            <span class="flex-shrink-0 ml-3">
+              <BaseSpinner v-if="loading"
+                           size="xs" />
+              <BaseIcon v-else
+                        name="outline/arrow-down"
+                        :class="isVisible && 'transform rotate-180'"
+                        size="xs" />
+            </span>
+          </button>
 
-      <transition enter-active-class="transition-all duration-200"
-                  enter-from-class="transform -translate-y-3 opacity-0"
-                  enter-to-class="transform translate-y-0 opacity-100"
-                  leave-active-class="transition-all duration-200"
-                  leave-from-class="transform translate-y-0"
-                  leave-to-class="transform -translate-y-3 opacity-0">
-        <div v-if="expanded"
-             class="absolute z-10 left-0 w-full mt-2 origin-top-left rounded-md shadow-lg">
-          <div class="rounded-md whitespace-nowrap shadow-xs bg-white max-h-64 overflow-y-auto">
+          <BaseButton v-if="multiple && selected.length > 0"
+                      theme="white"
+                      class="w-10 !p-0 ml-3 flex-shrink-0"
+                      tabindex="-1"
+                      @click="clear">
+            <BaseIcon name="outline/trash" />
+          </BaseButton>
+        </div>
+      </template>
+
+      <template #menu>
+        <div class="rounded-md my-2 whitespace-nowrap shadow-md bg-white max-h-64 overflow-y-auto">
+          <div class="py-2"
+               role="menu"
+               aria-orientation="vertical">
             <div class="px-2 pt-2">
               <input ref="search"
                      v-model="search"
@@ -71,9 +74,7 @@
                      @keydown="onKeydown">
             </div>
 
-            <div class="py-2"
-                 role="menu"
-                 aria-orientation="vertical">
+            <div class="py-2">
               <div v-if="loading"
                    class="truncate px-4 py-2 text-gray-500">
                 <BaseSpinner class="mx-auto" />
@@ -94,15 +95,24 @@
                      ]"
                      role="menuitem"
                      @click="onSelect(option)">
-                  <BaseButton v-if="multiple"
-                              class="w-6 !p-0 mr-3 flex-shrink-0"
-                              size="xs"
-                              tabindex="-1"
-                              :look="selectedValues.includes(option.value) ? 'solid' : 'border'"
-                              :theme="selectedValues.includes(option.value) ? 'primary' : 'white'">
-                    <BaseIcon v-if="selectedValues.includes(option.value)"
-                              name="outline_check" />
-                  </BaseButton>
+                  <div v-if="multiple"
+                       class="w-6 h-6 mr-3 flex-shrink-0 transition text-white border-2 rounded-md flex items-center justify-center"
+                       :class="[
+                         selectedValues.includes(option.value) && 'border-primary-500 bg-primary-500'
+                       ]"
+                       tabindex="-1">
+                    <transition
+                      enter-active-class="transition delay-100 duration-100 ease-out"
+                      enter-from-class="transform scale-50 opacity-0"
+                      enter-to-class="transform scale-100 opacity-100"
+                      leave-active-class="transition duration-75 ease-in"
+                      leave-from-class="transform scale-100 opacity-100"
+                      leave-to-class="transform scale-50 opacity-0">
+                      <BaseIcon v-if="selectedValues.includes(option.value)"
+                                name="outline/check"
+                                size="sm" />
+                    </transition>
+                  </div>
 
                   <slot :option="option"
                         name="option">
@@ -116,8 +126,9 @@
             </div>
           </div>
         </div>
-      </transition>
-    </div>
+      </template>
+    </BaseMenu>
+
     <div class="flex pt-px text-sm leading-4">
       <transition enter-active-class="transition-all duration-300"
                   enter-from-class="transform -translate-y-3 opacity-0"
@@ -138,32 +149,24 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { setup } from '../setup'
+import { debounce } from '/-/plugins/helpers'
+import { OptionInterface, setup } from '../setup'
 import BaseIcon from '/-/components/icon/base-icon.vue'
+import BaseMenu from '/-/components/menu/base-menu.vue'
 import BaseButton from '/-/components/button/base-button.vue'
 import BaseSpinner from '/-/components/spinner/base-spinner.vue'
-import { debounce } from '/-/plugins/helpers'
+import BaseControlCore from '../base-control-core.vue'
 
 export default defineComponent({
   name: 'BaseSelect',
   components: {
     BaseIcon,
+    BaseMenu,
     BaseButton,
     BaseSpinner
   },
+  extends: BaseControlCore,
   props: {
-    modelValue: {
-      type: [String, Number, Array],
-      default: '',
-    },
-    value: {
-      type: [String, Number],
-      default: undefined,
-    },
-    placeholder: {
-      type: String,
-      default: '',
-    },
     emptyPlaceholder: {
       type: String,
       default: 'Nothing to show',
@@ -172,35 +175,7 @@ export default defineComponent({
       type: String,
       default: 'Search...',
     },
-    label: {
-      type: String,
-      default: '',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    fetchOnOpen: {
-      type: Boolean,
-      default: true,
-    },
     multiple: {
-      type: Boolean,
-      default: false,
-    },
-    name: {
-      type: String,
-      default: '',
-    },
-    rules: {
-      type: [String, Function, Object],
-      default: '',
-    },
-    error: {
-      type: String,
-      default: '',
-    },
-    required: {
       type: Boolean,
       default: false,
     },
@@ -208,22 +183,31 @@ export default defineComponent({
       type: String,
       default: undefined,
     },
+    options: {
+      type: Array as () => OptionInterface[],
+      default: () => [],
+    },
     minLength: {
       type: Number,
       default: 0,
     },
     fetch: {
       type: Function,
-      default: () => [],
+      default: undefined,
+    },
+    fetchOnOpen: {
+      type: Boolean,
+      default: true,
     },
   },
   emits: ['update:modelValue', 'change'],
   setup,
   data() {
     return {
+      entries: 0,
       focused: -1,
-      options: [],
-      selected: [],
+      localOptions: [],
+      selected: this.options,
       loading: false,
       expanded: false,
       isFocused: false,
@@ -232,16 +216,16 @@ export default defineComponent({
   },
   computed: {
     parsedValue() {
-      let value = this.modelValue || this.value
+      let value = this.modelValue || this.value || []
 
       if (this.multiple && !Array.isArray(value)) {
         value = value ? [value] : []
       }
 
-      return value
+      return this.multiple ? [...value] : [value]
     },
     proxyOptions() {
-      const options = [...this.options]
+      const options = [...this.localOptions]
 
       if (this.empty) {
         options.unshift({
@@ -263,6 +247,9 @@ export default defineComponent({
     }
   },
   watch: {
+    options(options) {
+      this.selected = options
+    },
     search(search = '') {
       if (search.length >= this.minLength && !this.selectedLabels.includes(search)) {
         this.loading = true
@@ -281,13 +268,12 @@ export default defineComponent({
   },
   methods: {
     debounceFetch: debounce(async function(search) {
-      this.options = await this.fetch(search || undefined)
+      this.localOptions = await this.fetch(search || undefined)
       this.loading = false
+      this.entries++
     }, 400),
     open() {
-      this.expanded = true
-
-      if (this.fetchOnOpen && this.options.length === 0) {
+      if (this.fetchOnOpen && this.entries === 0) {
         this.loading = true
         this.debounceFetch('')
       }
@@ -301,17 +287,6 @@ export default defineComponent({
       this.$nextTick(() => {
         this.$refs.search?.focus()
       })
-    },
-    close() {
-      this.focused = -1
-      this.expanded = false
-    },
-    toggle() {
-      if (this.expanded) {
-        this.close()
-      } else {
-        this.open()
-      }
     },
     clear() {
       const value = this.parsedValue
@@ -335,7 +310,7 @@ export default defineComponent({
       if (event.key === 'ArrowDown') {
         this.focused++
 
-        if (!this.options[this.focused]) {
+        if (!this.proxyOptions[this.focused]) {
           this.focused = 0
         }
       }
@@ -343,23 +318,22 @@ export default defineComponent({
       if (event.key === 'ArrowUp') {
         this.focused--
 
-        if (!this.options[this.focused]) {
-          this.focused = this.options.length - 1
+        if (!this.proxyOptions[this.focused]) {
+          this.focused = this.localOptions.length - 1
         }
       }
 
       if (event.key === 'Enter' || event.key === 'Escape') {
-        const option = this.options[this.focused]
+        const option = this.proxyOptions[this.focused]
 
-        this.select(option)
-        this.close()
+        this.onSelect(option)
       }
     },
     onSelect(option) {
       this.select(option)
 
       if (!this.multiple) {
-        this.close()
+        this.$refs.menu.hide()
       }
     },
     select(option) {
@@ -377,8 +351,8 @@ export default defineComponent({
           })
 
           this.selected = this.selected.filter((item) => {
-            if (parseInt(item.value)) {
-              return parseInt(item.value) !== option.value
+            if (Number(item.value)) {
+              return Number(item.value) !== option.value
             }
 
             return item.value !== option.value
@@ -401,7 +375,7 @@ export default defineComponent({
           this.validate()
         }
       })
-    }
+    },
   }
 })
 </script>

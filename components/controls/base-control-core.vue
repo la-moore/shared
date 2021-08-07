@@ -5,11 +5,11 @@ export default defineComponent({
   name: 'BaseControlCore',
   props: {
     value: {
-      type: [String, Number, Boolean],
+      type: [String, Number, Boolean, Array],
       default: '',
     },
     modelValue: {
-      type: [String, Number, Boolean],
+      type: [String, Number, Boolean, Array],
       default: '',
     },
     placeholder: {

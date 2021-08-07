@@ -35,7 +35,7 @@ Use attribute `loading`, `disabled`, `required`
 Use attribute `multiple` and array for v-model
 
 <div class="mt-4">
-    <base-select v-model="select1"
+    <base-select v-model="select2"
                  multiple
                  label="Select Label"
                  placeholder="Click To Select"

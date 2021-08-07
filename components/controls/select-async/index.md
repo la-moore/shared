@@ -34,7 +34,7 @@ Use attribute `loading`, `disabled`, `required`
 Use attribute `multiple` and array for v-model
 
 <div class="mt-4">
-    <base-select-async v-model="select1"
+    <base-select-async v-model="select2"
                        multiple
                        label="Select Label"
                        placeholder="Click To Select"
@@ -83,7 +83,7 @@ export default {
         { label: 'Item 12', value: 12 }
       ],
       select1: '',
-      select2: [],
+      select2: [1, 10],
       select3: ''
     }
   },

@@ -1,28 +1,29 @@
 <template>
-  <div class="relative inline-block"
-       v-clickaway="hide">
-    <div @click="show">
-      <slot />
+  <div v-clickaway="hide"
+       class="relative inline-block">
+    <div @click="show"
+         class="z-10">
+      <slot v-bind="{ isVisible }" />
     </div>
 
     <transition
       enter-active-class="transition duration-100 ease-out"
-      enter-from-class="transform scale-95 opacity-0"
-      enter-to-class="transform scale-100 opacity-100"
+      :enter-from-class="proxyAnimationFrom"
+      :enter-to-class="proxyAnimationTo"
       leave-active-class="transition duration-75 ease-in"
-      leave-from-class="transform scale-100 opacity-100"
-      leave-to-class="transform scale-95 opacity-0">
+      :leave-from-class="proxyAnimationTo"
+      :leave-to-class="proxyAnimationFrom">
       <div v-show="isVisible"
            ref="menu"
-           class="absolute w-full my-2"
+           class="absolute w-full"
            :class="[
              proxyLevel,
-             canOpenLeft ? 'right-0' : 'left-0',
-             canOpenBottom ? 'top-full' : 'bottom-full',
-             `origin-${canOpenBottom ? 'top' : 'bottom'}-${canOpenLeft ? 'right' : 'left'}`
+             proxyOrigin,
+             proxyPosition
            ]"
            @click="onClick">
-        <slot name="menu" />
+        <slot name="menu"
+              v-bind="{ isVisible }" />
       </div>
     </transition>
   </div>
@@ -42,36 +43,107 @@ export default defineComponent({
       type: [String, Number],
       default: 10
     },
+    animation: {
+      type: String,
+      default: 'scale'
+    },
+    direction: {
+      type: String,
+      default: 'vertical'
+    },
+    toggle: {
+      type: Boolean,
+      default: false
+    },
     hideOnClick: {
       type: Boolean,
       default: true
     }
   },
+  emits: ['show', 'hide'],
   data() {
     return {
+      localPosition: 'bottom',
       canOpenLeft: false,
       canOpenBottom: false,
       isVisible: false,
     }
   },
   computed: {
+    proxyAnimationFrom() {
+      const classes = ['transform', 'opacity-0']
+
+      if (this.animation === 'scale') {
+        classes.push('scale-95')
+      }
+
+      if (this.animation === 'translate') {
+        if (this.direction === 'vertical') {
+          classes.push(this.localPosition === 'bottom' ? '-translate-y-4' : 'translate-y-4')
+        } else {
+          classes.push(this.localPosition === 'left' ? 'translate-x-4' : '-translate-x-4')
+        }
+      }
+
+      return classes.join(' ')
+    },
+    proxyAnimationTo() {
+      const classes = ['transform', 'opacity-100']
+
+      if (this.animation === 'scale') {
+        classes.push('scale-100')
+      }
+
+      if (this.animation === 'translate') {
+        classes.push('translate-y-0 translate-x-0')
+      }
+
+      return classes.join(' ')
+    },
     proxyLevel() {
       return this.level && `z-${this.level}`
+    },
+    proxyOrigin() {
+      const origin = ['origin']
+
+      if (this.direction === 'vertical') {
+        origin.push(this.localPosition === 'bottom' ? 'bottom' : 'top')
+      } else {
+        origin.push(this.localPosition === 'left' ? 'left' : 'right')
+      }
+
+      return origin.join('-')
+    },
+    proxyPosition() {
+      let classes = ''
+
+      if (this.direction === 'vertical') {
+        classes = this.localPosition === 'bottom' ? 'top-full left-0' : 'bottom-full left-0'
+      } else {
+        classes = this.localPosition === 'left' ? 'right-full top-0' : 'left-full top-0'
+      }
+
+      return classes
     }
   },
   methods: {
     show() {
+      if (this.toggle && this.isVisible) {
+        return this.hide()
+      }
+
       this.isVisible = true
 
       this.$nextTick(() => {
-        this.checkPositionX()
-        this.checkPositionY()
+        this.checkPosition()
       })
+      this.$emit('show')
     },
     hide() {
       this.isVisible = false
+      this.$emit('hide')
     },
-    checkPositionX() {
+    checkPositionLeft() {
       const parent: HTMLElement = this.parent
 
       const rectEl = this.$el.getBoundingClientRect()
@@ -80,12 +152,12 @@ export default defineComponent({
       if (this.parent) {
         const rectParent = parent.getBoundingClientRect()
 
-        this.canOpenLeft = rectEl.left - rectParent.left > rectMenu.width
+        return rectEl.left - rectParent.left > rectMenu.width
       } else {
-        this.canOpenLeft = rectEl.left > rectMenu.width
+        return rectEl.left > rectMenu.width
       }
     },
-    checkPositionY() {
+    checkPositionBottom() {
       const parent: HTMLElement = this.parent
 
       const rectEl = this.$el.getBoundingClientRect()
@@ -94,10 +166,21 @@ export default defineComponent({
       if (this.parent) {
         const rectParent = parent.getBoundingClientRect()
 
-        this.canOpenBottom = rectEl.top + rectMenu.height + 50 < rectParent.bottom
+        return rectEl.top + rectMenu.height + 50 < rectParent.bottom
       } else {
-        this.canOpenBottom = window.innerHeight - rectEl.top > rectMenu.height + 50
+        return window.innerHeight - rectEl.top > rectMenu.height + 50
       }
+    },
+    checkPosition() {
+      const position = []
+
+      if (this.direction === 'vertical') {
+        position.push(this.checkPositionBottom() ? 'bottom' : 'top')
+      } else {
+        position.push(this.checkPositionLeft() ? 'left' : 'right')
+      }
+
+      this.localPosition = position.join('-')
     },
     onClick() {
       if (this.hideOnClick) {

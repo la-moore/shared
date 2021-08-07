@@ -22,12 +22,12 @@
       <div v-if="!localValue && !value"
            class="h-10" />
       <div v-else
-           class="sm:text-sm sm:leading-5 py-px my-px overflow-hidden opacity-0"
+           class="sm:text-sm sm:leading-5 py-px overflow-hidden border border-transparent opacity-0"
            :style="{ maxHeight: maxHeight && `${maxHeight}px` }"
            v-html="(localValue || value).replace(/\n/g, '<br>').replace(/<br>$/g, '<br><br>')" />
 
       <textarea ref="input"
-                class="appearance-none bg-white absolute w-full h-full top-0 left-0 rounded-md bg-transparent resize-none flex-1 px-3 py-2 placeholder-gray-400 focus:outline-none sm:text-sm sm:leading-5"
+                class="appearance-none absolute w-full border border-transparent h-full top-0 left-0 rounded-md bg-transparent resize-none flex-1 px-3 py-2 placeholder-gray-400 focus:outline-none sm:text-sm sm:leading-5"
                 v-bind="{ ...$attrs, class: undefined }"
                 :class="[
                   disabled && 'pointer-events-none'
@@ -40,7 +40,6 @@
                 aria-label=""
                 v-on="handlers"
                 @focus="isFocused = true"
-                @blur="onBlur"
                 @keyup="$emit('keyup', $event)"
                 @keydown="$emit('keydown', $event)"
                 @keypress="$emit('keypress', $event)" />
@@ -93,6 +92,7 @@ import { defineComponent } from 'vue'
 import { setup } from '/-/components/controls/setup'
 import BaseIcon from '/-/components/icon/base-icon.vue'
 import BaseButton from '/-/components/button/base-button.vue'
+import BaseControlCore from '../base-control-core.vue'
 
 export default defineComponent({
   name: 'BaseTextarea',
@@ -100,39 +100,8 @@ export default defineComponent({
     BaseIcon,
     BaseButton
   },
+  extends: BaseControlCore,
   props: {
-    value: {
-      type: [String, Number],
-      default: '',
-    },
-    modelValue: {
-      type: [String, Number],
-      default: '',
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    description: {
-      type: String,
-      default: '',
-    },
-    placeholder: {
-      type: String,
-      default: '',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    name: {
-      type: String,
-      default: '',
-    },
-    rules: {
-      type: [String, Function, Object],
-      default: '',
-    },
     rows: {
       type: Number,
       default: 4,
@@ -140,45 +109,9 @@ export default defineComponent({
     maxHeight: {
       type: [Number, Boolean],
       default: false,
-    },
-    error: {
-      type: String,
-      default: '',
-    },
-    maxlength: {
-      type: Number,
-      default: undefined,
-    },
-    required: {
-      type: Boolean,
-      default: false,
-    },
+    }
   },
   emits: ['update:modelValue', 'keypress', 'keyup', 'keydown'],
-  setup(props, ctx) {
-    return setup(props, ctx)
-  },
-  data() {
-    return {
-      showPassword: false,
-      isFocused: false
-    }
-  },
-  methods: {
-    onBlur() {
-      this.isFocused = false
-
-      if (this.needValidation) {
-        this.handleBlur()
-        this.handleInput(this.modelValue || this.localValue)
-        this.validate()
-      }
-    },
-    focus() {
-      setTimeout(() => {
-        this.$refs.input.focus()
-      }, 100)
-    }
-  },
+  setup
 })
 </script>
