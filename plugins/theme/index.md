@@ -20,15 +20,6 @@ setTheme(ThemeType)
 
 <div class="h-12"></div>
 
-## Theme Types
-
-| ThemeType   |
-| ----------- |
-| main        |
-| exec_summit |
-
-<div class="h-12"></div>
-
 ## Custom component theme
 
 Create component theme bridge with any custom styles.

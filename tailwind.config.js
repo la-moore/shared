@@ -40,13 +40,15 @@ module.exports = {
     }
   },
   variants: {
-    opacity: ['active'],
+    opacity: ['active', 'group-hover'],
     width: ['responsive', 'important'],
     justifyContent: ['responsive', 'important'],
     alignItems: ['responsive', 'important'],
     padding: ['responsive', 'important'],
     margin: ['responsive', 'first', 'last'],
     borderRadius: ['responsive', 'first', 'last'],
+    scale: ['group-hover', 'hover'],
+    translate: ['group-hover', 'hover'],
   },
   plugins: [
     plugin(({ addVariant }) => {

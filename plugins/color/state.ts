@@ -25,7 +25,8 @@ export type ColorType = 'rose'
 
 interface stateInterface {
   colors: any
-  color: ColorType | string
+  color: ColorType | string,
+  colorLevels: number[]
 }
 
 const colors = {
@@ -297,7 +298,8 @@ const colors = {
 
 const state: stateInterface = reactive({
   colors,
-  color: 'indigo'
+  color: 'indigo',
+  colorLevels: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900]
 })
 
 function setColor(color: ColorType | string) {
@@ -312,10 +314,21 @@ function setColor(color: ColorType | string) {
   }
 }
 
+function setPrimary(colors: any) {
+  if (document) {
+    state.colorLevels.forEach((lv) => {
+      if (colors[`color_${lv}`]) {
+        document.documentElement.style.setProperty(`--primary-${lv}`, colors[`color_${lv}`])
+      }
+    })
+  }
+}
+
 export function useColor() {
   return {
     color: toRef(state, 'color'),
     colors: toRef(state, 'colors'),
+    setPrimary,
     setColor
   }
 }

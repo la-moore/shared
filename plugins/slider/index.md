@@ -9,11 +9,11 @@ app.use(slider)
 <div class="h-12"></div>
 
 <div class="mt-4">
-  <base-slider>
+  <base-slider group-slides>
     <template v-for="idx in 20" :key="idx">
       <base-slider-item class="w-1/4">
-        <div class="px-2">
-          <BaseRatio class="bg-gray-100 rounded-md">
+        <div class="px-1">
+          <BaseRatio class="bg-gray-300 font-medium rounded-md">
             Slide {{ idx }}
           </BaseRatio>
         </div>
@@ -32,16 +32,40 @@ app.use(slider)
 
 <div class="h-12"></div>
 
-## Navigation
+## Hide Navigation
 
-Use attribute `show-nav`
+Use attribute `hide-nav`, `hide-dots`
+
+<div class="mt-4">
+  <base-slider hide-nav hide-dots>
+    <template v-for="idx in 3" :key="idx">
+      <base-slider-item class="w-full">
+          <BaseRatio :ratio="9/16" class="bg-gray-300 font-medium rounded-md">
+            Slide {{ idx }}
+          </BaseRatio>
+      </base-slider-item>
+    </template>
+  </base-slider>
+</div>
+
+```html
+<BaseSlider hide-nav />
+```
+
+<div class="h-12"></div>
+
+<div class="h-12"></div>
+
+## Snap
+
+Use attribute `snap`
 
 <div class="mt-4">
   <base-slider show-nav>
     <template v-for="idx in 3" :key="idx">
-      <base-slider-item class="w-full">
-        <div class="px-2">
-          <BaseRatio :ratio="9/16" class="bg-gray-100 rounded-md">
+      <base-slider-item snap="center" class="w-4/6">
+        <div class="px-1">
+          <BaseRatio :ratio="9/16" class="bg-gray-300 font-medium rounded-md">
             Slide {{ idx }}
           </BaseRatio>
         </div>
@@ -51,5 +75,11 @@ Use attribute `show-nav`
 </div>
 
 ```html
-<BaseSlider show-nav />
+<BaseSliderItem snap="center" />
 ```
+
+| Param   | Position           |
+| ------- | ------------------ |
+| start   | scroll-snap-start  |
+| center  | scroll-snap-center |
+| end     | scroll-snap-end    |

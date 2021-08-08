@@ -16,6 +16,7 @@
         disabled && 'pointer-events-none'
       ]">
         <BaseMenu class="flex-shrink-0"
+                  origin="left"
                   :hide-on-click="false">
           <div class="pl-4 h-10 flex items-center">
             <div class="w-6 h-6 shadow-inner-border rounded-full cursor-pointer"
@@ -23,8 +24,10 @@
           </div>
 
           <template #menu>
-            <div class="p-4 bg-white shadow-lg rounded-md">
-              <div ref="picker" />
+            <div class="p-4 bg-white shadow-lg rounded-md w-64 my-2">
+              <div class="flex justify-center">
+                <div ref="picker" />
+              </div>
 
               <div class="pt-3 -mb-1">
                 <div class="flex flex-wrap">

@@ -11,7 +11,7 @@ import baseIcons from '../../plugins/icons/base'
 import ColorPicker from '../../plugins/color-picker'
 import Backgrounds from '../../plugins/backgrounds'
 import Slider from '../../plugins/slider'
-import './layout.css';
+import './layout.css'
 import './tailwind.postcss'
 
 export default {

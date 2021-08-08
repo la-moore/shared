@@ -57,11 +57,11 @@ Use attribute `icon`
 <div class="mt-4">
     <base-avatar title="Title"
                  text="Text"
-                 icon="outline_badge_check"></base-avatar>
+                 icon="solid/bookmark"></base-avatar>
 </div>
 
 ```html
-<BaseAvatar icon="outline_badge_check" />
+<BaseAvatar icon="solid/bookmark" />
 ```
 
 <div class="h-12"></div>

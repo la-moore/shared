@@ -1,6 +1,6 @@
 # Table
 
-<div class="mt-4 bg-gray-100 p-12">
+<div class="mt-4">
     <base-table :processor="list"
                 :cols="[{ label: '#', param: 'id' }, { label: 'Name', param: 'name', main: true }]" />
 </div>
@@ -111,7 +111,7 @@ Use event `update`
 ```
 
 <script>
-import ProcessorElastic from '../../plugins/processor/processor-elastic';
+import ProcessorElastic from '/-/plugins/processor/processor-elastic';
 
 export default {
   data () {
@@ -119,44 +119,19 @@ export default {
       list: new ProcessorElastic({
         fetch: () => {
           return {
-            items: [
+            data: [
               { id: 1, name: 'String 1' },
               { id: 1, name: 'String 1' },
               { id: 1, name: 'String 1' },
               { id: 1, name: 'String 1' },
               { id: 1, name: 'String 1' },
               { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 1, name: 'String 1' },
-              { id: 2, name: 'String 2' },
-              { id: 3, name: 'String 3' },
-              { id: 4, name: 'String 4' }
             ],
-            _meta: {
-              totalCount: 4,
-              perPage: 2,
-              currentPage: 1,
-              pageCount: 54,
+            meta: {
+              last_page: 4,
+              per_page: 2,
+              current_page: 1,
+              total: 54,
             }
           }
         }
@@ -164,7 +139,7 @@ export default {
     }
   },
   mounted() {
-    this.list.getPage(1)
+    this.list.getPage(1);
   }
 }
 </script>

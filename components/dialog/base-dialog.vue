@@ -11,17 +11,17 @@
          :class="`duration-${speed}`"
          aria-hidden="true"
          @click="close">
-      <div class="absolute inset-0 bg-gray-500 opacity-75" />
+      <div class="absolute inset-0 bg-gray-900 opacity-75" />
     </div>
   </transition>
 
   <transition
     enter-active-class="transition ease-in-out transform"
-    enter-from-class="scale-75 opacity-0"
+    enter-from-class="scale-95 opacity-0"
     enter-to-class="scale-100 opacity-100"
     leave-active-class="transition ease-in-out transform"
     leave-from-class="scale-100 opacity-100"
-    leave-to-class="scale-75 opacity-0">
+    leave-to-class="scale-95 opacity-0">
     <div v-if="show"
          class="fixed z-40 inset-0 overflow-y-auto pointer-events-none"
          :class="`duration-${speed}`">
@@ -88,7 +88,7 @@ export default {
   props: {
     speed: {
       type: [String, Number],
-      default: 300
+      default: 200
     },
     items: {
       type: [Array],

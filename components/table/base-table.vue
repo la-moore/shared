@@ -154,10 +154,10 @@ export default defineComponent({
       this.$emit('update', page)
     },
     proxyAlign({ align }) {
-      return align && aligns[align] || align
+      return (align && aligns[align]) || align
     },
     proxyWhitespace({ whitespace }) {
-      return whitespace && whitespaces[whitespace] || whitespace
+      return (whitespace && whitespaces[whitespace]) || whitespace
     },
   }
 })

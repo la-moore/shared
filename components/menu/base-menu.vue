@@ -1,8 +1,7 @@
 <template>
   <div v-clickaway="hide"
-       class="relative inline-block">
-    <div @click="show"
-         class="z-10">
+       class="inline-block">
+    <div @click="show">
       <slot v-bind="{ isVisible }" />
     </div>
 
@@ -15,15 +14,17 @@
       :leave-to-class="proxyAnimationFrom">
       <div v-show="isVisible"
            ref="menu"
-           class="absolute w-full"
+           class="absolute w-full pointer-events-none"
            :class="[
              proxyLevel,
              proxyOrigin,
              proxyPosition
            ]"
            @click="onClick">
-        <slot name="menu"
-              v-bind="{ isVisible }" />
+        <div class="pointer-events-auto inline-block">
+          <slot name="menu"
+                v-bind="{ isVisible }" />
+        </div>
       </div>
     </transition>
   </div>
@@ -50,6 +51,10 @@ export default defineComponent({
     direction: {
       type: String,
       default: 'vertical'
+    },
+    origin: {
+      type: String,
+      default: undefined
     },
     toggle: {
       type: Boolean,
@@ -107,9 +112,13 @@ export default defineComponent({
       const origin = ['origin']
 
       if (this.direction === 'vertical') {
-        origin.push(this.localPosition === 'bottom' ? 'bottom' : 'top')
+        origin.push(this.localPosition === 'bottom' ? 'top' : 'bottom')
       } else {
-        origin.push(this.localPosition === 'left' ? 'left' : 'right')
+        origin.push(this.localPosition === 'left' ? 'right' : 'left')
+      }
+
+      if (this.origin) {
+        origin.push(this.origin)
       }
 
       return origin.join('-')

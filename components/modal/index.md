@@ -5,7 +5,7 @@
 </div>
 
 <base-modal ref="modal"
-           title="Modal">Simple modal</base-modal>
+            title="Modal">Simple modal</base-modal>
 
 ```html
 <BaseButton @click="$refs.modal.open()">Open Modal</BaseButton>
@@ -100,5 +100,57 @@ Use slot `body`
     </div>
   </template>
 </BaseModal>
+```
+
+<div class="h-12"></div>
+
+<div class="h-12"></div>
+
+## Dialog
+
+Use slot `dialog`
+
+<div class="mt-4">
+    <base-button @click="$refs.modal_dialog.open()">Open Modal</base-button>
+</div>
+
+<base-modal ref="modal_dialog"><template #dialog><div class="relative p-4 text-center inline-block text-left align-bottom bg-white rounded-lg max-w-lg shadow-xl transform sm:my-8 sm:align-middle w-full">Custom Dialog</div></template></base-modal>
+
+```html
+<BaseModal ref="modal_dialog">
+  <template #dialog>
+    <div class="relative p-4 text-center inline-block text-left align-bottom bg-white rounded-lg max-w-lg shadow-xl transform sm:my-8 sm:align-middle w-full">
+      Custom Dialog
+    </div>
+  </template>
+</BaseModal>
+```
+
+<div class="h-12"></div>
+
+## Animation
+
+Use slot `animation`
+
+<div class="mt-4 space-x-2">
+    <base-button @click="$refs.modal_scale.open()">Open Scale</base-button>
+    <base-button @click="$refs.modal_translate.open()">Open Translate</base-button>
+</div>
+
+<base-modal animation="scale"
+            ref="modal_scale"
+            title="Scale">Scale animation</base-modal>
+
+<base-modal animation="translate"
+            ref="modal_translate"
+            title="Translate">Translate animation</base-modal>
+
+| Param     |   |
+| --------- | - |
+| translate |   |
+| scale     |   |
+
+```html
+<BaseModal animation="scale"></BaseModal>
 ```
 
