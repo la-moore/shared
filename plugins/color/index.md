@@ -13,9 +13,10 @@ app.use(theme, 'indigo')
 ```ts
 import { useColor } from '/-/plugins/color'
 
-const { setColor } = useColor()
+const { setColor, setPrimary } = useColor()
 
 setColor(ColorType)
+setPrimary('blue')
 ```
 
 <div class="h-12"></div>

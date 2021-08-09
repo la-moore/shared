@@ -2,7 +2,7 @@
   <Layout>
     <template #page-top>
       {{ url }}
-      <div v-if="path.includes('/components') || path.includes('backgrounds')"
+      <div v-if="path.includes('/components') || path.includes('backgrounds') || path.includes('slider')"
            class="flex flex-wrap mt-4 -mx-1">
         <div v-for="colorItem in Object.keys(colors)"
              class="w-1/12 p-1">
