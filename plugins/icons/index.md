@@ -59,7 +59,7 @@ Use attribute `size`
          :key="icon"
          class="w-1/12 p-1">
         <base-ratio v-tooltip :content="icon" class="bg-gray-100 rounded-md cursor-pointer" @click="() => onClick(icon)">
-            <base-icon :name="icon" />
+            <base-icon :name="icon"></base-icon>
             <div class="absolute inset-0 rounded-md border-2 border-transparent active:opacity-50 hover:border-green-500"></div>
         </base-ratio>
     </div>

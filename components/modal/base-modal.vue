@@ -84,10 +84,6 @@ export default {
       type: [String, Number],
       default: 200
     },
-    items: {
-      type: [Array],
-      default: () => []
-    },
     animation: {
       type: String,
       default: 'translate'

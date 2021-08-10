@@ -10,6 +10,7 @@ import icons from '../../plugins/icons'
 import baseIcons from '../../plugins/icons/base'
 import ColorPicker from '../../plugins/color-picker'
 import Backgrounds from '../../plugins/backgrounds'
+import LightBox from '../../plugins/light-box'
 import Slider from '../../plugins/slider'
 import './layout.css'
 import './tailwind.postcss'
@@ -25,5 +26,6 @@ export default {
     app.use(ColorPicker)
     app.use(Backgrounds)
     app.use(Slider)
+    app.use(LightBox)
   },
 }

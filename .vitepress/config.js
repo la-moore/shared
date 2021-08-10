@@ -78,7 +78,8 @@ module.exports = {
             { text: 'Theme', link: '/plugins/theme/' },
             { text: 'Color Picker', link: '/plugins/color-picker/' },
             { text: 'Backgrounds', link: '/plugins/backgrounds/' },
-            { text: 'Slider', link: '/plugins/slider/' }
+            { text: 'Slider', link: '/plugins/slider/' },
+            { text: 'Light Box', link: '/plugins/light-box/' }
           ],
         },
       ]

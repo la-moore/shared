@@ -1,9 +1,11 @@
 <template>
   <div class="">
-    <div class="relative group">
+    <div class="w-full h-full relative group">
       <div ref="slider"
-           class="flex overflow-x-scroll scrollbar-none"
-           :class="disabled ? 'scroll-snap-none' : 'scroll-snap-x scroll-behavior-smooth'"
+           class="flex overflow-x-scroll scrollbar-none w-full h-full"
+           :class="[
+             disabled ? 'scroll-snap-none' : 'scroll-snap-x scroll-behavior-smooth'
+           ]"
            @scroll="onScroll">
         <slot />
       </div>
@@ -141,10 +143,12 @@ export default defineComponent({
         this.$refs.slider.scrollTo(this.slidesPositions[0], 0)
       }
     },
-    slideTo(idx, instant) {
-      this.$refs.slider.scrollTo({
-        left: this.slidesPositions[idx],
-        behavior: instant && 'instant'
+    slideTo(idx, instant = false) {
+      this.$nextTick(() => {
+        this.$refs.slider.scrollTo({
+          left: this.slidesPositions[idx],
+          behavior: instant && 'instant'
+        })
       })
     },
     getSlidesPosition() {
