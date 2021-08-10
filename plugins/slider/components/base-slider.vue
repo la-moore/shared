@@ -147,7 +147,7 @@ export default defineComponent({
       this.$nextTick(() => {
         this.$refs.slider.scrollTo({
           left: this.slidesPositions[idx],
-          behavior: instant && 'instant'
+          behavior: instant ? 'instant' : 'smooth'
         })
       })
     },
