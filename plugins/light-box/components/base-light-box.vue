@@ -52,7 +52,7 @@
              class="absolute top-1/2 left-0 z-10 -mt-5">
           <div class="text-gray-300 w-10 h-10 flex bg-opacity-70 bg-gray-900 items-center justify-center cursor-pointer"
                @click="() => $refs.slider.slideToPrev()">
-            <BaseIcon name="outline/arrow-left-2" />
+            <BaseIcon :name="icons.left" />
           </div>
         </div>
       </transition>
@@ -68,7 +68,7 @@
              class="absolute top-1/2 right-0 z-10 -mt-5">
           <div class="text-gray-300 w-10 h-10 flex bg-opacity-70 bg-gray-900 items-center justify-center cursor-pointer"
                @click="() => $refs.slider.slideToNext()">
-            <BaseIcon name="outline/arrow-right-2" />
+            <BaseIcon :name="icons.right" />
           </div>
         </div>
       </transition>
@@ -84,7 +84,7 @@
              class="absolute z-10 w-full top-0 flex justify-end">
           <div class="text-gray-300 w-10 h-10 flex bg-opacity-70 bg-gray-900 items-center justify-center cursor-pointer"
                @click="close">
-            <BaseIcon name="outline/close" />
+            <BaseIcon :name="icons.close" />
           </div>
         </div>
       </transition>
@@ -97,6 +97,12 @@ import { defineComponent } from 'vue'
 import BaseIcon from '/-/components/icon/base-icon.vue'
 import BaseSlider from '/-/plugins/slider/components/base-slider.vue'
 import BaseSliderItem from '/-/plugins/slider/components/base-slider-item.vue'
+
+const defaultIcons = {
+  close: 'outline/close',
+  left: 'outline/arrow-left-2',
+  right: 'outline/arrow-right-2'
+}
 
 export default defineComponent({
   name: 'BaseLightBox',
@@ -129,6 +135,10 @@ export default defineComponent({
     fullscreen: {
       type: Boolean,
       default: false
+    },
+    icons: {
+      type: Object,
+      default: () => defaultIcons
     }
   },
   emits: ['close'],
