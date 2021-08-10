@@ -14,7 +14,7 @@
       :leave-to-class="proxyAnimationFrom">
       <div v-show="isVisible"
            ref="menu"
-           class="absolute w-full pointer-events-none"
+           class="absolute w-full"
            :class="[
              proxyLevel,
              proxyOrigin,
