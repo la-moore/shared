@@ -21,10 +21,8 @@
              proxyPosition
            ]"
            @click="onClick">
-        <div class="pointer-events-auto inline-block">
-          <slot name="menu"
-                v-bind="{ isVisible }" />
-        </div>
+        <slot name="menu"
+              v-bind="{ isVisible }" />
       </div>
     </transition>
   </div>
