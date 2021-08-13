@@ -158,7 +158,7 @@ import BaseSpinner from '/-/components/spinner/base-spinner.vue'
 import BaseControlCore from '../base-control-core.vue'
 
 export default defineComponent({
-  name: 'BaseSelect',
+  name: 'BaseSelectAsync',
   components: {
     BaseIcon,
     BaseMenu,

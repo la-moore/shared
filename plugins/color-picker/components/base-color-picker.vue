@@ -107,6 +107,7 @@
 
 <script lang="ts">
 import iro from '@jaames/iro'
+import BaseIcon from '/-/components/icon/base-icon.vue'
 import BaseMenu from '/-/components/menu/base-menu.vue'
 import BaseButton from '/-/components/button/base-button.vue'
 import BaseControlCore from '/-/components/controls/base-control-core.vue'
@@ -114,9 +115,11 @@ import { setup } from '/-/components/controls/setup'
 import { useColor } from '/-/plugins/color'
 
 export default {
+  name: 'BaseColorPicker',
   components: {
-    BaseButton,
-    BaseMenu
+    BaseIcon,
+    BaseMenu,
+    BaseButton
   },
   extends: BaseControlCore,
   props: {

@@ -70,7 +70,7 @@ const rounded = {
 }
 
 export default defineComponent({
-  name: 'BaseAvatarRow',
+  name: 'BaseAvatar',
   components: {
     BaseIcon,
     BaseRatio

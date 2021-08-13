@@ -55,7 +55,7 @@ const themes = {
 }
 
 export default {
-  name: 'BaseCheckbox',
+  name: 'BaseToggle',
   extends: BaseControlCore,
   props: {
     theme: {
