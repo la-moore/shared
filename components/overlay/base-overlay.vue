@@ -16,7 +16,11 @@
              @click="close" />
       </transition>
 
-      <div class="fixed inset-y-0 right-0 max-w-full flex">
+      <div class="fixed inset-y-0 max-w-full flex"
+           :class="[
+             position === 'right' && 'right-0',
+             position === 'left' && 'left-0',
+           ]">
         <transition
           enter-active-class="transition ease-out transform"
           :enter-from-class="proxyAnimationFrom"
@@ -88,6 +92,10 @@ export default {
     size: {
       type: [String, Boolean],
       default: 'md'
+    },
+    position: {
+      type: String,
+      default: 'right'
     }
   },
   emits: ['close'],
@@ -98,7 +106,15 @@ export default {
   },
   computed: {
     proxyAnimationFrom() {
-      const classes = ['transform', 'translate-x-full']
+      const classes = ['transform']
+
+      if (this.position === 'right') {
+        classes.push('translate-x-full')
+      }
+
+      if (this.position === 'left') {
+        classes.push('-translate-x-full')
+      }
 
       return classes.join(' ')
     },
