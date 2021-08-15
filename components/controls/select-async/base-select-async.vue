@@ -10,6 +10,7 @@
               class="w-full"
               animation="translate"
               :hide-on-click="false"
+              full
               toggle
               @show="open"
               @hide="focused = -1">

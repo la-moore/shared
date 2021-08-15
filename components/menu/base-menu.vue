@@ -14,8 +14,9 @@
       :leave-to-class="proxyAnimationFrom">
       <div v-show="isVisible"
            ref="menu"
-           class="absolute w-full"
+           class="absolute"
            :class="[
+             full && 'w-full',
              proxyLevel,
              proxyOrigin,
              proxyPosition
@@ -35,8 +36,12 @@ export default defineComponent({
   name: 'BaseMenu',
   props: {
     parent: {
-      type: Object,
+      type: HTMLElement,
       default: undefined
+    },
+    full: {
+      type: Boolean,
+      default: false
     },
     level: {
       type: [String, Number],
@@ -125,7 +130,8 @@ export default defineComponent({
       let classes = ''
 
       if (this.direction === 'vertical') {
-        classes = this.localPosition === 'bottom' ? 'top-full left-0' : 'bottom-full left-0'
+        classes = this.localPosition === 'bottom' ? 'top-full ' : 'bottom-full'
+        classes += this.canOpenLeft ? ' right-0' : ' left-0'
       } else {
         classes = this.localPosition === 'left' ? 'right-full top-0' : 'left-full top-0'
       }
@@ -151,7 +157,7 @@ export default defineComponent({
       this.$emit('hide')
     },
     checkPositionLeft() {
-      const parent: HTMLElement = this.parent
+      const parent = this.parent
 
       const rectEl = this.$el.getBoundingClientRect()
       const rectMenu = this.$refs.menu.getBoundingClientRect()
@@ -165,7 +171,7 @@ export default defineComponent({
       }
     },
     checkPositionBottom() {
-      const parent: HTMLElement = this.parent
+      const parent = this.parent
 
       const rectEl = this.$el.getBoundingClientRect()
       const rectMenu = this.$refs.menu.getBoundingClientRect()
@@ -180,6 +186,8 @@ export default defineComponent({
     },
     checkPosition() {
       const position = []
+
+      this.canOpenLeft = this.checkPositionLeft()
 
       if (this.direction === 'vertical') {
         position.push(this.checkPositionBottom() ? 'bottom' : 'top')

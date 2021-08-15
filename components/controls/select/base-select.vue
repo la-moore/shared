@@ -10,6 +10,7 @@
               class="w-full"
               animation="translate"
               :hide-on-click="!multiple"
+              full
               toggle
               @hide="focused = -1">
       <template #default="{ isVisible }">
