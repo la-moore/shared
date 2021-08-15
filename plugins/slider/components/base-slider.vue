@@ -56,7 +56,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { debounce } from '/-/plugins/helpers'
-import BaseIcon from '/-/components/icon/base-icon.vue'
+import BaseIcon from '/-/plugins/icons/components/icon.vue'
 
 export default defineComponent({
   name: 'BaseSlider',

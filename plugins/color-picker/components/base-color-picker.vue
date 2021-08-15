@@ -107,7 +107,7 @@
 
 <script lang="ts">
 import iro from '@jaames/iro'
-import BaseIcon from '/-/components/icon/base-icon.vue'
+import BaseIcon from '/-/plugins/icons/components/icon.vue'
 import BaseMenu from '/-/components/menu/base-menu.vue'
 import BaseButton from '/-/components/button/base-button.vue'
 import BaseControlCore from '/-/components/controls/base-control-core.vue'

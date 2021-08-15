@@ -25,7 +25,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import BaseIcon from '../icon/base-icon.vue'
 
 const themes = {
   primary: 'bg-primary-50 text-primary-800',
@@ -37,9 +36,6 @@ const themes = {
 
 export default defineComponent({
   name: 'BaseAlert',
-  components: {
-    BaseIcon
-  },
   props: {
     theme: {
       type: [String, Boolean],

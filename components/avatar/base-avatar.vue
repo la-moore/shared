@@ -43,7 +43,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import BaseIcon from '../icon/base-icon.vue'
+import BaseIcon from '/-/plugins/icons/components/icon.vue'
 import BaseRatio from '../ratio/base-ratio.vue'
 
 const sizes = {

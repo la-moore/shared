@@ -94,7 +94,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import BaseIcon from '/-/components/icon/base-icon.vue'
+import BaseIcon from '/-/plugins/icons/components/icon.vue'
 import BaseSlider from '/-/plugins/slider/components/base-slider.vue'
 import BaseSliderItem from '/-/plugins/slider/components/base-slider-item.vue'
 

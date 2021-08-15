@@ -68,7 +68,7 @@
 </template>
 
 <script lang="ts">
-import BaseIcon from '../icon/base-icon.vue'
+import BaseIcon from '/-/plugins/icons/components/icon.vue'
 import BaseButton from '../button/base-button.vue'
 
 const sizes = {

@@ -55,7 +55,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import BaseIcon from '/-/components/icon/base-icon.vue'
+import BaseIcon from '/-/plugins/icons/components/icon.vue'
 import BaseMenu from '/-/components/menu/base-menu.vue'
 
 interface Tab {

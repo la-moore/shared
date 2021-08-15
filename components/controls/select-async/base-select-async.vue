@@ -151,7 +151,7 @@
 import { defineComponent } from 'vue'
 import { debounce } from '/-/plugins/helpers'
 import { OptionInterface, setup } from '../setup'
-import BaseIcon from '/-/components/icon/base-icon.vue'
+import BaseIcon from '/-/plugins/icons/components/icon.vue'
 import BaseMenu from '/-/components/menu/base-menu.vue'
 import BaseButton from '/-/components/button/base-button.vue'
 import BaseSpinner from '/-/components/spinner/base-spinner.vue'

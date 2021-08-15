@@ -79,7 +79,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup } from '../setup'
-import BaseIcon from '/-/components/icon/base-icon.vue'
+import BaseIcon from '/-/plugins/icons/components/icon.vue'
 import BaseButton from '/-/components/button/base-button.vue'
 import BaseControlCore from '../base-control-core.vue'
 
