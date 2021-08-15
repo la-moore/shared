@@ -31,6 +31,7 @@ module.exports = {
             { text: 'Button', link: '/components/button/' },
             { text: 'Form', link: '/components/form/' },
             { text: 'Dialog', link: '/components/dialog/' },
+            { text: 'Overlay', link: '/components/overlay/' },
             { text: 'Link', link: '/components/link/' },
             { text: 'Menu', link: '/components/menu/' },
             { text: 'Modal', link: '/components/modal/' },

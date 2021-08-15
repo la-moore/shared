@@ -8,6 +8,7 @@ import Badge from './badge/base-badge.vue'
 import Ratio from './ratio/base-ratio.vue'
 import Table from './table/base-table.vue'
 import Dialog from './dialog/base-dialog.vue'
+import Overlay from './overlay/base-overlay.vue'
 import Avatar from './avatar/base-avatar.vue'
 import Button from './button/base-button.vue'
 import Spinner from './spinner/base-spinner.vue'
@@ -35,6 +36,7 @@ const plugin: Plugin = function(app, config = {}) {
   useComponent(app, config, 'Ratio', Ratio)
   useComponent(app, config, 'Table', Table)
   useComponent(app, config, 'Dialog', Dialog)
+  useComponent(app, config, 'Overlay', Overlay)
   useComponent(app, config, 'Avatar', Avatar)
   useComponent(app, config, 'Button', Button)
   useComponent(app, config, 'Spinner', Spinner)
