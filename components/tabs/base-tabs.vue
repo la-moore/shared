@@ -19,8 +19,9 @@
           </div>
         </template>
       </nav>
-      <BaseMenu class="w-full"
-                :class="[proxyHide]">
+      <BaseMenu class="relative w-full"
+                :class="[proxyHide]"
+                full>
         <div class="whitespace-nowrap items-center flex py-2 px-3 border-b-2 font-medium text-md cursor-pointer border-primary-500 text-primary-600">
           <div class="flex-1">
             {{ selectedTab?.label }}
