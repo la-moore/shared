@@ -150,7 +150,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { debounce } from '/-/plugins/helpers'
+import { debounce } from '/-/helpers'
 import { OptionInterface, setup } from '../setup'
 import BaseIcon from '/-/plugins/icons/components/icon.vue'
 import BaseMenu from '/-/components/menu/base-menu.vue'

@@ -2,7 +2,7 @@ import { Plugin } from 'vue'
 import { configure } from 'vee-validate'
 import { localize } from '@vee-validate/i18n'
 import { useLocale, OptionInterface } from './state'
-import { Storage } from '/-/plugins/local-storage'
+import { Storage } from '/-/plugins/storage/local'
 import messages from './form-messages'
 
 const plugin: Plugin = function(app, options: OptionInterface[]) {

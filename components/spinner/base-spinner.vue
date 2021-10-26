@@ -1,45 +1,33 @@
 <template>
-  <svg class="animate-spin"
+  <div class="inline-block animate-spin"
        :class="[
          proxySize
-       ]"
-       viewBox="0 0 24 24"
-       fill="none">
-    <circle class="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            stroke-width="4" />
-    <path class="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-  </svg>
+       ]">
+    <slot>
+      <svg class="w-full h-full"
+           viewBox="0 0 24 24"
+           fill="none">
+        <circle class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4" />
+        <path class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+      </svg>
+    </slot>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
-const sizes = {
-  xs: 'h-4 w-4',
-  sm: 'h-5 w-5',
-  md: 'h-6 w-6',
-  lg: 'h-8 w-8',
-  xl: 'h-10 w-10',
-}
+import { setup, SPINNER_PROPS } from './'
 
 export default defineComponent({
   name: 'BaseSpinner',
-  props: {
-    size: {
-      type: [String, Boolean],
-      default: 'md'
-    }
-  },
-  computed: {
-    proxySize() {
-      return this.size && sizes[this.size]
-    }
-  }
+  props: SPINNER_PROPS,
+  setup
 })
 </script>

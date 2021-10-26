@@ -55,7 +55,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { debounce } from '/-/plugins/helpers'
+import { debounce } from '/-/helpers'
 import BaseIcon from '/-/plugins/icons/components/icon.vue'
 
 export default defineComponent({

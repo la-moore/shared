@@ -1,48 +1,44 @@
 <template>
   <div class="relative">
     <label v-if="label"
-           class="block text-sm font-medium leading-5 mb-1">
+           class="mb-1 block text-sm font-medium">
       {{ label }}
       {{ required ? '*' : '' }}
     </label>
-    <div class="rounded-md border border-gray-300 flex transition duration-150 ease-in-out items-center"
+    <div v-show="!hideInput && !$slots.input"
+         class="flex rounded-md shadow-sm h-10 border transition"
          :class="[
-           (isFocused && !errorMessage) && 'border-blue-300',
-           errorMessage ? 'border-red-400' : 'border-gray-300',
-           disabled && 'cursor-not-allowed bg-gray-100',
+           errorMessage ? 'border-red-400' : 'focus-within:border-blue-300 dark:focus-within:border-blue-600 dark:border-gray-500',
+           disabled && 'pointer-events-none bg-gray-200 border-gray-300 dark:bg-gray-700 dark:border-gray-500'
          ]">
       <div v-if="$slots.left"
-           :class="[
-             disabled && 'pointer-events-none'
-           ]">
+           class="-my-px -ml-px">
         <slot name="left" />
       </div>
-
-      <input class="appearance-none rounded-md bg-transparent flex-1 px-3 h-10 placeholder-gray-400 focus:outline-none sm:text-sm sm:leading-5"
-             v-bind="{ ...$attrs, class: undefined }"
-             :class="[
-               disabled && 'pointer-events-none'
-             ]"
-             :value="typeof modelValue === 'undefined' ? value : modelValue"
-             :type="proxyType"
-             :disabled="disabled"
-             :maxlength="maxlength"
-             :placeholder="placeholder"
-             aria-label=""
-             v-on="handlers"
-             @focus="isFocused = true"
-             @blur="isFocused = false">
-
-      <div v-if="$slots.right || type === 'password'"
-           :class="[
-             disabled && 'pointer-events-none'
-           ]">
+      <div class="relative flex items-stretch flex-grow focus-within:z-10">
+        <input class="appearance-none focus:outline-none bg-transparent block w-full px-3"
+               :type="proxyType"
+               :name="name"
+               :value="localValue"
+               :placeholder="placeholder"
+               :maxlength="maxlength"
+               :disabled="disabled"
+               :class="[
+                 !errorMessage && 'border-blue-300',
+                 !$slots.left && 'rounded-l-md',
+                 !hasRight && 'rounded-r-md',
+               ]"
+               aria-label=""
+               v-on="handlers">
+      </div>
+      <div v-if="hasRight"
+           class="-my-px -mr-px">
         <slot name="right">
           <BaseButton v-if="type === 'password'"
-                      class="w-10 !p-0 rounded-l-none"
+                      size="md"
                       look="link"
-                      theme="dark"
-                      rounded="md"
+                      color="current"
+                      rounded="rounded-r-md"
                       @click="showPassword = !showPassword">
             <BaseIcon :name="showPassword ? 'outline/eye-slash' : 'outline/eye'"
                       size="sm" />
@@ -50,61 +46,35 @@
         </slot>
       </div>
     </div>
-    <div class="flex pt-px text-sm leading-4">
-      <transition enter-active-class="transition-all duration-300"
-                  enter-from-class="transform -translate-y-3 opacity-0"
-                  enter-to-class="transform translate-y-0 opacity-100"
-                  leave-active-class="transition-all duration-300"
-                  leave-from-class="transform translate-y-0"
-                  leave-to-class="transform -translate-y-3 opacity-0">
-        <span v-if="!disabled && (errorMessage || $slots.error)"
-              class="text-red-600">
-          <slot name="error">
-            {{ errorMessage }}
-          </slot>
-        </span>
-      </transition>
-      <div v-if="maxlength"
-           class="flex-shrink-0 pl-6 ml-auto leading-5">
+    <slot name="input" />
+    <ControlFooter :error-message="errorMessage">
+      <div v-if="maxlength">
         <span>{{ modelValue.length }}</span>
         <span class="mx-px">
           /
         </span>
         <span>{{ maxlength }}</span>
       </div>
-    </div>
+    </ControlFooter>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { setup } from '../setup'
+import { setup, INPUT_PROPS } from './'
 import BaseIcon from '/-/plugins/icons/components/icon.vue'
 import BaseButton from '/-/components/button/base-button.vue'
-import BaseControlCore from '../base-control-core.vue'
+import ControlFooter from '../control-footer.vue'
 
 export default defineComponent({
   name: 'BaseInput',
   components: {
     BaseIcon,
-    BaseButton
+    BaseButton,
+    ControlFooter,
   },
-  extends: BaseControlCore,
+  props: INPUT_PROPS,
   emits: ['update:modelValue', 'unmasked'],
-  setup,
-  data() {
-    return {
-      showPassword: false
-    }
-  },
-  computed: {
-    proxyType() {
-      if (this.type === 'password') {
-        return this.showPassword ? 'text' : 'password'
-      }
-
-      return this.type
-    }
-  }
+  setup
 })
 </script>

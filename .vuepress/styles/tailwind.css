@@ -1,0 +1,55 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.theme-default-content > h1 {
+  @apply text-3xl font-black mt-6;
+}
+
+.theme-default-content > h2 {
+  @apply text-2xl font-bold mt-6 mb-4;
+}
+
+.theme-default-content > h3 {
+  @apply text-xl font-semibold mt-6;
+}
+
+.header-anchor {
+  @apply text-green-500 font-normal;
+}
+
+.logo {
+  @apply rounded-md;
+}
+
+.theme-default-content > p {
+  @apply py-3;
+}
+
+.theme-default-content > table tr th:first-child {
+  @apply w-full;
+}
+
+.theme-default-content > table td {
+  @apply whitespace-nowrap;
+}
+
+.toggle-sidebar-button + span a {
+  @apply flex;
+}
+
+.home .feature > h2 {
+  @apply my-4;
+}
+
+.home .feature > p {
+  @apply my-4;
+}
+
+.home .hero img {
+  @apply rounded-md
+}
+
+.theme-default-content:not(.custom) a:hover {
+  text-decoration: unset;
+}

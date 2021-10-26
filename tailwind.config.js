@@ -4,7 +4,8 @@ module.exports = {
   purge: [
     './components/**/*.{vue,js,ts,jsx,tsx}',
     './directives/**/*.{vue,js,ts,jsx,tsx}',
-    './plugins/**/*.{vue,js,ts,jsx,tsx}'
+    './plugins/**/*.{vue,js,ts,jsx,tsx}',
+    './docs/**/*.{vue,js,ts,jsx,tsx}'
   ],
   darkMode: 'class',
   theme: {

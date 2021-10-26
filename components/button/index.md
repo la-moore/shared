@@ -4,7 +4,7 @@
     <base-button>Press me</base-button>
 </div>
 
-```html
+```vue
 <BaseButton>Button</BaseButton>
 ```
 
@@ -14,17 +14,24 @@
 
 Use attribute `size`
 
-```html
+```vue
 <BaseButton size="md">Button</BaseButton>
+<BaseButton size="leading-8 px-10">Button</BaseButton>
 ```
 
-| Param | Size      | Look                                        |
-| ----- | --------- | ------------------------------------------- |
-| xs    | h-6 px-2  | <base-button size="xs">Button</base-button> |
-| sm    | h-8 px-4  | <base-button size="sm">Button</base-button> |
-| md    | h-10 px-4 | <base-button size="md">Button</base-button> |
-| lg    | h-12 px-4 | <base-button size="lg">Button</base-button> |
-| xl    | h-14 px-6 | <base-button size="xl">Button</base-button> |
+| Param     | Size      | Look                                                     |
+| --------- | --------- | -------------------------------------------------------- |
+| xs        | h-6 px-2  | <base-button size="xs">Button</base-button>              |
+| sm        | h-8 px-4  | <base-button size="sm">Button</base-button>              |
+| md        | h-10 px-4 | <base-button size="md">Button</base-button>              |
+| lg        | h-12 px-4 | <base-button size="lg">Button</base-button>              |
+| xl        | h-14 px-6 | <base-button size="xl">Button</base-button>              |
+| square-xs | h-6 w-6   | <base-button size="square-xs">B</base-button>            |
+| square-sm | h-8 w-8   | <base-button size="square-sm">B</base-button>            |
+| square-md | h-10 w-10 | <base-button size="square-md">B</base-button>            |
+| square-lg | h-12 w-12 | <base-button size="square-lg">B</base-button>            |
+| square-xl | h-14 w-14 | <base-button size="square-xl">B</base-button>            |
+| custom    | -         | <base-button size="leading-8 px-10">Button</base-button> |
 
 <div class="h-12"></div>
 
@@ -32,7 +39,7 @@ Use attribute `size`
 
 Use attribute `loading`, `disabled`
 
-```html
+```vue
 <BaseButton loading>Button</BaseButton>
 ```
 
@@ -47,17 +54,19 @@ Use attribute `loading`, `disabled`
 
 Use attribute `rounded`
 
-```html
+```vue
 <BaseButton rounded="md">Button</BaseButton>
+<BaseButton rounded="rounded-t-md">Button</BaseButton>
 ```
 
-| Param   | Look                                             |
-| ------- | ------------------------------------------------ |
-| normal  | <base-button size="sm" rounded="normal">Button</base-button>  |
-| sm      | <base-button size="sm" rounded="sm">Button</base-button>      |
-| md      | <base-button size="sm" rounded="md">Button</base-button>      |
-| lg      | <base-button size="sm" rounded="lg">Button</base-button>      |
-| full    | <base-button size="sm" rounded="full">Button</base-button>    |
+| Param   | Look                                                               |
+| ------- | ------------------------------------------------------------------ |
+| normal  | <base-button size="sm" rounded="normal">Button</base-button>       |
+| sm      | <base-button size="sm" rounded="sm">Button</base-button>           |
+| md      | <base-button size="sm" rounded="md">Button</base-button>           |
+| lg      | <base-button size="sm" rounded="lg">Button</base-button>           |
+| full    | <base-button size="sm" rounded="full">Button</base-button>         |
+| custom  | <base-button size="sm" rounded="rounded-t-md">Button</base-button> |
 
 <div class="h-12"></div>
 
@@ -65,7 +74,7 @@ Use attribute `rounded`
 
 Use attribute `justify`
 
-```html
+```vue
 <BaseButton justify="center">Button</BaseButton>
 ```
 
@@ -77,77 +86,111 @@ Use attribute `justify`
 
 <div class="h-12"></div>
 
-## Themes
+## Looks
 
-Use attribute `look` and `theme`
+Use attribute `look` and `color`
 
 ### Solid
 
-```html
+```vue
 <BaseButton look="solid"
-            theme="primary">
+            color="primary">
   Button
 </BaseButton>
 ```
 
 | Param       | Look                                                            |
 | ----------- | --------------------------------------------------------------- |
-| white       | <base-button size="sm" theme="white">Button</base-button>       |
-| dark        | <base-button size="sm" theme="dark">Button</base-button>        |
-| disabled    | <base-button size="sm" theme="disabled">Button</base-button>    |
-| primary     | <base-button size="sm" theme="primary">Button</base-button>     |
-| secondary   | <base-button size="sm" theme="secondary">Button</base-button>   |
-| success     | <base-button size="sm" theme="success">Button</base-button>     |
-| destructive | <base-button size="sm" theme="destructive">Button</base-button> |
-| info        | <base-button size="sm" theme="info">Button</base-button>        |
+| white       | <base-button size="sm" color="white">Button</base-button>       |
+| dark        | <base-button size="sm" color="dark">Button</base-button>        |
+| disabled    | <base-button size="sm" color="disabled">Button</base-button>    |
+| primary     | <base-button size="sm" color="primary">Button</base-button>     |
+| secondary   | <base-button size="sm" color="secondary">Button</base-button>   |
+| success     | <base-button size="sm" color="success">Button</base-button>     |
+| destructive | <base-button size="sm" color="destructive">Button</base-button> |
+| info        | <base-button size="sm" color="info">Button</base-button>        |
 
 ### Ghost
 
-```html
+```vue
 <BaseButton look="ghost"
-            theme="primary">
+            color="primary">
   Button
 </BaseButton>
 ```
 
 | Param       | Look                                                                         |
 | ----------- | ---------------------------------------------------------------------------- |
-| white       | <base-button size="sm" look="ghost" theme="white">Button</base-button>       |
-| primary     | <base-button size="sm" look="ghost" theme="primary">Button</base-button>     |
-| success     | <base-button size="sm" look="ghost" theme="success">Button</base-button>     |
-| destructive | <base-button size="sm" look="ghost" theme="destructive">Button</base-button> |
-| info        | <base-button size="sm" look="ghost" theme="info">Button</base-button>        |
+| white       | <base-button size="sm" look="ghost" color="white">Button</base-button>       |
+| primary     | <base-button size="sm" look="ghost" color="primary">Button</base-button>     |
+| success     | <base-button size="sm" look="ghost" color="success">Button</base-button>     |
+| destructive | <base-button size="sm" look="ghost" color="destructive">Button</base-button> |
+| info        | <base-button size="sm" look="ghost" color="info">Button</base-button>        |
 
 ### Link
 
-```html
+```vue
 <BaseButton look="link"
-            theme="primary">
+            color="primary">
   Button
 </BaseButton>
 ```
 
 | Param       | Look                                                                        |
 | ----------- | --------------------------------------------------------------------------- |
-| white       | <base-button size="sm" look="link" theme="white">Button</base-button>       |
-| primary     | <base-button size="sm" look="link" theme="primary">Button</base-button>     |
-| success     | <base-button size="sm" look="link" theme="success">Button</base-button>     |
-| destructive | <base-button size="sm" look="link" theme="destructive">Button</base-button> |
-| info        | <base-button size="sm" look="link" theme="info">Button</base-button>        |
+| current     | <base-button size="sm" look="current" color="info">Button</base-button>     |
+| white       | <base-button size="sm" look="link" color="white">Button</base-button>       |
+| primary     | <base-button size="sm" look="link" color="primary">Button</base-button>     |
+| success     | <base-button size="sm" look="link" color="success">Button</base-button>     |
+| destructive | <base-button size="sm" look="link" color="destructive">Button</base-button> |
+| info        | <base-button size="sm" look="link" color="info">Button</base-button>        |
 
 ### Border
 
-```html
+```vue
 <BaseButton look="border"
-            theme="primary">
+            color="primary">
   Button
 </BaseButton>
 ```
 
 | Param       | Look                                                                          |
 | ----------- | ----------------------------------------------------------------------------- |
-| white       | <base-button size="sm" look="border" theme="white">Button</base-button>       |
-| primary     | <base-button size="sm" look="border" theme="primary">Button</base-button>     |
-| success     | <base-button size="sm" look="border" theme="success">Button</base-button>     |
-| destructive | <base-button size="sm" look="border" theme="destructive">Button</base-button> |
-| info        | <base-button size="sm" look="border" theme="info">Button</base-button>        |
+| white       | <base-button size="sm" look="border" color="white">Button</base-button>       |
+| primary     | <base-button size="sm" look="border" color="primary">Button</base-button>     |
+| success     | <base-button size="sm" look="border" color="success">Button</base-button>     |
+| destructive | <base-button size="sm" look="border" color="destructive">Button</base-button> |
+| info        | <base-button size="sm" look="border" color="info">Button</base-button>        |
+
+
+### Custom
+
+```vue
+<BaseButton look="bg-green-300 text-green-700">
+  Button
+</BaseButton>
+```
+
+| Param       | Look                                                                           |
+| ----------- | ------------------------------------------------------------------------------ |
+| custom      | <base-button size="sm" look="bg-green-300 text-green-700">Button</base-button> |
+
+<div class="h-12"></div>
+
+## With Icons
+
+```vue
+<BaseButton>
+  <BaseIcon name="solid/arrow-right"></BaseIcon>
+  <span class="px-2">Button</span>
+  <BaseIcon name="solid/check"></BaseIcon>
+</BaseButton>
+```
+
+<div class="mt-4">
+  <base-button>
+    <base-icon size="sm" name="solid/arrow-right"></base-icon>
+    <span class="px-2">Button</span>
+    <base-icon size="sm" name="solid/check"></base-icon>
+  </base-button>
+</div>
