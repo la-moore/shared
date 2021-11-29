@@ -45,22 +45,14 @@
       </span>
     </label>
 
-    <ControlFooter :error-message="errorMessage">
-      <div v-if="maxlength">
-        <span>{{ modelValue.length }}</span>
-        <span class="mx-px">
-          /
-        </span>
-        <span>{{ maxlength }}</span>
-      </div>
-    </ControlFooter>
+    <ControlFooter :error-message="errorMessage" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, CHECKBOX_PROPS } from './'
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
+import BaseIcon from '../../../plugins/icons/components/icon.vue'
 import ControlFooter from '../control-footer.vue'
 
 export default defineComponent({

@@ -51,8 +51,8 @@
 </template>
 
 <script lang="ts">
-import ProcessorElastic from '/-/plugins/processor/processor-elastic'
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
+import ProcessorElastic from '../../../plugins/processor/processor-elastic'
+import BaseIcon from '../../../plugins/icons/components/icon.vue'
 import { setup } from '../pagination-setup'
 
 export default {

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useTheme } from '/-/plugins/theme'
+import { useTheme } from '../../../../plugins/theme'
 import constants from '../themes'
 
 export default defineComponent({

@@ -75,7 +75,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { setup } from '/-/components/controls/setup'
+import { setup } from '../../../setup'
 import BaseFileInputCore from '../base-file-input-core.vue'
 
 export default defineComponent({

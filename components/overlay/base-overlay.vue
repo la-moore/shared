@@ -65,8 +65,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, OVERLAY_PROPS } from './'
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
-import BaseButton from '/-/components/button/base-button.vue'
+import BaseIcon from '../../plugins/icons/components/icon.vue'
+import BaseButton from '../../components/button/base-button.vue'
 
 export default defineComponent({
   name: 'BaseOverlay',

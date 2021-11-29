@@ -1,6 +1,6 @@
 import { ExtractPropTypes, SetupContext, ref, watch } from 'vue'
 import { defineAsyncComponent } from '@vue/runtime-core'
-import { useTheme } from '/-/plugins/theme'
+import { useTheme } from '../../../plugins/theme'
 import { controlSetup, CONTROL_PROPS } from '../control'
 
 const { createThemeComponent } = useTheme()

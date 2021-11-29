@@ -56,7 +56,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, AVATAR_PROPS } from './'
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
+import BaseIcon from '../../plugins/icons/components/icon.vue'
 
 export default defineComponent({
   name: 'BaseAvatar',

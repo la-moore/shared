@@ -67,8 +67,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, TABS_PROPS } from './'
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
-import BaseMenu from '/-/components/menu/base-menu.vue'
+import BaseIcon from '../../plugins/icons/components/icon.vue'
+import BaseMenu from '../../components/menu/base-menu.vue'
 
 export default defineComponent({
   name: 'BaseTabs',

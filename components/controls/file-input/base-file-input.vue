@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { useTheme } from '/-/plugins/theme'
+import { useTheme } from '../../../plugins/theme'
 import { defineComponent, defineAsyncComponent } from '@vue/runtime-core'
 import ComponentFallback from './themes/fallback/base-file-input.vue'
 

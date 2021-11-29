@@ -1,7 +1,7 @@
 import { computed, ExtractPropTypes } from 'vue'
 import { defineAsyncComponent, PropType } from '@vue/runtime-core'
-import { MenuItemInterface } from '/-/components/navigation'
-import { useTheme } from '/-/plugins/theme'
+import { MenuItemInterface } from '../navigation'
+import { useTheme } from '../../plugins/theme'
 import { ROUNDED } from '../utils'
 
 const { createThemeComponent } = useTheme()

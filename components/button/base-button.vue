@@ -32,7 +32,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, BUTTON_PROPS } from './'
-import BaseSpinner from '/-/components/spinner/base-spinner.vue'
+import BaseSpinner from '../../components/spinner/base-spinner.vue'
 
 export default defineComponent({
   name: 'BaseButton',

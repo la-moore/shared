@@ -26,7 +26,7 @@
 import { defineComponent } from 'vue'
 import { createPopper } from '@popperjs/core'
 import { setup, MENU_PROPS } from './'
-import BaseNavigation from '/-/components/navigation/base-navigation.vue'
+import BaseNavigation from '../../components/navigation/base-navigation.vue'
 
 export default defineComponent({
   name: 'BaseMenu',

@@ -13,7 +13,6 @@
     "strictNullChecks": false,
     "baseUrl": "./",
     "paths": {
-      "/-/*": ["*"],
       "vue": ["node_modules/vue"]
     },
     "types": ["vite/client"],

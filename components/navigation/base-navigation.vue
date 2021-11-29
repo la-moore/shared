@@ -42,8 +42,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, NAVIGATION_PROPS } from './'
-import BaseLink from '/-/components/link/base-link.vue'
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
+import BaseLink from '../../components/link/base-link.vue'
+import BaseIcon from '../../plugins/icons/components/icon.vue'
 
 export default defineComponent({
   name: 'BaseNavigation',

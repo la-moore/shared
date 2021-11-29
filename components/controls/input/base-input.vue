@@ -62,8 +62,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, INPUT_PROPS } from './'
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
-import BaseButton from '/-/components/button/base-button.vue'
+import BaseIcon from '../../../plugins/icons/components/icon.vue'
+import BaseButton from '../../../components/button/base-button.vue'
 import ControlFooter from '../control-footer.vue'
 
 export default defineComponent({

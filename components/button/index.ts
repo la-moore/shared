@@ -1,7 +1,7 @@
 import { computed, ExtractPropTypes } from 'vue'
 import { defineAsyncComponent } from '@vue/runtime-core'
-import { useTheme } from '/-/plugins/theme'
-import { get } from '/-/helpers'
+import { useTheme } from '../../plugins/theme'
+import { get } from '../../helpers'
 import { ROUNDED, JUSTIFY } from '../utils'
 
 const { createThemeComponent } = useTheme()
