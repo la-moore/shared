@@ -25,5 +25,5 @@ features:
 ### Install in project
 
 ```bash
-npm i git+ssh://git@ggl.wn.media/packages/client-core.git
+npm i github:la-moore/shared
 ```
