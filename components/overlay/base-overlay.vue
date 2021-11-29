@@ -30,7 +30,7 @@
           :leave-to-class="proxyAnimation.from">
           <slot v-if="isVisible"
                 name="dialog">
-            <div class="shadow-xl w-screen"
+            <div class="shadow-xl w-screen overflow-y-auto"
                  :class="[
                    proxySpeed,
                    proxySize,
