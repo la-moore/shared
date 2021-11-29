@@ -1,5 +1,5 @@
 import { Plugin } from 'vue'
-import { useComponent } from '/-/components'
+import { useComponent } from '../../components'
 import ColorPicker from './components/base-color-picker.vue'
 
 const plugin: Plugin = function(app) {

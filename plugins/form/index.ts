@@ -2,8 +2,8 @@ import { Plugin } from 'vue'
 import allRules from '@vee-validate/rules'
 import { configure, defineRule } from 'vee-validate'
 import { localize } from '@vee-validate/i18n'
-import { useLocale } from '/-/plugins/locale'
-import { useComponent } from '/-/components'
+import { useLocale } from '../locale'
+import { useComponent } from '../../components'
 import Form from './components/form.vue'
 
 interface FormConfig {

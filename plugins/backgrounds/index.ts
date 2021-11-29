@@ -1,5 +1,5 @@
 import { Plugin } from 'vue'
-import { useComponent } from '/-/components'
+import { useComponent } from '../../components'
 import BackgroundBox from './components/background-box.vue'
 import BackgroundCircle from './components/background-circle.vue'
 

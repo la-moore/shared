@@ -107,12 +107,12 @@
 
 <script lang="ts">
 import iro from '@jaames/iro'
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
-import BaseMenu from '/-/components/menu/base-menu.vue'
-import BaseButton from '/-/components/button/base-button.vue'
-import BaseControlCore from '/-/components/controls/base-control-core.vue'
-import { setup } from '/-/components/controls/setup'
-import { useColor } from '/-/plugins/color'
+import BaseIcon from '../../../plugins/icons/components/icon.vue'
+import BaseMenu from '../../../components/menu/base-menu.vue'
+import BaseButton from '../../../components/button/base-button.vue'
+import BaseControlCore from '../../../components/controls/base-control-core.vue'
+import { setup } from '../../../components/controls/setup'
+import { useColor } from '../../color'
 
 export default {
   name: 'BaseColorPicker',
