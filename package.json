@@ -19,7 +19,7 @@
     "@vee-validate/i18n": "^4.1.20",
     "@vee-validate/rules": "^4.1.20",
     "@vue/compiler-ssr": "^3.0.5",
-    "class-transformer": "^0.3.2",
+    "class-transformer": "^0.5.1",
     "vee-validate": "^4.2.4",
     "vue": "^3.0.9",
     "vue-router": "^4.0.5"
