@@ -30,7 +30,7 @@ function createThemeComponent(themes: any) {
       const globTheme = themes[state.theme] || themes[main]
       const themeComponent = localTheme || globTheme
 
-      return () => h(themeComponent, {}, data.slots)
+      return () => h(themeComponent, { ref: 'themeComponent' }, data.slots)
     },
     methods: {
       target(name, data) {
