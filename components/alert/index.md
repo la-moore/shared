@@ -1,30 +1,43 @@
 # Alert
 
 <div class="mt-4">
-    <base-alert title="Alert">I am message box</base-alert>
+  <base-alert title="Alert">
+    You have no credits left.
+    <a class="font-medium underline">
+      Upgrade your account to add more credits.
+    </a>
+  </base-alert>
 </div>
 
-```html
-<BaseAlert title="Alert">I am message box</BaseAlert>
+```vue
+<BaseAlert title="Alert">
+  You have no credits left.
+  <a class="font-medium underline">
+    Upgrade your account to add more credits.
+  </a>
+</BaseAlert>
 ```
 
 <div class="h-12"></div>
 
-## Themes
+## Look
 
-Use attribute `theme`
+Use attribute `look`
 
-```html
-<BaseAlert theme="primary">I am message box</BaseAlert>
+```vue
+<BaseAlert look="primary">I am message box</BaseAlert>
+<BaseAlert look="bg-gray-800 border-gray-600 text-gray-100">I am message box</BaseAlert>
 ```
 
-| Param       | Look                                                                        |
-| ----------- | --------------------------------------------------------------------------- |
-| primary     | <base-alert title="Alert" theme="primary">I am message box</base-alert>     |
-| secondary   | <base-alert title="Alert" theme="secondary">I am message box</base-alert>   |
-| success     | <base-alert title="Alert" theme="success">I am message box</base-alert>     |
-| destructive | <base-alert title="Alert" theme="destructive">I am message box</base-alert> |
-| info        | <base-alert title="Alert" theme="info">I am message box</base-alert>        |
+| Param       | Look                                                                                                     |
+| ----------- | -------------------------------------------------------------------------------------------------------- |
+| primary     | <base-alert title="Alert" look="primary">I am message box</base-alert>                                   |
+| secondary   | <base-alert title="Alert" look="secondary">I am message box</base-alert>                                 |
+| success     | <base-alert title="Alert" look="success">I am message box</base-alert>                                   |
+| destructive | <base-alert title="Alert" look="destructive">I am message box</base-alert>                               |
+| info        | <base-alert title="Alert" look="info">I am message box</base-alert>                                      |
+| warning     | <base-alert title="Alert" look="warning">I am message box</base-alert>                                   |
+| custom      | <base-alert title="Alert" look="bg-gray-800 border-gray-600 text-gray-100">I am message box</base-alert> |
 
 <div class="h-12"></div>
 
@@ -33,20 +46,28 @@ Use attribute `theme`
 Use slot `icon`
 
 <div class="mt-4">
-    <base-alert title="Alert">
-      <template #icon>
-        <base-icon size="sm" name="solid_information_circle"></base-icon>
-      </template>
-      <span>I am message box</span>
-    </base-alert>
+  <base-alert title="Alert">
+    <template #icon>
+      <user-circle-icon class="w-5 h-5"></user-circle-icon>
+    </template>
+    I am message box
+  </base-alert>
 </div>
 
-```html
+```vue
 <BaseAlert title="Alert">
   <template #icon>
-    <BaseIcon size="sm"
-              name="solid_information_circle" />
+    <UserCircleIcon />
   </template>
-  <span>I am message box</span>
+  
+  I am message box
 </BaseAlert>
 ```
+
+<script>
+import { UserCircleIcon } from '@scarlab/icons-vue/solid';
+
+export default {
+  components: { UserCircleIcon }
+}
+</script>

@@ -4,27 +4,28 @@
     <base-badge>Badge</base-badge>
 </div>
 
-```html
+```vue
 <BaseBadge>Badge</BaseBadge>
 ```
 
 <div class="h-12"></div>
 
-## Themes
+## Looks
 
-Use attribute `theme`
+Use attribute `look`
 
-```html
-<BaseBadge theme="primary">Primary Badge</BaseBadge>
+```vue
+<BaseBadge look="primary">Primary Badge</BaseBadge>
 ```
 
-| Param         | Look                                               |
-| ------------- | -------------------------------------------------- |
-| primary       | <base-badge theme="primary">badge</base-badge>     |
-| secondary     | <base-badge theme="secondary">badge</base-badge>   |
-| success       | <base-badge theme="success">badge</base-badge>     |
-| destructive   | <base-badge theme="destructive">badge</base-badge> |
-| info          | <base-badge theme="info">badge</base-badge>        |
+| Param         | Look                                              |
+| ------------- | ------------------------------------------------- |
+| secondary     | <base-badge look="secondary">badge</base-badge>   |
+| primary       | <base-badge look="primary">badge</base-badge>     |
+| success       | <base-badge look="success">badge</base-badge>     |
+| destructive   | <base-badge look="destructive">badge</base-badge> |
+| info          | <base-badge look="info">badge</base-badge>        |
+| warning       | <base-badge look="warning">badge</base-badge>     |
 
 <div class="h-12"></div>
 
@@ -32,7 +33,7 @@ Use attribute `theme`
 
 Use attribute `size`
 
-```html
+```vue
 <BaseBadge size="md">Medium Badge</BaseBadge>
 ```
 
@@ -48,7 +49,7 @@ Use attribute `size`
 
 Use attribute `rounded`
 
-```html
+```vue
 <BaseBadge rounded="normal">Normal Badge</BaseBadge>
 ```
 

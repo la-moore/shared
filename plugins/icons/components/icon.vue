@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useIcons } from '/-/plugins/icons'
+import { useIcons } from '../state'
 
 const sizes = {
   xs: 'h-4 w-4',

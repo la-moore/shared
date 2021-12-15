@@ -32,7 +32,7 @@ app.use(icons, localIcons)
 
 Use attribute `size`
 
-```html
+```vue
 <BaseIcon size="md"
           name="logo" />
 ```

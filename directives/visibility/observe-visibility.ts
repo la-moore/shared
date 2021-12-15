@@ -1,11 +1,12 @@
+import { ObjectDirective, nextTick } from 'vue'
 import { processOptions, throttle, deepEqual } from './utils'
 
 class VisibilityState {
-  constructor (el, options, instance) {
+  constructor(el, options) {
     this.el = el
     this.observer = null
     this.frozen = false
-    this.createObserver(options, instance)
+    this.createObserver(options)
   }
 
   el
@@ -15,11 +16,11 @@ class VisibilityState {
   options
   oldResult
 
-  get threshold () {
+  get threshold() {
     return (this.options.intersection && this.options.intersection.threshold) || 0
   }
 
-  createObserver (options, instance) {
+  createObserver(options) {
     if (this.observer) {
       this.destroyObserver()
     }
@@ -38,6 +39,7 @@ class VisibilityState {
     // Throttle
     if (this.callback && this.options.throttle) {
       const { leading } = this.options.throttleOptions || {}
+
       this.callback = throttle(this.callback, this.options.throttle, {
         leading: (state) => {
           return leading === 'both' || (leading === 'visible' && state) || (leading === 'hidden' && !state)
@@ -52,6 +54,7 @@ class VisibilityState {
 
       if (entries.length > 1) {
         const intersectingEntry = entries.find(e => e.isIntersecting)
+
         if (intersectingEntry) {
           entry = intersectingEntry
         }
@@ -60,6 +63,7 @@ class VisibilityState {
       if (this.callback) {
         // Use isIntersecting if possible because browsers can report isIntersecting as true, but intersectionRatio as 0, when something very slowly enters the viewport.
         const result = entry.isIntersecting && entry.intersectionRatio >= this.threshold
+
         if (result === this.oldResult) return
         this.oldResult = result
         this.callback(result, entry)
@@ -67,14 +71,14 @@ class VisibilityState {
     }, this.options.intersection)
 
     // Wait for the element to be in document
-    instance.$nextTick(() => {
+    nextTick(() => {
       if (this.observer) {
         this.observer.observe(this.el)
       }
-    })
+    }).then()
   }
 
-  destroyObserver () {
+  destroyObserver() {
     if (this.observer) {
       this.observer.disconnect()
       this.observer = null
@@ -88,39 +92,43 @@ class VisibilityState {
   }
 }
 
-function bind (el, { instance, value }) {
+function bind(el, { value }) {
   if (!value) return
   if (typeof IntersectionObserver === 'undefined') {
     console.warn('[vue-observe-visibility] IntersectionObserver API is not available in your browser. Please install this polyfill: https://github.com/w3c/IntersectionObserver/tree/master/polyfill')
   } else {
-    el._vue_visibilityState = new VisibilityState(el, value, instance)
+    el._vue_visibilityState = new VisibilityState(el, value)
   }
 }
 
-function update (el, { value, oldValue }, vnode) {
+function update(el, { value, oldValue }) {
   if (deepEqual(value, oldValue)) return
   const state = el._vue_visibilityState
+
   if (!value) {
     unbind(el)
     return
   }
   if (state) {
-    state.createObserver(value, vnode)
+    state.createObserver(value)
   } else {
-    bind(el, { instance: vnode, value })
+    bind(el, { value })
   }
 }
 
-function unbind (el) {
+function unbind(el) {
   const state = el._vue_visibilityState
+
   if (state) {
     state.destroyObserver()
     delete el._vue_visibilityState
   }
 }
 
-export default {
+const ObserveVisibility: ObjectDirective = {
   beforeMount: bind,
   updated: update,
   unmounted: unbind,
 }
+
+export default ObserveVisibility

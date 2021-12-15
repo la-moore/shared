@@ -4,7 +4,7 @@
     <base-input label="Input Label"></base-input>
 </div>
 
-```html
+```vue
 <BaseInput label="Input Label"/>
 ```
 
@@ -14,7 +14,7 @@
 
 Use attribute `disabled`, `required`
 
-```html
+```vue
 <BaseInput label="Input Label"
            disabled/>
 ```
@@ -34,7 +34,7 @@ Use attribute `type` like html input type
     <base-input v-model="pass" type="password" label="Input Label"></base-input>
 </div>
 
-```html
+```vue
 <BaseInput label="Input Label"
            type="password"/>
 ```
@@ -49,7 +49,7 @@ Use attribute `placeholder` like html input placeholder
     <base-input placeholder="Type here..." label="Input Label"></base-input>
 </div>
 
-```html
+```vue
 <BaseInput label="Input Label"
            placeholder="Type here..."/>
 ```
@@ -64,7 +64,7 @@ Use attribute `error`
     <base-input error="Some error text" label="Input Label"></base-input>
 </div>
 
-```html
+```vue
 <BaseInput label="Input Label"
            error="Some error text"/>
 ```
@@ -79,7 +79,7 @@ Use attribute `maxlength`
     <base-input v-model="maxlength" :maxlength="25" label="Input Label"></base-input>
 </div>
 
-```html
+```vue
 <BaseInput label="Input Label"
            :maxlength="25"/>
 ```
@@ -93,44 +93,49 @@ Use slot `left`, `right`
 <div class="mt-4 grid space-y-3">
     <base-input label="Input Label">
         <template #left>
-            <base-button class="w-10 !p-0 pointer-events-none"
+            <base-button class="pointer-events-none"
                          look="link"
-                         theme="dark"
-                         rounded="md">
-                <base-icon name="outline_mail"
-                           size="sm" />
+                         color="current"
+                         size="md"
+                         rounded="rounded-l-md">
+                Right
             </base-button>
         </template>
-    </base-input>
-    <base-input label="Input Label">
         <template #right>
-            <base-button class="w-10 !p-0"
-                         look="link"
-                         theme="dark"
-                         rounded="md">
-                <base-icon name="outline_search"
-                           size="sm" />
+            <base-button size="square-md"
+                         rounded="rounded-r-md">
+                <search-icon></search-icon>
             </base-button>
         </template>
     </base-input>
 </div>
 
-```html
+```vue
 <BaseInput label="Input Label">
   <template #left>
-    <BaseButton class="w-10 !p-0"
-                 look="link"
-                 theme="dark"
-                 rounded="md">
-      <BaseIcon name="outline_mail"
-                size="sm" />
+    <BaseButton class="pointer-events-none"
+                look="link"
+                color="current"
+                size="md"
+                rounded="rounded-l-md">
+      Right
+    </BaseButton>
+  </template>
+  
+  <template #right>
+    <BaseButton size="square-md"
+                rounded="rounded-r-md">
+      <SearchIcon />
     </BaseButton>
   </template>
 </BaseInput>
 ```
 
 <script>
+import { SearchIcon } from '@scarlab/icons-vue/outline';
+
 export default {
+  components: { SearchIcon },
   data () {
     return {
       maxlength: '',

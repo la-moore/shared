@@ -1,207 +1,85 @@
 <template>
-  <div v-clickaway="hide"
-       class="inline-block">
-    <div @click="show">
-      <slot v-bind="{ isVisible }" />
+  <div class="inline-block">
+    <div ref="target">
+      <slot />
     </div>
 
-    <transition
-      enter-active-class="transition duration-100 ease-out"
-      :enter-from-class="proxyAnimationFrom"
-      :enter-to-class="proxyAnimationTo"
-      leave-active-class="transition duration-75 ease-in"
-      :leave-from-class="proxyAnimationTo"
-      :leave-to-class="proxyAnimationFrom">
-      <div v-show="isVisible"
-           ref="menu"
-           class="absolute"
-           :class="[
-             full && 'w-full',
-             proxyLevel,
-             proxyOrigin,
-             proxyPosition
-           ]"
-           @click="onClick">
-        <slot name="menu"
-              v-bind="{ isVisible }" />
-      </div>
-    </transition>
+    <div ref="popper"
+         class="z-30 p-2"
+         :class="[
+           proxySize
+         ]">
+      <slot name="popper">
+        <div class="p-1 rounded-md bg-white shadow-lg divide-y divide-gray-200 dark:divide-gray-600 dark:bg-gray-700 dark:text-white"
+             :class="[
+               proxyRounded
+             ]">
+          <slot name="menu">
+            <BaseNavigation v-if="menu.length > 0"
+                            :menu="menu" />
+          </slot>
+        </div>
+      </slot>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { createPopper } from '@popperjs/core'
+import { setup, MENU_PROPS } from './'
+import BaseNavigation from '../../components/navigation/base-navigation.vue'
 
 export default defineComponent({
   name: 'BaseMenu',
-  props: {
-    parent: {
-      type: HTMLElement,
-      default: undefined
-    },
-    full: {
-      type: Boolean,
-      default: false
-    },
-    level: {
-      type: [String, Number],
-      default: 10
-    },
-    animation: {
-      type: String,
-      default: 'scale'
-    },
-    direction: {
-      type: String,
-      default: 'vertical'
-    },
-    origin: {
-      type: String,
-      default: undefined
-    },
-    toggle: {
-      type: Boolean,
-      default: false
-    },
-    hideOnClick: {
-      type: Boolean,
-      default: true
-    }
+  components: {
+    BaseNavigation
   },
-  emits: ['show', 'hide'],
-  data() {
-    return {
-      localPosition: 'bottom',
-      canOpenLeft: false,
-      canOpenBottom: false,
-      isVisible: false,
+  props: MENU_PROPS,
+  setup,
+  mounted() {
+    const container: any = this.$el
+    const target: any = this.$refs.target
+    const popper: any = this.$refs.popper
+
+    const instance = createPopper(target, popper, {
+      placement: 'auto',
+      modifiers: [
+        {
+          name: 'flip',
+          options: {
+            padding: 60,
+          },
+        },
+      ]
+    })
+
+    function show() {
+      popper.removeAttribute('hidden')
+      instance.update()
     }
-  },
-  computed: {
-    proxyAnimationFrom() {
-      const classes = ['transform', 'opacity-0']
 
-      if (this.animation === 'scale') {
-        classes.push('scale-95')
-      }
-
-      if (this.animation === 'translate') {
-        if (this.direction === 'vertical') {
-          classes.push(this.localPosition === 'bottom' ? '-translate-y-4' : 'translate-y-4')
-        } else {
-          classes.push(this.localPosition === 'left' ? 'translate-x-4' : '-translate-x-4')
-        }
-      }
-
-      return classes.join(' ')
-    },
-    proxyAnimationTo() {
-      const classes = ['transform', 'opacity-100']
-
-      if (this.animation === 'scale') {
-        classes.push('scale-100')
-      }
-
-      if (this.animation === 'translate') {
-        classes.push('translate-y-0 translate-x-0')
-      }
-
-      return classes.join(' ')
-    },
-    proxyLevel() {
-      return this.level && `z-${this.level}`
-    },
-    proxyOrigin() {
-      const origin = ['origin']
-
-      if (this.direction === 'vertical') {
-        origin.push(this.localPosition === 'bottom' ? 'top' : 'bottom')
-      } else {
-        origin.push(this.localPosition === 'left' ? 'right' : 'left')
-      }
-
-      if (this.origin) {
-        origin.push(this.origin)
-      }
-
-      return origin.join('-')
-    },
-    proxyPosition() {
-      let classes = ''
-
-      if (this.direction === 'vertical') {
-        classes = this.localPosition === 'bottom' ? 'top-full ' : 'bottom-full'
-        classes += this.canOpenLeft ? ' right-0' : ' left-0'
-      } else {
-        classes = this.localPosition === 'left' ? 'right-full top-0' : 'left-full top-0'
-      }
-
-      return classes
+    function hide() {
+      popper.setAttribute('hidden', '')
     }
-  },
-  methods: {
-    show() {
-      if (this.toggle && this.isVisible) {
-        return this.hide()
-      }
 
-      this.isVisible = true
-
-      this.$nextTick(() => {
-        this.checkPosition()
-      })
-      this.$emit('show')
-    },
-    hide() {
-      this.isVisible = false
-      this.$emit('hide')
-    },
-    checkPositionLeft() {
-      const parent = this.parent
-
-      const rectEl = this.$el.getBoundingClientRect()
-      const rectMenu = this.$refs.menu.getBoundingClientRect()
-
-      if (this.parent) {
-        const rectParent = parent.getBoundingClientRect()
-
-        return rectEl.left - rectParent.left > rectMenu.width
-      } else {
-        return rectEl.left > rectMenu.width
-      }
-    },
-    checkPositionBottom() {
-      const parent = this.parent
-
-      const rectEl = this.$el.getBoundingClientRect()
-      const rectMenu = this.$refs.menu.getBoundingClientRect()
-
-      if (this.parent) {
-        const rectParent = parent.getBoundingClientRect()
-
-        return rectEl.top + rectMenu.height + 50 < rectParent.bottom
-      } else {
-        return window.innerHeight - rectEl.top > rectMenu.height + 50
-      }
-    },
-    checkPosition() {
-      const position = []
-
-      this.canOpenLeft = this.checkPositionLeft()
-
-      if (this.direction === 'vertical') {
-        position.push(this.checkPositionBottom() ? 'bottom' : 'top')
-      } else {
-        position.push(this.checkPositionLeft() ? 'left' : 'right')
-      }
-
-      this.localPosition = position.join('-')
-    },
-    onClick() {
-      if (this.hideOnClick) {
-        this.hide()
-      }
+    function onMouseenter() {
+      show()
     }
+
+    function onMouseleave() {
+      hide()
+    }
+
+    target.addEventListener('click', onMouseenter)
+    popper.addEventListener('mouseenter', onMouseenter)
+    container.addEventListener('mouseleave', onMouseleave)
+
+    if (this.closeOnClick) {
+      popper.addEventListener('click', onMouseleave)
+    }
+
+    hide()
   }
 })
 </script>

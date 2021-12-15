@@ -87,10 +87,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ProcessorElastic from '/-/plugins/processor/processor-elastic'
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
-import BaseButton from '/-/components/button/base-button.vue'
-import BaseSpinner from '/-/components/spinner/base-spinner.vue'
+import ProcessorElastic from '../../plugins/processor/processor-elastic'
+import BaseIcon from '../../plugins/icons/components/icon.vue'
+import BaseButton from '../../components/button/base-button.vue'
+import BaseSpinner from '../../components/spinner/base-spinner.vue'
 import BasePagination from './components/pagination.vue'
 
 class Locale {

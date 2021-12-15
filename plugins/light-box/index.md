@@ -15,7 +15,7 @@ app.use(lightBox)
 <base-light-box ref="lightBox"
                 :images="images"></base-light-box>
 
-```html
+```vue
 <BaseLightBox ref="lightBox"
               :images="['{url}', '{url}']" />
 ```

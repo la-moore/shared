@@ -22,7 +22,7 @@ app.use(slider)
   </base-slider>
 </div>
 
-```html
+```vue
 <BaseSlider>
   <BaseSliderItem class="w-full">
     ...
@@ -48,7 +48,7 @@ Use attribute `hide-nav`, `hide-dots`
   </base-slider>
 </div>
 
-```html
+```vue
 <BaseSlider hide-nav />
 ```
 
@@ -72,7 +72,7 @@ Use attribute `snap`
   </base-slider>
 </div>
 
-```html
+```vue
 <BaseSliderItem snap="center" />
 ```
 
@@ -102,7 +102,7 @@ Use attribute `can-drag`
   </base-slider>
 </div>
 
-```html
+```vue
 <BaseSliderItem can-drag />
 ```
 
@@ -112,7 +112,7 @@ Use attribute `can-drag`
 
 Use slots `nav`, `nav-dot`, `button-left`, `button-right`
 
-```html
+```vue
 <BaseSlider>
   <template #nav></template>
 </BaseSlider>
@@ -122,7 +122,7 @@ Use slots `nav`, `nav-dot`, `button-left`, `button-right`
 
 ## Methods
 
-```html
+```vue
 <BaseSlider ref="slider" />
 ```
 
@@ -140,7 +140,7 @@ this.$refs.slider.slideToNext()
 
 ## Events
 
-```html
+```vue
 <BaseSlider @change="" />
 ```
 

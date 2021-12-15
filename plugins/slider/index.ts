@@ -1,5 +1,5 @@
 import { Plugin } from 'vue'
-import { useComponent } from '/-/components'
+import { useComponent } from '../../components'
 import Slider from './components/base-slider.vue'
 import SliderItem from './components/base-slider-item.vue'
 

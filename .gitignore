@@ -5,3 +5,7 @@ dist
 tscompiled
 
 .env
+
+.vuepress/.cache
+.vuepress/.temp
+.vuepress/dist

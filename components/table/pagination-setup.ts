@@ -1,5 +1,5 @@
 import { SetupContext, computed } from 'vue'
-import ProcessorElastic from '/-/plugins/processor/processor-elastic'
+import ProcessorElastic from '../../plugins/processor/processor-elastic'
 
 interface InputProps {
   processor: ProcessorElastic

@@ -50,10 +50,12 @@
         leave-to-class="-translate-x-full opacity-0">
         <div v-if="show"
              class="absolute top-1/2 left-0 z-10 -mt-5">
-          <div class="text-gray-300 w-10 h-10 flex bg-opacity-70 bg-gray-900 items-center justify-center cursor-pointer"
-               @click="() => $refs.slider.slideToPrev()">
-            <BaseIcon :name="icons.left" />
-          </div>
+          <slot name="arrow-left">
+            <div class="text-gray-300 w-10 h-10 flex bg-opacity-70 bg-gray-900 items-center justify-center cursor-pointer"
+                 @click="() => $refs.slider.slideToPrev()">
+              <ChevronLeftIcon />
+            </div>
+          </slot>
         </div>
       </transition>
 
@@ -66,10 +68,12 @@
         leave-to-class="translate-x-full opacity-0">
         <div v-if="show"
              class="absolute top-1/2 right-0 z-10 -mt-5">
-          <div class="text-gray-300 w-10 h-10 flex bg-opacity-70 bg-gray-900 items-center justify-center cursor-pointer"
-               @click="() => $refs.slider.slideToNext()">
-            <BaseIcon :name="icons.right" />
-          </div>
+          <slot name="arrow-right">
+            <div class="text-gray-300 w-10 h-10 flex bg-opacity-70 bg-gray-900 items-center justify-center cursor-pointer"
+                 @click="() => $refs.slider.slideToNext()">
+              <ChevronRightIcon />
+            </div>
+          </slot>
         </div>
       </transition>
 
@@ -84,7 +88,7 @@
              class="absolute z-10 w-full top-0 flex justify-end">
           <div class="text-gray-300 w-10 h-10 flex bg-opacity-70 bg-gray-900 items-center justify-center cursor-pointer"
                @click="close">
-            <BaseIcon :name="icons.close" />
+            <XAltIcon />
           </div>
         </div>
       </transition>
@@ -94,20 +98,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
-import BaseSlider from '/-/plugins/slider/components/base-slider.vue'
-import BaseSliderItem from '/-/plugins/slider/components/base-slider-item.vue'
-
-const defaultIcons = {
-  close: 'outline/close',
-  left: 'outline/arrow-left-2',
-  right: 'outline/arrow-right-2'
-}
+import BaseSlider from '../../../plugins/slider/components/base-slider.vue'
+import BaseSliderItem from '../../../plugins/slider/components/base-slider-item.vue'
+import { XAltIcon, ChevronRightIcon, ChevronLeftIcon } from '@scarlab/icons-vue/outline'
 
 export default defineComponent({
   name: 'BaseLightBox',
   components: {
-    BaseIcon,
+    XAltIcon,
+    ChevronRightIcon,
+    ChevronLeftIcon,
     BaseSlider,
     BaseSliderItem
   },
@@ -135,10 +135,6 @@ export default defineComponent({
     fullscreen: {
       type: Boolean,
       default: false
-    },
-    icons: {
-      type: Object,
-      default: () => defaultIcons
     }
   },
   emits: ['close'],

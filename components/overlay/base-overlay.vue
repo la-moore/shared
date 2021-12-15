@@ -1,6 +1,6 @@
 <template>
   <div class="fixed z-40 inset-0 overflow-hidden"
-       :class="!show && 'pointer-events-none'">
+       :class="!isVisible && 'pointer-events-none'">
     <div class="absolute inset-0 overflow-hidden">
       <transition
         enter-active-class="transition-opacity ease-out"
@@ -9,9 +9,9 @@
         leave-active-class="transition-opacity ease-out"
         leave-from-class="opacity-100"
         leave-to-class="opacity-0">
-        <div v-if="show"
+        <div v-if="isVisible"
              class="fixed inset-0 bg-gray-900 bg-opacity-75"
-             :class="`duration-${speed}`"
+             :class="[proxySpeed]"
              aria-hidden="true"
              @click="close" />
       </transition>
@@ -23,28 +23,29 @@
            ]">
         <transition
           enter-active-class="transition ease-out transform"
-          :enter-from-class="proxyAnimationFrom"
-          :enter-to-class="proxyAnimationTo"
+          :enter-from-class="proxyAnimation.from"
+          :enter-to-class="proxyAnimation.to"
           leave-active-class="transition ease-out transform"
-          :leave-from-class="proxyAnimationTo"
-          :leave-to-class="proxyAnimationFrom">
-          <slot v-if="show"
+          :leave-from-class="proxyAnimation.to"
+          :leave-to-class="proxyAnimation.from">
+          <slot v-if="isVisible"
                 name="dialog">
-            <div class="bg-white shadow-xl w-screen"
+            <div class="shadow-xl w-screen overflow-y-auto"
                  :class="[
-                   `duration-${speed}`,
-                   proxySize
+                   proxySpeed,
+                   proxySize,
+                   look
                  ]">
               <slot name="header">
-                <div class="flex justify-between items-center px-6 h-16 border-b">
-                  <div class="font-medium leading-6 text-gray-900 truncate">
+                <div class="flex justify-between items-center px-6 h-16">
+                  <div class="font-medium leading-6 truncate">
                     {{ title }}
                   </div>
-                  <BaseButton theme="white"
-                              size="sm"
-                              class="w-8 !p-0"
+                  <BaseButton look="link"
+                              color="current"
+                              size="square-sm"
                               @click="close">
-                    <BaseIcon name="outline/close" />
+                    <XAltIcon />
                   </BaseButton>
                 </div>
               </slot>
@@ -62,79 +63,18 @@
 </template>
 
 <script lang="ts">
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
-import BaseButton from '../button/base-button.vue'
+import { defineComponent } from 'vue'
+import { setup, OVERLAY_PROPS } from './'
+import BaseButton from '../../components/button/base-button.vue'
+import { XAltIcon } from '@scarlab/icons-vue/outline'
 
-const sizes = {
-  xs: 'max-w-xs',
-  sm: 'max-w-sm',
-  md: 'max-w-md',
-  lg: 'max-w-lg',
-  xl: 'max-w-screen-sm',
-  full: 'max-w-full',
-}
-
-export default {
+export default defineComponent({
   name: 'BaseOverlay',
   components: {
-    BaseIcon,
+    XAltIcon,
     BaseButton
   },
-  props: {
-    speed: {
-      type: [String, Number],
-      default: 300
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    size: {
-      type: [String, Boolean],
-      default: 'md'
-    },
-    position: {
-      type: String,
-      default: 'right'
-    }
-  },
-  emits: ['close'],
-  data() {
-    return {
-      show: false
-    }
-  },
-  computed: {
-    proxyAnimationFrom() {
-      const classes = ['transform']
-
-      if (this.position === 'right') {
-        classes.push('translate-x-full')
-      }
-
-      if (this.position === 'left') {
-        classes.push('-translate-x-full')
-      }
-
-      return classes.join(' ')
-    },
-    proxyAnimationTo() {
-      const classes = ['transform', 'translate-x-0']
-
-      return classes.join(' ')
-    },
-    proxySize() {
-      return this.size && sizes[this.size]
-    }
-  },
-  methods: {
-    open() {
-      this.show = true
-    },
-    close() {
-      this.show = false
-      this.$emit('close')
-    }
-  }
-}
+  props: OVERLAY_PROPS,
+  setup
+})
 </script>

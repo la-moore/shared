@@ -1,11 +1,11 @@
 # Checkbox
 
 <div class="mt-4">
-    <base-checkbox label="Input Label"></base-checkbox>
+    <base-checkbox label="Checkbox Label" description="Checkbox description"></base-checkbox>
 </div>
 
-```html
-<BaseCheckbox label="Input Label" />
+```vue
+<BaseCheckbox label="Checkbox Label" />
 ```
 
 <div class="h-12"></div>
@@ -14,33 +14,39 @@
 
 Use attribute `disabled`, `required`
 
-```html
-<BaseCheckbox label="Input Label"
+```vue
+<BaseCheckbox label="Checkbox Label"
               disabled />
 ```
 
-| Param    | Look                                                                      |
-| -------- | ------------------------------------------------------------------------- |
-| disabled | <base-checkbox class="w-40" disabled label="Input Label"></base-checkbox> |
-| required | <base-checkbox class="w-40" required label="Input Label"></base-checkbox> |
+| Param    | Look                                                                         |
+| -------- | ---------------------------------------------------------------------------- |
+| disabled | <base-checkbox class="w-40" disabled label="Checkbox Label"></base-checkbox> |
+| required | <base-checkbox class="w-40" required label="Checkbox Label"></base-checkbox> |
 
 <div class="h-12"></div>
 
-## Themes
+## Look
 
-Use attribute `theme`
+Use attribute `look`
 
-```html
-<BaseCheckbox label="Input Label"
-              theme="primary" />
+```vue
+<BaseCheckbox label="Checkbox Label"
+              look="primary" />
+
+<BaseCheckbox label="Checkbox Label"
+              look="bg-green-200 text-green-700" />
 ```
 
-| Param       | Look                                                                                 |
-| ----------- | ------------------------------------------------------------------------------------ |
-| primary     | <base-checkbox class="w-40" theme="primary" label="Input Label"></base-checkbox>     |
-| success     | <base-checkbox class="w-40" theme="success" label="Input Label"></base-checkbox>     |
-| destructive | <base-checkbox class="w-40" theme="destructive" label="Input Label"></base-checkbox> |
-| info        | <base-checkbox class="w-40" theme="info" label="Input Label"></base-checkbox>        |
+| Param       | Look                                                                                                   |
+| ----------- | ------------------------------------------------------------------------------------------------------ |
+| secondary   | <base-checkbox class="w-40" look="secondary" label="Checkbox Label"></base-checkbox>                   |
+| primary     | <base-checkbox class="w-40" look="primary" label="Checkbox Label"></base-checkbox>                     |
+| success     | <base-checkbox class="w-40" look="success" label="Checkbox Label"></base-checkbox>                     |
+| destructive | <base-checkbox class="w-40" look="destructive" label="Checkbox Label"></base-checkbox>                 |
+| info        | <base-checkbox class="w-40" look="info" label="Checkbox Label"></base-checkbox>                        |
+| warning     | <base-checkbox class="w-40" look="warning" label="Checkbox Label"></base-checkbox>                     |
+| custom      | <base-checkbox class="w-40" look="bg-green-200 text-green-700" label="Checkbox Label"></base-checkbox> |
 
 <div class="h-12"></div>
 
@@ -49,10 +55,39 @@ Use attribute `theme`
 Use attribute `error`
 
 <div class="mt-4">
-    <base-checkbox error="Some error text" label="Input Label"></base-checkbox>
+    <base-checkbox error="Some error text" label="Checkbox Label"></base-checkbox>
 </div>
 
-```html
-<BaseCheckbox label="Input Label"
+```vue
+<BaseCheckbox label="Checkbox Label"
               error="Some error text" />
 ```
+
+<div class="h-12"></div>
+
+## Icon
+
+Use slots `icon`
+
+<div class="mt-4">
+  <base-checkbox label="Checkbox Label">
+    <template #icon>
+      <minus-icon size="w-full h-full"></minus-icon>
+    </template>
+  </base-checkbox>
+</div>
+
+```vue
+<BaseToggle label="Checkbox Label">
+  <template #icon>
+    <MinusIcon size="w-full h-full" />
+  </template>
+</BaseToggle>
+```
+<script>
+import { MinusIcon } from '@scarlab/icons-vue/outline';
+
+export default {
+  components: { MinusIcon }
+}
+</script>

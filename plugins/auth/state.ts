@@ -1,5 +1,5 @@
 import { reactive, toRef } from 'vue'
-import { Storage } from '../local-storage'
+import { Storage } from '../storage/local'
 import { Api } from '../api'
 import { Auth } from './auth'
 

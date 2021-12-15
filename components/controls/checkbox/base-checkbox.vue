@@ -1,75 +1,67 @@
 <template>
-  <label class="inline-flex text-sm font-medium leading-5 text-gray-700 select-none cursor-pointer">
-    <input :value="modelValue || value"
-           type="checkbox"
-           class="hidden"
-           v-bind="$attrs"
-           :disabled="disabled"
-           aria-label=""
-           v-on="handlers">
+  <div class="relative">
+    <label class="flex cursor-pointer"
+           :class="[
+             disabled && 'pointer-events-none'
+           ]">
+      <button type="button"
+              class="relative inline-flex flex-shrink-0 h-6 w-6 rounded-md overflow-hidden bg-transparent transition-colors ease-in-out"
+              role="switch"
+              aria-checked="false"
+              @click="localValue = !Boolean(localValue)">
+        <span class="absolute inset-0 border-2 rounded-md border-gray-300 dark:border-gray-700"
+              :class="[
+                disabled && 'bg-gray-300 dark:bg-gray-700'
+              ]" />
 
-    <span class="w-5 h-5 border border-gray-300 shadow-sm rounded-md block mr-3 flex justify-center items-center"
-          :class="[
-            (localValue || disabled) && proxyTheme
-          ]">
-      <BaseIcon v-if="localValue"
-                name="outline_check"
-                size="xs" />
-    </span>
+        <span class="absolute inset-0 transition-opacity"
+              :class="[
+                proxyLook,
+                Boolean(localValue) ? 'opacity-100 ease-in' : 'opacity-0 ease-out'
+              ]">
+          <span class="absolute inset-0 h-full w-full flex items-center justify-center transition transform"
+                :class="[
+                  Boolean(localValue) ? 'opacity-100 ease-in scale-100 delay-100' : 'opacity-0 ease-out scale-50'
+                ]">
+            <slot name="icon">
+              <CheckIcon class="w-full h-full" />
+            </slot>
+          </span>
+        </span>
+      </button>
 
-    {{ label }}
-    {{ required ? '*' : '' }}
-  </label>
-  <transition enter-active-class="transition-all duration-300"
-              enter-from-class="transform -translate-y-3 opacity-0"
-              enter-to-class="transform translate-y-0 opacity-100"
-              leave-active-class="transition-all duration-300"
-              leave-from-class="transform translate-y-0"
-              leave-to-class="transform -translate-y-3 opacity-0">
-    <span v-if="!disabled && (errorMessage || $slots.error)"
-          class="text-red-600 block">
-      <slot name="error">
-        {{ errorMessage }}
-      </slot>
-    </span>
-  </transition>
+      <span class="flex-grow pl-3 leading-4">
+        <span v-if="label"
+              class="block text-sm font-medium leading-6">
+          {{ label }}
+          {{ required ? '*' : '' }}
+        </span>
+
+        <span v-if="description"
+              class="block text-sm opacity-70">
+          {{ description }}
+        </span>
+      </span>
+    </label>
+
+    <ControlFooter :error-message="errorMessage" />
+  </div>
 </template>
 
 <script lang="ts">
-import BaseIcon from '/-/plugins/icons/components/icon.vue'
-import BaseControlCore from '../base-control-core.vue'
-import { setup } from '../setup'
+import { defineComponent } from 'vue'
+import { setup, CHECKBOX_PROPS } from './'
+import ControlFooter from '../control-footer.vue'
+import { CheckIcon } from '@scarlab/icons-vue/outline'
 
-const themes = {
-  disabled: 'text-white pointer-events-none bg-gray-100 ',
-  primary: 'text-white bg-primary-600 hover:bg-primary-500',
-  success: 'text-white bg-green-600 hover:bg-green-500',
-  destructive: 'text-white bg-red-600 hover:bg-red-500',
-  info: 'text-white bg-blue-600 hover:bg-blue-500',
-}
-
-export default {
+export default defineComponent({
   name: 'BaseCheckbox',
   components: {
-    BaseIcon
+    CheckIcon,
+    ControlFooter,
   },
-  extends: BaseControlCore,
-  props: {
-    theme: {
-      type: [String, Boolean],
-      default: 'primary'
-    }
-  },
-  emits: ['update:modelValue'],
-  setup,
-  computed: {
-    proxyTheme() {
-      if (this.disabled) {
-        return themes.disabled
-      }
-
-      return this.theme && themes[this.theme]
-    }
-  }
-}
+  props: CHECKBOX_PROPS,
+  emits: ['update:modelValue', 'unmasked'],
+  setup
+})
 </script>

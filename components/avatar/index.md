@@ -1,13 +1,59 @@
 # Avatar
 
 <div class="mt-4">
-    <base-avatar title="Title"
-                 text="Text"></base-avatar>
+    <base-avatar src="https://images.pexels.com/photos/172292/pexels-photo-172292.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                 title="User Name"
+                 text="Some Data"></base-avatar>
 </div>
 
-```html
-<BaseAvatar title="Title"
-            text="Text" />
+```vue
+<BaseAvatar src="https://images.pexels.com/photos/172292/pexels-photo-172292.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            title="User Name"
+            text="Some Data" />
+```
+
+<div class="h-12"></div>
+
+## Reverse
+
+<div class="mt-4">
+    <base-avatar title="User Name"
+                 text="Some Data"
+                 reverse></base-avatar>
+</div>
+
+```vue
+<BaseAvatar :src="[
+              'https://images.pexels.com/photos/172292/pexels-photo-172292.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+              undefined,
+              'https://images.pexels.com/photos/172292/pexels-photo-172292.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            ]"
+            title="User Name"
+            text="Some Data" />
+```
+
+<div class="h-12"></div>
+
+## Multi Avatars
+
+<div class="mt-4">
+    <base-avatar :src="[
+                   'https://images.pexels.com/photos/172292/pexels-photo-172292.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                   undefined,
+                   'https://images.pexels.com/photos/172292/pexels-photo-172292.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                 ]"
+                 title="User Name"
+                 text="Some Data"></base-avatar>
+</div>
+
+```vue
+<BaseAvatar :src="[
+              'https://images.pexels.com/photos/172292/pexels-photo-172292.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+              undefined,
+              'https://images.pexels.com/photos/172292/pexels-photo-172292.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            ]"
+            title="User Name"
+            text="Some Data" />
 ```
 
 <div class="h-12"></div>
@@ -16,7 +62,7 @@
 
 Use attribute `size`
 
-```html
+```vue
 <BaseAvatar size="md" />
 ```
 
@@ -36,7 +82,7 @@ Use attribute `size`
 
 Use attribute `rounded`
 
-```html
+```vue
 <BaseAvatar rounded="normal" />
 ```
 
@@ -50,36 +96,128 @@ Use attribute `rounded`
 
 <div class="h-12"></div>
 
+## Look
+
+Use attribute `look`
+
+```vue
+<BaseAvatar look="primary" />
+```
+
+| Param       | Look                                                         |
+| ----------- | ------------------------------------------------------------ |
+| primary     | <base-avatar look="primary" title="Title"></base-avatar>     |
+| secondary   | <base-avatar look="secondary" title="Title"></base-avatar>   |
+| success     | <base-avatar look="success" title="Title"></base-avatar>     |
+| destructive | <base-avatar look="destructive" title="Title"></base-avatar> |
+| info        | <base-avatar look="info" title="Title"></base-avatar>        |
+| warning     | <base-avatar look="warning" title="Title"></base-avatar>     |
+
+<div class="h-12"></div>
+
 ## Icon
 
 Use attribute `icon`
 
-<div class="mt-4">
-    <base-avatar title="Title"
-                 text="Text"
-                 icon="solid/bookmark"></base-avatar>
+<div class="mt-4 flex space-x-1">
+    <base-avatar>
+      <template #icon>
+        <bookmark-icon></bookmark-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <user-circle-icon></user-circle-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <phone-icon></phone-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <plus-circle-icon></plus-circle-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <check-badge-icon></check-badge-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <briefcase-icon></briefcase-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <cloud-icon></cloud-icon>
+      </template>
+    </base-avatar>
 </div>
 
-```html
-<BaseAvatar icon="solid/bookmark" />
+```vue
+<BaseAvatar>
+  <template #icon>
+    <BookmarkIcon />
+  </template>
+</BaseAvatar>
 ```
 
 <div class="h-12"></div>
 
-## Classes
+## Icon Size
 
-Use attribute `class`, `stub-class`, `avatar-class`
+Use attribute `icon-size`
 
-<div class="mt-4">
-    <base-avatar title="Title"
-                 text="Text"
-                 class="text-primary-500"
-                 stub-class="bg-primary-300 p-1 text-primary-700"></base-avatar>
+<div class="mt-4 flex space-x-1">
+    <base-avatar>
+      <template #icon>
+        <user-circle-icon class="h-full w-full"></user-circle-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <user-circle-icon class="h-10/12 w-10/12"></user-circle-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <user-circle-icon class="h-8/12 w-8/12"></user-circle-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <user-circle-icon class="h-1/2 w-1/2"></user-circle-icon>
+      </template>
+    </base-avatar>
 </div>
 
-```html
-<BaseAvatar class="text-primary-500"
-            stub-class="bg-primary-300 text-primary-700" />
+```vue
+<BaseAvatar>
+  <template #icon>
+    <UserCircleIcon class="h-full w-fuh-full" />
+  </template>
+</BaseAvatar>
+
+<BaseAvatar>
+  <template #icon>
+    <UserCircleIcon class="h-10/12 w-10/12" />
+  </template>
+</BaseAvatar>
+
+<BaseAvatar>
+  <template #icon>
+    <UserCircleIcon class="h-8/12 w-8/12" />
+  </template>
+</BaseAvatar>
+
+<BaseAvatar>
+  <template #icon>
+    <UserCircleIcon class="h-1/2 w-1/2" />
+  </template>
+</BaseAvatar>
 ```
 
 <div class="h-12"></div>
@@ -89,25 +227,68 @@ Use attribute `class`, `stub-class`, `avatar-class`
 Use slot `badge`
 
 <div class="mt-4">
-    <base-avatar title="Title"
-                 text="Text">
-  <template #badge>
-    <div class="bg-white p-0.5 text-green-500 rounded-full absolute right-0 top-0 -mt-2 -mr-2">
-      <BaseIcon name="solid_check_circle"
-                size="sm" />
-    </div>
-  </template>
-</base-avatar>
+  <base-avatar title="Title"
+               text="Text">
+    <template #badge>
+      <div class="z-10 absolute bottom-0 right-0 block border-2 border-white rounded-full">
+        <div class="block h-1.5 w-1.5 rounded-full bg-green-300"></div>
+      </div>
+    </template>
+  </base-avatar>
 </div>
 
-```html
-<BaseAvatar class="text-primary-500"
-            stub-class="bg-primary-300 text-primary-700">
+```vue
+<BaseAvatar class="text-primary-500">
   <template #badge>
-    <div class="bg-white p-0.5 text-green-500 rounded-full absolute right-0 top-0 -mt-2 -mr-2">
-      <BaseIcon name="solid_check_circle"
-                size="sm" />
+    <div class="z-10 absolute bottom-0 right-0 block border-2 border-white rounded-full">
+      <div class="block h-1.5 w-1.5 rounded-full bg-green-300" />
     </div>
   </template>
 </BaseAvatar>
 ```
+
+<div class="h-12"></div>
+
+## Custom Content
+
+Use slot
+
+<div class="mt-4">
+  <base-avatar look="primary">
+    <template #icon>
+      <user-circle-icon class="w-full h-full"></user-circle-icon>
+    </template>
+    <div class="flex-1 px-3 flex flex-col truncate">
+        <p class="font-medium leading-4 truncate text-primary-700 group-hover:text-primary-800">
+          Some Title
+        </p>
+        <p class="text-xs leading-4 text-primary-500 truncate group-hover:text-primary-700">
+          Some text
+        </p>
+      </div>
+  </base-avatar>
+</div>
+
+```vue
+<BaseAvatar look="primary">
+  <template #icon>
+    <UserCircleIcon class="w-full h-full" />
+  </template>
+
+  <div class="flex-1 px-3 flex flex-col truncate">
+    <p class="font-medium leading-4 truncate text-primary-700 group-hover:text-primary-800">
+      Some Title
+    </p>
+    <p class="text-xs leading-4 text-primary-500 truncate group-hover:text-primary-700">
+      Some text
+    </p>
+  </div>
+</BaseAvatar>
+```
+<script>
+import { UserCircleIcon, BookmarkIcon, PhoneIcon, PlusCircleIcon, CheckBadgeIcon, BriefcaseIcon, CloudIcon } from '@scarlab/icons-vue/solid';
+
+export default {
+  components: { UserCircleIcon, BookmarkIcon, PhoneIcon, PlusCircleIcon, CheckBadgeIcon, BriefcaseIcon, CloudIcon }
+}
+</script>
