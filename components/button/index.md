@@ -181,16 +181,24 @@ Use attribute `look` and `color`
 
 ```vue
 <BaseButton>
-  <BaseIcon name="solid/arrow-right"></BaseIcon>
+  <CheckIcon />
   <span class="px-2">Button</span>
-  <BaseIcon name="solid/check"></BaseIcon>
+  <ArrowRightIcon />
 </BaseButton>
 ```
 
 <div class="mt-4">
   <base-button>
-    <base-icon size="sm" name="solid/arrow-right"></base-icon>
+    <check-icon></check-icon>
     <span class="px-2">Button</span>
-    <base-icon size="sm" name="solid/check"></base-icon>
+    <arrow-right-icon></arrow-right-icon>
   </base-button>
 </div>
+
+<script>
+import { CheckIcon, ArrowRightIcon } from '@scarlab/icons-vue/outline';
+
+export default {
+  components: { CheckIcon, ArrowRightIcon }
+}
+</script>

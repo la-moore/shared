@@ -54,7 +54,7 @@
                                 size="square-sm"
                                 class="ml-auto"
                                 @click="close">
-                      <BaseIcon name="outline/x" />
+                      <XAltIcon />
                     </BaseButton>
                   </div>
                 </div>
@@ -75,13 +75,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, DIALOG_PROPS } from './'
-import BaseIcon from '../../plugins/icons/components/icon.vue'
 import BaseButton from '../button/base-button.vue'
+import { XAltIcon } from '@scarlab/icons-vue/outline'
 
 export default defineComponent({
   name: 'BaseDialog',
   components: {
-    BaseIcon,
+    XAltIcon,
     BaseButton
   },
   props: DIALOG_PROPS,

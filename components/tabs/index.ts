@@ -45,10 +45,6 @@ export const TABS_PROPS = {
     type: [String, Number],
     default: '',
   },
-  icon: {
-    type: String,
-    default: 'solid/chevron-down',
-  },
   look: {
     type: String,
     default: 'primary'

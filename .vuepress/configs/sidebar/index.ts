@@ -40,7 +40,6 @@ export const sidebar: SidebarConfig = {
         '/components/controls/select/',
         '/components/controls/select-async/',
         '/components/controls/textarea/',
-        '/components/controls/file-input/',
         '/components/controls/toggle/'
       ],
     }

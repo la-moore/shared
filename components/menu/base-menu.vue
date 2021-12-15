@@ -5,11 +5,13 @@
     </div>
 
     <div ref="popper"
-         class="z-30 p-2">
+         class="z-30 p-2"
+         :class="[
+           proxySize
+         ]">
       <slot name="popper">
         <div class="p-1 rounded-md bg-white shadow-lg divide-y divide-gray-200 dark:divide-gray-600 dark:bg-gray-700 dark:text-white"
              :class="[
-               proxySize,
                proxyRounded
              ]">
           <slot name="menu">
@@ -42,7 +44,6 @@ export default defineComponent({
 
     const instance = createPopper(target, popper, {
       placement: 'auto',
-      strategy: 'fixed',
       modifiers: [
         {
           name: 'flip',
@@ -73,6 +74,10 @@ export default defineComponent({
     target.addEventListener('click', onMouseenter)
     popper.addEventListener('mouseenter', onMouseenter)
     container.addEventListener('mouseleave', onMouseleave)
+
+    if (this.closeOnClick) {
+      popper.addEventListener('click', onMouseleave)
+    }
 
     hide()
   }

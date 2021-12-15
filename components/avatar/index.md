@@ -120,17 +120,49 @@ Use attribute `look`
 Use attribute `icon`
 
 <div class="mt-4 flex space-x-1">
-    <base-avatar icon="solid/bookmark"></base-avatar>
-    <base-avatar icon="solid/user-circle"></base-avatar>
-    <base-avatar icon="solid/trash"></base-avatar>
-    <base-avatar icon="solid/plus-circle"></base-avatar>
-    <base-avatar icon="solid/badge-check"></base-avatar>
-    <base-avatar icon="solid/briefcase"></base-avatar>
-    <base-avatar icon="solid/chart-pie"></base-avatar>
+    <base-avatar>
+      <template #icon>
+        <bookmark-icon></bookmark-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <user-circle-icon></user-circle-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <phone-icon></phone-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <plus-circle-icon></plus-circle-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <check-badge-icon></check-badge-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <briefcase-icon></briefcase-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <cloud-icon></cloud-icon>
+      </template>
+    </base-avatar>
 </div>
 
 ```vue
-<BaseAvatar icon="solid/bookmark" />
+<BaseAvatar>
+  <template #icon>
+    <BookmarkIcon />
+  </template>
+</BaseAvatar>
 ```
 
 <div class="h-12"></div>
@@ -140,17 +172,52 @@ Use attribute `icon`
 Use attribute `icon-size`
 
 <div class="mt-4 flex space-x-1">
-    <base-avatar icon="solid/user-circle" icon-size="h-full w-full"></base-avatar>
-    <base-avatar icon="solid/user-circle" icon-size="h-10/12 w-10/12"></base-avatar>
-    <base-avatar icon="solid/user-circle" icon-size="h-8/12 w-8/12"></base-avatar>
-    <base-avatar icon="solid/user-circle" icon-size="h-1/2 w-1/2"></base-avatar>
+    <base-avatar>
+      <template #icon>
+        <user-circle-icon class="h-full w-full"></user-circle-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <user-circle-icon class="h-10/12 w-10/12"></user-circle-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <user-circle-icon class="h-8/12 w-8/12"></user-circle-icon>
+      </template>
+    </base-avatar>
+    <base-avatar>
+      <template #icon>
+        <user-circle-icon class="h-1/2 w-1/2"></user-circle-icon>
+      </template>
+    </base-avatar>
 </div>
 
 ```vue
-<BaseAvatar icon-size="h-full w-full" />
-<BaseAvatar icon-size="h-10/12 w-10/12" />
-<BaseAvatar icon-size="h-8/12 w-8/12" />
-<BaseAvatar icon-size="h-1/2 w-1/2" />
+<BaseAvatar>
+  <template #icon>
+    <UserCircleIcon class="h-full w-fuh-full" />
+  </template>
+</BaseAvatar>
+
+<BaseAvatar>
+  <template #icon>
+    <UserCircleIcon class="h-10/12 w-10/12" />
+  </template>
+</BaseAvatar>
+
+<BaseAvatar>
+  <template #icon>
+    <UserCircleIcon class="h-8/12 w-8/12" />
+  </template>
+</BaseAvatar>
+
+<BaseAvatar>
+  <template #icon>
+    <UserCircleIcon class="h-1/2 w-1/2" />
+  </template>
+</BaseAvatar>
 ```
 
 <div class="h-12"></div>
@@ -187,7 +254,10 @@ Use slot `badge`
 Use slot
 
 <div class="mt-4">
-  <base-avatar icon="solid/user-circle" look="primary">
+  <base-avatar look="primary">
+    <template #icon>
+      <user-circle-icon class="w-full h-full"></user-circle-icon>
+    </template>
     <div class="flex-1 px-3 flex flex-col truncate">
         <p class="font-medium leading-4 truncate text-primary-700 group-hover:text-primary-800">
           Some Title
@@ -200,8 +270,11 @@ Use slot
 </div>
 
 ```vue
-<BaseAvatar icon="solid/user-circle"
-            look="primary">
+<BaseAvatar look="primary">
+  <template #icon>
+    <UserCircleIcon class="w-full h-full" />
+  </template>
+
   <div class="flex-1 px-3 flex flex-col truncate">
     <p class="font-medium leading-4 truncate text-primary-700 group-hover:text-primary-800">
       Some Title
@@ -212,3 +285,10 @@ Use slot
   </div>
 </BaseAvatar>
 ```
+<script>
+import { UserCircleIcon, BookmarkIcon, PhoneIcon, PlusCircleIcon, CheckBadgeIcon, BriefcaseIcon, CloudIcon } from '@scarlab/icons-vue/solid';
+
+export default {
+  components: { UserCircleIcon, BookmarkIcon, PhoneIcon, PlusCircleIcon, CheckBadgeIcon, BriefcaseIcon, CloudIcon }
+}
+</script>

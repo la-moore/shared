@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@jaames/iro": "^5.5.2",
+    "@scarlab/icons-vue": "^1.0.0",
     "@popperjs/core": "^2.10.2",
     "@vee-validate/i18n": "^4.1.20",
     "@vee-validate/rules": "^4.1.20",

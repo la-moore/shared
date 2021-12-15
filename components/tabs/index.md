@@ -109,6 +109,8 @@ Selected tab: {{ tab }}
 ```
 
 <script>
+import { XAltIcon } from '@scarlab/icons-vue/outline';
+
 export default {
   data () {
     return {
@@ -116,7 +118,8 @@ export default {
       tabs: [
         {
           label: 'First',
-          value: 'first'
+          value: 'first',
+          icon: XAltIcon
         },
         {
           label: 'Second',

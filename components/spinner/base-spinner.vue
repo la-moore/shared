@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-block animate-spin"
+  <div class="inline-block relative animate-spin"
        :class="[
          proxySize
        ]">

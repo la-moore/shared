@@ -15,10 +15,8 @@
                  proxyTextSize
                ]">
             <template v-if="!hideStub && !backgroundImage">
-              <BaseIcon v-if="icon"
-                        :name="icon"
-                        :size="false"
-                        :class="iconSize" />
+              <slot v-if="$slots.icon"
+                    name="icon" />
               <div v-else-if="stub"
                    class="font-bold leading-none uppercase">
                 {{ stub }}
@@ -56,13 +54,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, AVATAR_PROPS } from './'
-import BaseIcon from '../../plugins/icons/components/icon.vue'
 
 export default defineComponent({
   name: 'BaseAvatar',
-  components: {
-    BaseIcon
-  },
   props: AVATAR_PROPS,
   setup
 })

@@ -64,6 +64,8 @@ Use attribute `rounded`
 <base-navigation badgeLook="bg-green-200 text-green-600" badgeSize="w-6 text-center leading-6" badgeRounded="rounded-md" :menu="menuSm"></base-navigation>
 
 <script>
+import { HomeIcon, UsersIcon, FolderIcon, CalendarIcon, DocumentIcon } from '@scarlab/icons-vue/outline';
+
 export default {
   data () {
     return {
@@ -72,17 +74,17 @@ export default {
         {
           label: 'Dashboard',
           value: 'dashboard',
-          icon: 'outline/home'
+          icon: HomeIcon
         },
         {
           label: 'Team',
           value: 'team',
-          icon: 'outline/users'
+          icon: UsersIcon
         },
         {
           label: 'Projects',
           value: 'projects',
-          icon: 'outline/folder',
+          icon: FolderIcon,
           badge: '12'
         },
         {
@@ -100,7 +102,7 @@ export default {
         {
           label: 'Dashboard',
           value: 'dashboard',
-          icon: 'outline/home',
+          icon: HomeIcon,
           badge: '12'
         }
       ]

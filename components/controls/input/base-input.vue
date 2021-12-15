@@ -16,7 +16,7 @@
         <slot name="left" />
       </div>
       <div class="relative flex items-stretch flex-grow focus-within:z-10">
-        <input class="appearance-none focus:outline-none bg-transparent block w-full px-3"
+        <input class="appearance-none focus:outline-none bg-transparent block w-full px-3 placeholder-gray-500 dark:placeholder-gray-400"
                :type="proxyType"
                :name="name"
                :value="localValue"
@@ -40,8 +40,8 @@
                       color="current"
                       rounded="rounded-r-md"
                       @click="showPassword = !showPassword">
-            <BaseIcon :name="showPassword ? 'outline/eye-slash' : 'outline/eye'"
-                      size="sm" />
+            <EyeOffIcon v-if="showPassword" />
+            <EyeIcon v-else />
           </BaseButton>
         </slot>
       </div>
@@ -62,14 +62,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, INPUT_PROPS } from './'
-import BaseIcon from '../../../plugins/icons/components/icon.vue'
 import BaseButton from '../../../components/button/base-button.vue'
 import ControlFooter from '../control-footer.vue'
+import { EyeIcon, EyeOffIcon } from '@scarlab/icons-vue/outline'
 
 export default defineComponent({
   name: 'BaseInput',
   components: {
-    BaseIcon,
+    EyeIcon,
+    EyeOffIcon,
     BaseButton,
     ControlFooter,
   },

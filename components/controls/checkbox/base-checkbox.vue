@@ -24,8 +24,7 @@
                   Boolean(localValue) ? 'opacity-100 ease-in scale-100 delay-100' : 'opacity-0 ease-out scale-50'
                 ]">
             <slot name="icon">
-              <BaseIcon name="solid/check"
-                        size="w-full h-full p-0.5" />
+              <CheckIcon class="w-full h-full" />
             </slot>
           </span>
         </span>
@@ -52,13 +51,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, CHECKBOX_PROPS } from './'
-import BaseIcon from '../../../plugins/icons/components/icon.vue'
 import ControlFooter from '../control-footer.vue'
+import { CheckIcon } from '@scarlab/icons-vue/outline'
 
 export default defineComponent({
   name: 'BaseCheckbox',
   components: {
-    BaseIcon,
+    CheckIcon,
     ControlFooter,
   },
   props: CHECKBOX_PROPS,

@@ -72,7 +72,7 @@ Use slots `icon`
 <div class="mt-4">
   <base-checkbox label="Checkbox Label">
     <template #icon>
-      <base-icon name="solid/minus" size="w-full h-full"></base-icon>
+      <minus-icon size="w-full h-full"></minus-icon>
     </template>
   </base-checkbox>
 </div>
@@ -80,9 +80,14 @@ Use slots `icon`
 ```vue
 <BaseToggle label="Checkbox Label">
   <template #icon>
-    <BaseIcon name="solid/minus"
-              size="w-full h-full" />
+    <MinusIcon size="w-full h-full" />
   </template>
 </BaseToggle>
 ```
+<script>
+import { MinusIcon } from '@scarlab/icons-vue/outline';
 
+export default {
+  components: { MinusIcon }
+}
+</script>

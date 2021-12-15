@@ -104,8 +104,7 @@ Use slot `left`, `right`
         <template #right>
             <base-button size="square-md"
                          rounded="rounded-r-md">
-                <base-icon name="outline/search"
-                           size="sm" />
+                <search-icon></search-icon>
             </base-button>
         </template>
     </base-input>
@@ -114,17 +113,29 @@ Use slot `left`, `right`
 ```vue
 <BaseInput label="Input Label">
   <template #left>
-    <BaseButton size="square-md"
+    <BaseButton class="pointer-events-none"
+                look="link"
+                color="current"
+                size="md"
                 rounded="rounded-l-md">
-      <BaseIcon name="outline_mail"
-                size="sm" />
+      Right
+    </BaseButton>
+  </template>
+  
+  <template #right>
+    <BaseButton size="square-md"
+                rounded="rounded-r-md">
+      <SearchIcon />
     </BaseButton>
   </template>
 </BaseInput>
 ```
 
 <script>
+import { SearchIcon } from '@scarlab/icons-vue/outline';
+
 export default {
+  components: { SearchIcon },
   data () {
     return {
       maxlength: '',

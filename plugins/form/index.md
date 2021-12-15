@@ -1,7 +1,7 @@
 # Form
 
 ```ts
-import color from '/-/plugins/form'
+import form from '/-/plugins/form'
 
 app.use(form)
 ```

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col relative">
-    <div class="sm:block border-b border-gray-200">
+    <div class="sm:block">
       <nav class="-mb-px hidden"
            :class="[
              proxyExtended,
@@ -26,7 +26,8 @@
       </nav>
       <BaseMenu class="relative w-full"
                 :class="[proxyHide]"
-                full>
+                close-on-click
+                size="full">
         <div class="whitespace-nowrap items-center flex py-2 px-3 font-medium text-md cursor-pointer"
              :class="[
                proxyLook
@@ -34,17 +35,19 @@
           <div class="flex-1">
             {{ selectedTab?.label }}
           </div>
-          <BaseIcon :name="icon"
-                    size="sm" />
+
+          <slot name="extendedIcon">
+            <ChevronDownIcon />
+          </slot>
 
           <div class="absolute bottom-0 w-full bg-current py-px left-0" />
         </div>
 
         <template #menu>
-          <div class="bg-white shadow-lg p-1 rounded-lg">
+          <div class="">
             <template v-for="tab in tabs"
                       :key="tab.value">
-              <div class="flex items-center cursor-pointer px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+              <div class="flex items-center cursor-pointer px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-50 dark:hover:bg-gray-600"
                    @click="() => selectTab(tab.value)">
                 {{ tab.label }}
               </div>
@@ -67,14 +70,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, TABS_PROPS } from './'
-import BaseIcon from '../../plugins/icons/components/icon.vue'
 import BaseMenu from '../../components/menu/base-menu.vue'
+import { ChevronDownIcon } from '@scarlab/icons-vue/outline'
 
 export default defineComponent({
   name: 'BaseTabs',
   components: {
     BaseMenu,
-    BaseIcon
+    ChevronDownIcon
   },
   props: TABS_PROPS,
   emits: ['change', 'update:modelValue'],

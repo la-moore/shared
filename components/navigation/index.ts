@@ -8,7 +8,7 @@ const { createThemeComponent } = useTheme()
 export interface MenuItemInterface {
   label: string | number
   value: string
-  icon?: string
+  icon?: any
   group?: string
   href?: string
   to?: any

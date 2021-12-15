@@ -45,7 +45,7 @@
                               color="current"
                               size="square-sm"
                               @click="close">
-                    <BaseIcon name="outline/x" />
+                    <XAltIcon />
                   </BaseButton>
                 </div>
               </slot>
@@ -65,13 +65,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { setup, OVERLAY_PROPS } from './'
-import BaseIcon from '../../plugins/icons/components/icon.vue'
 import BaseButton from '../../components/button/base-button.vue'
+import { XAltIcon } from '@scarlab/icons-vue/outline'
 
 export default defineComponent({
   name: 'BaseOverlay',
   components: {
-    BaseIcon,
+    XAltIcon,
     BaseButton
   },
   props: OVERLAY_PROPS,

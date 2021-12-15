@@ -14,12 +14,12 @@
                     :href="item.href"
                     :to="item.to"
                     @click="() => selectItem(item.value)">
-            <BaseIcon v-if="item.icon"
-                      :name="item.icon"
-                      class="flex-shrink-0 ml-3 h-6 w-6 transition-opacity"
-                      :class="[
-                        selected === item.value ? 'opacity-100' : 'opacity-50'
-                      ]" />
+            <component :is="item.icon"
+                       v-if="item.icon"
+                       class="flex-shrink-0 ml-3 h-6 w-6 transition-opacity"
+                       :class="[
+                         selected === item.value ? 'opacity-100' : 'opacity-50'
+                       ]" />
             <span class="truncate px-3">
               {{ item.label }}
             </span>

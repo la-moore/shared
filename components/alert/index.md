@@ -46,14 +46,28 @@ Use attribute `look`
 Use slot `icon`
 
 <div class="mt-4">
-  <base-alert title="Alert" icon="outline/info-circle">
+  <base-alert title="Alert">
+    <template #icon>
+      <user-circle-icon class="w-5 h-5"></user-circle-icon>
+    </template>
     I am message box
   </base-alert>
 </div>
 
 ```vue
-<BaseAlert title="Alert"
-           icon="outline/info-circle">
+<BaseAlert title="Alert">
+  <template #icon>
+    <UserCircleIcon />
+  </template>
+  
   I am message box
 </BaseAlert>
 ```
+
+<script>
+import { UserCircleIcon } from '@scarlab/icons-vue/solid';
+
+export default {
+  components: { UserCircleIcon }
+}
+</script>

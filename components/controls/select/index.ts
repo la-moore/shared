@@ -6,7 +6,7 @@ import { controlSetup, CONTROL_PROPS } from '../control'
 const { createThemeComponent } = useTheme()
 
 export const SELECT_THEMES: any = {
-  main: defineAsyncComponent(() => import('./base-input.vue')),
+  main: defineAsyncComponent(() => import('./base-select.vue')),
 }
 
 export const SELECT_PROPS = {
@@ -27,32 +27,16 @@ function setup(params, ctx: SetupContext) {
   const control = controlSetup(params, ctx)
 
   const isFocused = ref(false)
-  const showPassword = ref(false)
-
-  const hasRight = computed(() => {
-    return ctx.slots.right || props.type === 'password'
-  })
-
-  const proxyType = computed(() => {
-    if (props.type === 'password') {
-      return showPassword.value ? 'text' : 'password'
-    }
-
-    return props.type
-  })
 
   return {
     ...control,
-    hasRight,
-    proxyType,
-    isFocused,
-    showPassword
+    isFocused
   }
 }
 
-const Input = createThemeComponent(SELECT_THEMES)
+const Select = createThemeComponent(SELECT_THEMES)
 
 export {
-  Input,
+  Select,
   setup
 }

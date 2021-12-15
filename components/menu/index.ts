@@ -32,6 +32,10 @@ export const MENU_PROPS = {
     type: String,
     default: ''
   },
+  closeOnClick: {
+    type: Boolean,
+    default: false
+  },
   menu: {
     type: Array as PropType<MenuItemInterface[]>,
     default: () => []

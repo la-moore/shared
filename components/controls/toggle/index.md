@@ -73,10 +73,10 @@ Use slots `active`, `inactive`
 <div class="mt-4">
   <base-toggle label="Toggle Label">
     <template #active>
-      <base-icon name="solid/check-circle" size="w-full h-full"></base-icon>
+      <check-circle-icon size="w-full h-full"></check-circle-icon>
     </template>
     <template #inactive>
-      <base-icon name="solid/x-circle" size="w-full h-full"></base-icon>
+      <x-circle-icon size="w-full h-full"></x-circle-icon>
     </template>
   </base-toggle>
 </div>
@@ -84,13 +84,19 @@ Use slots `active`, `inactive`
 ```vue
 <BaseToggle label="Toggle Label">
   <template #active>
-    <BaseIcon name="solid/check-circle"
-              size="w-full h-full" />
+    <CheckCircleIcon size="w-full h-full" />
   </template>
   
   <template #inactive>
-    <BaseIcon name="solid/x-circle"
-              size="w-full h-full" />
+    <XCircleIcon size="w-full h-full" />
   </template>
 </BaseToggle>
 ```
+
+<script>
+import { CheckCircleIcon, XCircleIcon } from '@scarlab/icons-vue/solid';
+
+export default {
+  components: { CheckCircleIcon, XCircleIcon }
+}
+</script>

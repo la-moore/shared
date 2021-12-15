@@ -47,10 +47,6 @@ export const AVATAR_PROPS = {
     type: String,
     default: ''
   },
-  iconSize: {
-    type: String,
-    default: 'h-8/12 w-8/12'
-  },
   hideStub: {
     type: Boolean,
     default: false
@@ -62,10 +58,6 @@ export const AVATAR_PROPS = {
   look: {
     type: String,
     default: 'secondary'
-  },
-  icon: {
-    type: String,
-    default: ''
   },
   reverse: {
     type: Boolean,

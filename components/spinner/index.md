@@ -39,12 +39,20 @@ Use slot `default`
 
 ```vue
 <BaseSpinner size="md">
-  <BaseIcon name="solid/star" />
+  <CubeTransparentIcon class="w-full h-full" />
 </BaseSpinner>
 ```
 
 <div class="my-10 flex justify-center">
-  <base-spinner size="lg">
-    <base-icon size="h-full w-full" name="solid/star"></base-icon>
+  <base-spinner size="xl">
+    <cube-transparent-icon class="w-full h-full"></cube-transparent-icon>
   </base-spinner>
 </div>
+
+<script>
+import { CubeTransparentIcon } from '@scarlab/icons-vue/outline';
+
+export default {
+components: { CubeTransparentIcon }
+}
+</script>
