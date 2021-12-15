@@ -24,6 +24,7 @@ export const BUTTON_LOOKS_SOLID: any = {
 export const BUTTON_LOOKS_GHOST: any = {
   white: 'text-gray-600 bg-transparent hover:text-gray-700 hover:bg-gray-200 hover:bg-opacity-50 active:bg-gray-300',
   primary: 'text-primary-600 bg-primary-100 hover:text-primary-700 hover:bg-primary-200 active:bg-primary-300',
+  secondary: 'text-gray-600 bg-gray-100 hover:text-gray-700 hover:bg-gray-200 active:bg-gray-300',
   success: 'text-green-600 bg-green-100 bg-opacity-50 hover:text-green-700 hover:bg-green-200 active:bg-green-300 dark:bg-green-900 dark:text-green-200 dark:hover:bg-green-800 dark:hover:text-green-100',
   destructive: 'text-red-600 bg-red-100 bg-opacity-50 hover:text-red-700 hover:bg-red-200 active:bg-red-300 dark:bg-red-900 dark:text-red-200 dark:hover:bg-red-800 dark:hover:text-red-100',
   info: 'text-blue-600 bg-blue-100 bg-opacity-50 hover:text-blue-700 hover:bg-blue-200 active:bg-blue-300 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800 dark:hover:text-blue-100',
