@@ -1,6 +1,6 @@
 import path from 'path'
-import { defineUserConfig } from 'vuepress'
-import type { DefaultThemeOptions } from 'vuepress'
+import { defineUserConfig } from 'vuepress-webpack'
+import type { DefaultThemeOptions } from 'vuepress-webpack'
 import { navbar, sidebar } from './configs'
 
 export default defineUserConfig<DefaultThemeOptions>({
@@ -18,15 +18,11 @@ export default defineUserConfig<DefaultThemeOptions>({
     '/-': path.join(__dirname, '../'),
   },
 
-  // bundler: '@vuepress/bundler-vite',
-
   bundlerConfig: {
-    configureWebpack: () => ({
-      resolve: {
-        alias: {
-          '/-': path.join(__dirname, '../'),
-        },
+    resolve: {
+      alias: {
+        '/-': path.join(__dirname, '../'),
       },
-    })
+    },
   },
 })

@@ -15,8 +15,7 @@
              @click="slideToPrev">
           <slot name="button-left">
             <div class="bg-white opacity-0 text-gray-500 hover:bg-gray-100 hover:-translate-x-0.5 hover:text-gray-700 group-hover:opacity-100 transition rounded-full w-10 h-10 flex justify-center items-center shadow-md cursor-pointer transform">
-              <BaseIcon name="outline/arrow-left-1"
-                        size="sm" />
+              <ArrowLeftAltIcon />
             </div>
           </slot>
         </div>
@@ -25,8 +24,7 @@
              @click="slideToNext">
           <slot name="button-right">
             <div class="bg-white opacity-0 text-gray-500 hover:bg-gray-100 hover:translate-x-0.5 hover:text-gray-700 group-hover:opacity-100 transition rounded-full w-10 h-10 flex justify-center items-center shadow-md cursor-pointer transform">
-              <BaseIcon name="outline/arrow-right-1"
-                        size="sm" />
+              <ArrowRightAltIcon />
             </div>
           </slot>
         </div>
@@ -56,12 +54,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { debounce } from '../../../helpers'
-import BaseIcon from '../../../plugins/icons/components/icon.vue'
+import { ArrowRightAltIcon, ArrowLeftAltIcon } from '@scarlab/icons-vue/outline';
 
 export default defineComponent({
   name: 'BaseSlider',
   components: {
-    BaseIcon,
+    ArrowRightAltIcon,
+    ArrowLeftAltIcon,
   },
   props: {
     hideNav: {

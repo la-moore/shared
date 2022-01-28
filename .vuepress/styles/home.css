@@ -1,0 +1,11 @@
+.home .feature > h2 {
+    @apply my-4;
+}
+
+.home .feature > p {
+    @apply my-4;
+}
+
+.home .hero img {
+    @apply rounded-md
+}

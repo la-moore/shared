@@ -7,9 +7,7 @@
                 firstPageSelected && 'pointer-events-none opacity-30'
               ]"
               @click="prevPage()">
-        <BaseIcon name="outline_arrow_narrow_left"
-                  class="mr-3 text-gray-400"
-                  size="sm" />
+        <ArrowLeftAltIcon class="mr-3 text-gray-400" />
 
         {{ locale.previous }}
       </button>
@@ -42,23 +40,22 @@
               @click="nextPage()">
         {{ locale.next }}
 
-        <BaseIcon name="outline_arrow_narrow_right"
-                  class="ml-3 text-gray-400"
-                  size="sm" />
+        <ArrowRightAltIcon class="ml-3 text-gray-400" />
       </button>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
+import { ArrowRightAltIcon, ArrowLeftAltIcon } from '@scarlab/icons-vue/outline';
 import ProcessorElastic from '../../../plugins/processor/processor-elastic'
-import BaseIcon from '../../../plugins/icons/components/icon.vue'
 import { setup } from '../pagination-setup'
 
 export default {
   name: 'BasePagination',
   components: {
-    BaseIcon
+    ArrowRightAltIcon,
+    ArrowLeftAltIcon
   },
   props: {
     locale: {

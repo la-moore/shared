@@ -59,8 +59,10 @@
                             look="link"
                             size="xs"
                             @click="() => action.click(row)">
-                  <BaseIcon :name="action.icon"
-                            size="xs" />
+
+                  <component :is="action.icon"
+                             v-if="action.icon"
+                             class="h-6 w-6" />
                 </BaseButton>
               </td>
             </tr>
@@ -88,7 +90,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import ProcessorElastic from '../../plugins/processor/processor-elastic'
-import BaseIcon from '../../plugins/icons/components/icon.vue'
 import BaseButton from '../../components/button/base-button.vue'
 import BaseSpinner from '../../components/spinner/base-spinner.vue'
 import BasePagination from './components/pagination.vue'
@@ -114,7 +115,6 @@ const whitespaces = {
 export default defineComponent({
   name: 'BaseTable',
   components: {
-    BaseIcon,
     BaseButton,
     BaseSpinner,
     BasePagination

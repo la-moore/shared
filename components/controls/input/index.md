@@ -12,17 +12,37 @@
 
 ## States
 
-Use attribute `disabled`, `required`
+Use attribute `disabled`, `required`, `error`
 
 ```vue
 <BaseInput label="Input Label"
            disabled/>
 ```
 
-| Param    | Look                                                                |
-| -------- | ------------------------------------------------------------------- |
-| disabled | <base-input class="w-40" disabled label="Input Label"></base-input> |
-| required | <base-input class="w-40" required label="Input Label"></base-input> |
+| Param    | Look                                                                         |
+|----------|------------------------------------------------------------------------------|
+| required | <base-input class="w-40" required label="Input Label"></base-input>          |
+| disabled | <base-input class="w-40" disabled label="Input Label"></base-input>          |
+| error    | <base-input class="w-40" error="Some text" label="Input Label"></base-input> |
+
+<div class="h-12"></div>
+
+## Looks
+
+Use attribute `look``
+
+```vue
+<BaseInput label="Input Label"
+           look="main"/>
+```
+
+| Param       | Look                                                                          |
+|-------------|-------------------------------------------------------------------------------|
+| disabled    | <base-input class="w-40" look="disabled" label="Input Label"></base-input>    |
+| main        | <base-input class="w-40" look="main" label="Input Label"></base-input>        |
+| primary     | <base-input class="w-40" look="primary" label="Input Label"></base-input>     |
+| destructive | <base-input class="w-40" look="destructive" label="Input Label"></base-input> |
+| success     | <base-input class="w-40" look="success" label="Input Label"></base-input>     |
 
 <div class="h-12"></div>
 

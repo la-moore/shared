@@ -12,17 +12,37 @@
 
 ## States
 
-Use attribute `disabled`, `required`
+Use attribute `disabled`, `required`, `error`
 
 ```html
 <BaseTextarea label="Textarea Label"
               disabled/>
 ```
 
-| Param    | Look                                                                         |
-| -------- | ---------------------------------------------------------------------------- |
-| disabled | <base-textarea class="w-40" disabled label="Textarea Label"></base-textarea> |
-| required | <base-textarea class="w-40" required label="Textarea Label"></base-textarea> |
+| Param    | Look                                                                                  |
+|----------|---------------------------------------------------------------------------------------|
+| disabled | <base-textarea class="w-40" disabled label="Textarea Label"></base-textarea>          |
+| required | <base-textarea class="w-40" required label="Textarea Label"></base-textarea>          |
+| error    | <base-textarea class="w-40" error="Some text" label="Textarea Label"></base-textarea> |
+
+<div class="h-12"></div>
+
+## Looks
+
+Use attribute `look`
+
+```html
+<BaseTextarea label="Textarea Label"
+              look="main"/>
+```
+
+| Param       | Look                                                                                   |
+|-------------|----------------------------------------------------------------------------------------|
+| main        | <base-textarea class="w-40" look="main" label="Textarea Label"></base-textarea>        |
+| primary     | <base-textarea class="w-40" look="primary" label="Textarea Label"></base-textarea>     |
+| destructive | <base-textarea class="w-40" look="destructive" label="Textarea Label"></base-textarea> |
+| success     | <base-textarea class="w-40" look="success" label="Textarea Label"></base-textarea>     |
+| disabled    | <base-textarea class="w-40" look="disabled" label="Textarea Label"></base-textarea>    |
 
 <div class="h-12"></div>
 
@@ -76,12 +96,12 @@ Use attribute `maxlength`
 Use attribute `rows-max`
 
 <div class="mt-4">
-    <base-textarea :rows-max="300" label="Textarea Label"></base-textarea>
+    <base-textarea :rows-max="10" label="Textarea Label"></base-textarea>
 </div>
 
 ```html
 <BaseTextarea label="Textarea Label"
-              :rows-max="100"/>
+              :rows-max="10"/>
 ```
 
 <script>

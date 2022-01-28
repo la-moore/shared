@@ -5,32 +5,32 @@
       {{ label }}
       {{ required ? '*' : '' }}
     </label>
+
     <div v-show="!hideInput && !$slots.input"
          class="flex rounded-md shadow-sm h-10 border transition"
          :class="[
-           errorMessage ? 'border-red-400' : 'focus-within:border-blue-300 dark:focus-within:border-blue-600 dark:border-gray-500',
-           disabled && 'pointer-events-none bg-gray-200 border-gray-300 dark:bg-gray-700 dark:border-gray-500'
+           proxyLook
          ]">
       <div v-if="$slots.left"
            class="-my-px -ml-px">
         <slot name="left" />
       </div>
+
       <div class="relative flex items-stretch flex-grow focus-within:z-10">
-        <input class="appearance-none focus:outline-none bg-transparent block w-full px-3 placeholder-gray-500 dark:placeholder-gray-400"
+        <input v-model="localValue"
+               class="appearance-none leading-10 focus:outline-none bg-transparent block w-full px-3 placeholder-gray-500 dark:placeholder-gray-400"
                :type="proxyType"
                :name="name"
-               :value="localValue"
                :placeholder="placeholder"
                :maxlength="maxlength"
                :disabled="disabled"
                :class="[
-                 !errorMessage && 'border-blue-300',
                  !$slots.left && 'rounded-l-md',
                  !hasRight && 'rounded-r-md',
                ]"
-               aria-label=""
-               v-on="handlers">
+               aria-label="">
       </div>
+
       <div v-if="hasRight"
            class="-my-px -mr-px">
         <slot name="right">
@@ -46,14 +46,12 @@
         </slot>
       </div>
     </div>
+
     <slot name="input" />
-    <ControlFooter :error-message="errorMessage">
+
+    <ControlFooter :error-message="error">
       <div v-if="maxlength">
-        <span>{{ modelValue.length }}</span>
-        <span class="mx-px">
-          /
-        </span>
-        <span>{{ maxlength }}</span>
+        <span>{{ `${modelValue.length} / ${maxlength}` }}</span>
       </div>
     </ControlFooter>
   </div>
@@ -66,6 +64,14 @@ import BaseButton from '../../../components/button/base-button.vue'
 import ControlFooter from '../control-footer.vue'
 import { EyeIcon, EyeOffIcon } from '@scarlab/icons-vue/outline'
 
+const INPUT_LOOKS = {
+  main: 'focus-within:border-blue-300 dark:focus-within:border-blue-600 dark:border-gray-500',
+  primary: 'focus-within:border-primary-300 dark:focus-within:border-primary-600 dark:border-primary-500',
+  destructive: 'border-red-400',
+  success: 'border-green-400',
+  disabled: 'pointer-events-none bg-gray-200 border-gray-300 dark:bg-gray-700 dark:border-gray-500',
+}
+
 export default defineComponent({
   name: 'BaseInput',
   components: {
@@ -76,6 +82,19 @@ export default defineComponent({
   },
   props: INPUT_PROPS,
   emits: ['update:modelValue', 'unmasked'],
-  setup
+  setup,
+  computed: {
+    proxyLook() {
+      if (this.disabled) {
+        return INPUT_LOOKS.disabled
+      }
+
+      if (this.error) {
+        return INPUT_LOOKS.destructive
+      }
+
+      return INPUT_LOOKS[this.look] || this.look
+    }
+  }
 })
 </script>

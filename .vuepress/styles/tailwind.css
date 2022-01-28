@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import "alert.css";
+@import "home.css";
+
 .theme-default-content > h1 {
   @apply text-3xl font-black mt-6;
 }
@@ -36,18 +39,6 @@
 
 .toggle-sidebar-button + span a {
   @apply flex;
-}
-
-.home .feature > h2 {
-  @apply my-4;
-}
-
-.home .feature > p {
-  @apply my-4;
-}
-
-.home .hero img {
-  @apply rounded-md
 }
 
 .theme-default-content:not(.custom) a:hover {

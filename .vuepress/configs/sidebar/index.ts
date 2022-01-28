@@ -38,7 +38,6 @@ export const sidebar: SidebarConfig = {
         '/components/controls/checkbox/',
         '/components/controls/input/',
         '/components/controls/select/',
-        '/components/controls/select-async/',
         '/components/controls/textarea/',
         '/components/controls/toggle/'
       ],
@@ -60,10 +59,8 @@ export const sidebar: SidebarConfig = {
       children: [
         '/plugins/api/',
         '/plugins/auth/',
-        '/plugins/form/',
         '/plugins/backgrounds/',
         '/plugins/color/',
-        '/plugins/icons/',
         '/plugins/storage/',
         '/plugins/locale/',
         '/plugins/processor/',

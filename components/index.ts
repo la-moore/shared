@@ -1,7 +1,6 @@
 import { Plugin, Component } from 'vue'
 import Table from './table/base-table.vue'
-import Select from './controls/select/base-select.vue'
-import SelectAsync from './controls/select-async/base-select-async.vue'
+import { Select } from './controls/select'
 import { Overlay } from './overlay'
 import { Modal } from './modal'
 import { Menu } from './menu'
@@ -29,7 +28,6 @@ export function useComponent(app, config, name: string, component: Component) {
 const plugin: Plugin = function(app, config = {}) {
   useComponent(app, config, 'Table', Table)
   useComponent(app, config, 'Select', Select)
-  useComponent(app, config, 'SelectAsync', SelectAsync)
   useComponent(app, config, 'Overlay', Overlay)
   useComponent(app, config, 'Modal', Modal)
   useComponent(app, config, 'Menu', Menu)

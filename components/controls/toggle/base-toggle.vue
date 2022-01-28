@@ -4,7 +4,7 @@
       <button type="button"
               class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200"
               :class="[
-                Boolean(localValue) ? proxyLook : 'bg-gray-200',
+                Boolean(localValue) ? proxyLook : 'bg-gray-200 dark:bg-gray-700',
                 disabled && 'pointer-events-none'
               ]"
               role="switch"
@@ -47,15 +47,7 @@
       </div>
     </div>
 
-    <ControlFooter :error-message="errorMessage">
-      <div v-if="maxlength">
-        <span>{{ modelValue.length }}</span>
-        <span class="mx-px">
-          /
-        </span>
-        <span>{{ maxlength }}</span>
-      </div>
-    </ControlFooter>
+    <ControlFooter :error-message="error" />
   </div>
 </template>
 
@@ -64,6 +56,15 @@ import { defineComponent } from 'vue'
 import { setup, TOGGLE_PROPS } from './'
 import ControlFooter from '../control-footer.vue'
 
+const TOGGLE_LOOKS: any = {
+  primary: 'bg-primary-600 text-primary-600',
+  secondary: 'bg-gray-600 text-gray-600',
+  success: 'bg-green-600 text-green-600',
+  destructive: 'bg-red-600 text-red-600',
+  info: 'bg-blue-600 text-blue-600',
+  warning: 'bg-yellow-600 text-yellow-600',
+}
+
 export default defineComponent({
   name: 'BaseToggle',
   components: {
@@ -71,6 +72,11 @@ export default defineComponent({
   },
   props: TOGGLE_PROPS,
   emits: ['update:modelValue', 'unmasked'],
-  setup
+  setup,
+  computed: {
+    proxyLook() {
+      return TOGGLE_LOOKS[this.look] || this.look
+    }
+  }
 })
 </script>

@@ -1,0 +1,7 @@
+.custom-container.danger {
+    @apply bg-red-200 border-red-500 dark:bg-red-800 dark:bg-opacity-20
+}
+
+.custom-container.danger .custom-container-title {
+    @apply text-red-800 dark:text-red-200
+}

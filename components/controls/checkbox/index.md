@@ -19,10 +19,11 @@ Use attribute `disabled`, `required`
               disabled />
 ```
 
-| Param    | Look                                                                         |
-| -------- | ---------------------------------------------------------------------------- |
-| disabled | <base-checkbox class="w-40" disabled label="Checkbox Label"></base-checkbox> |
-| required | <base-checkbox class="w-40" required label="Checkbox Label"></base-checkbox> |
+| Param    | Look                                                                                  |
+|----------|---------------------------------------------------------------------------------------|
+| disabled | <base-checkbox class="w-40" disabled label="Checkbox Label"></base-checkbox>          |
+| required | <base-checkbox class="w-40" required label="Checkbox Label"></base-checkbox>          |
+| error    | <base-checkbox class="w-40" error="Some Text" label="Checkbox Label"></base-checkbox> |
 
 <div class="h-12"></div>
 
@@ -39,7 +40,7 @@ Use attribute `look`
 ```
 
 | Param       | Look                                                                                                   |
-| ----------- | ------------------------------------------------------------------------------------------------------ |
+|-------------|--------------------------------------------------------------------------------------------------------|
 | secondary   | <base-checkbox class="w-40" look="secondary" label="Checkbox Label"></base-checkbox>                   |
 | primary     | <base-checkbox class="w-40" look="primary" label="Checkbox Label"></base-checkbox>                     |
 | success     | <base-checkbox class="w-40" look="success" label="Checkbox Label"></base-checkbox>                     |

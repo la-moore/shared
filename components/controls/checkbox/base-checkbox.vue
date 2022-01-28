@@ -9,22 +9,22 @@
               role="switch"
               aria-checked="false"
               @click="localValue = !Boolean(localValue)">
-        <span class="absolute inset-0 border-2 rounded-md border-gray-300 dark:border-gray-700"
+        <span class="absolute inset-0 border-2 rounded-md"
               :class="[
-                disabled && 'bg-gray-300 dark:bg-gray-700'
+                  error ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
               ]" />
 
         <span class="absolute inset-0 transition-opacity"
               :class="[
                 proxyLook,
-                Boolean(localValue) ? 'opacity-100 ease-in' : 'opacity-0 ease-out'
+                Boolean(localValue) || disabled ? 'opacity-100 ease-in' : 'opacity-0 ease-out'
               ]">
           <span class="absolute inset-0 h-full w-full flex items-center justify-center transition transform"
                 :class="[
                   Boolean(localValue) ? 'opacity-100 ease-in scale-100 delay-100' : 'opacity-0 ease-out scale-50'
                 ]">
             <slot name="icon">
-              <CheckIcon class="w-full h-full" />
+              <CheckAltIcon class="w-full h-full" />
             </slot>
           </span>
         </span>
@@ -44,7 +44,7 @@
       </span>
     </label>
 
-    <ControlFooter :error-message="errorMessage" />
+    <ControlFooter :error-message="error" />
   </div>
 </template>
 
@@ -52,16 +52,38 @@
 import { defineComponent } from 'vue'
 import { setup, CHECKBOX_PROPS } from './'
 import ControlFooter from '../control-footer.vue'
-import { CheckIcon } from '@scarlab/icons-vue/outline'
+import { CheckAltIcon } from '@scarlab/icons-vue/outline'
+
+const CHECKBOX_LOOKS: any = {
+  primary: 'bg-primary-600 text-white',
+  secondary: 'bg-gray-600 text-white',
+  success: 'bg-green-600 text-white',
+  destructive: 'bg-red-600 text-white',
+  info: 'bg-blue-600 text-white',
+  warning: 'bg-yellow-600 text-white',
+  disabled: 'bg-gray-300 dark:bg-gray-700',
+}
 
 export default defineComponent({
   name: 'BaseCheckbox',
   components: {
-    CheckIcon,
+    CheckAltIcon,
     ControlFooter,
   },
   props: CHECKBOX_PROPS,
-  emits: ['update:modelValue', 'unmasked'],
-  setup
+  setup,
+  computed: {
+    proxyLook() {
+      if (this.disabled) {
+        return CHECKBOX_LOOKS.disabled
+      }
+
+      if (this.error) {
+        return CHECKBOX_LOOKS.destructive
+      }
+
+      return CHECKBOX_LOOKS[this.look] || this.look
+    }
+  }
 })
 </script>

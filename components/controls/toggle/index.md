@@ -21,7 +21,7 @@ Use attribute `disabled`, `required`
 ```
 
 | Param    | Look                                                                   |
-| -------- | ---------------------------------------------------------------------- |
+|----------|------------------------------------------------------------------------|
 | disabled | <base-toggle class="w-40" disabled label="Toggle Label"></base-toggle> |
 | required | <base-toggle class="w-40" required label="Toggle Label"></base-toggle> |
 
@@ -40,14 +40,14 @@ Use attribute `look`
 ```
 
 | Param       | Look                                                                              |
-| ----------- | --------------------------------------------------------------------------------- |
+|-------------|-----------------------------------------------------------------------------------|
 | secondary   | <base-toggle class="w-40" look="secondary" label="Toggle Label"></base-toggle>    |
 | primary     | <base-toggle class="w-40" look="primary" label="Toggle Label"></base-toggle>      |
 | success     | <base-toggle class="w-40" look="success" label="Toggle Label"></base-toggle>      |
 | destructive | <base-toggle class="w-40" look="destructive" label="Toggle Label"></base-toggle>  |
 | info        | <base-toggle class="w-40" look="info" label="Toggle Label"></base-toggle>         |
 | warning     | <base-toggle class="w-40" look="warning" label="Toggle Label"></base-toggle>      |
-| custom      | <base-toggle class="w-40" look="bg-green-200" label="Toggle Label"></base-toggle> |
+| custom      | <base-toggle class="w-40" look="bg-green-100" label="Toggle Label"></base-toggle> |
 
 <div class="h-12"></div>
 
