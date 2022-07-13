@@ -1,5 +1,5 @@
 import {ExtractPropTypes, SetupContext, ref, watch, computed} from 'vue'
-import { defineAsyncComponent } from '@vue/runtime-core'
+import { defineComponent } from '@vue/runtime-core'
 import { controlSetup, CONTROL_PROPS } from '../control'
 // import { useTheme } from '../../../plugins/theme'
 
@@ -14,7 +14,7 @@ export const TEXTAREA_LOOKS = {
 }
 
 export const TEXTAREA_THEMES: any = {
-  main: defineAsyncComponent(() => import('./base-textarea.vue')),
+  main: defineComponent(() => import('./base-textarea.vue')),
 }
 
 export const TEXTAREA_PROPS = {

@@ -1,5 +1,5 @@
 import { computed, ExtractPropTypes, SetupContext } from 'vue'
-import { defineAsyncComponent } from '@vue/runtime-core'
+import { defineComponent } from '@vue/runtime-core'
 import { controlSetup, CONTROL_PROPS } from '../control'
 // import { useTheme } from '../../../plugins/theme'
 
@@ -16,7 +16,7 @@ export const CHECKBOX_LOOKS: any = {
 }
 
 export const CHECKBOX_THEMES: any = {
-  main: defineAsyncComponent(() => import('./base-checkbox.vue')),
+  main: defineComponent(() => import('./base-checkbox.vue')),
 }
 
 export const CHECKBOX_PROPS = {

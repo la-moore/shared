@@ -1,4 +1,4 @@
-import {SetupContext, defineAsyncComponent, ref, computed, ExtractPropTypes} from 'vue'
+import {SetupContext, defineComponent, ref, computed, ExtractPropTypes} from 'vue'
 import { CONTROL_PROPS, controlSetup } from '../control'
 // import { useTheme } from '../../../plugins/theme'
 
@@ -15,7 +15,7 @@ export const RADIOBOX_LOOKS: any = {
 }
 
 export const RADIOBOX_THEMES = {
-  main: defineAsyncComponent(() => import('./base-radiobox.vue')),
+  main: defineComponent(() => import('./base-radiobox.vue')),
 }
 
 export const RADIOBOX_PROPS = {

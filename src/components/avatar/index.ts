@@ -1,12 +1,12 @@
 import { computed, ExtractPropTypes } from 'vue'
-import { defineAsyncComponent } from '@vue/runtime-core'
+import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../plugins/theme'
 import { ROUNDED } from '../utils'
 
 // const { createThemeComponent } = useTheme()
 
 export const AVATAR_THEMES: any = {
-  main: defineAsyncComponent(() => import('./base-avatar.vue'))
+  main: defineComponent(() => import('./base-avatar.vue'))
 }
 
 export const AVATAR_ROUNDED: any = ROUNDED

@@ -1,12 +1,12 @@
 import { computed, ExtractPropTypes, ref, SetupContext } from 'vue'
-import { defineAsyncComponent } from '@vue/runtime-core'
+import { defineComponent } from '@vue/runtime-core'
 import { useTheme } from '../../../plugins/theme'
 import { controlSetup, CONTROL_PROPS } from '../control'
 
 const { createThemeComponent } = useTheme()
 
 export const SELECT_THEMES: any = {
-  main: defineAsyncComponent(() => import('./base-select.vue')),
+  main: defineComponent(() => import('./base-select.vue')),
 }
 
 export const SELECT_PROPS = {

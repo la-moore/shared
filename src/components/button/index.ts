@@ -1,5 +1,5 @@
 import { computed, ExtractPropTypes } from 'vue'
-import { defineAsyncComponent } from '@vue/runtime-core'
+import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../plugins/theme'
 import get from 'lodash/get'
 import { ROUNDED, JUSTIFY } from '../utils'
@@ -7,7 +7,7 @@ import { ROUNDED, JUSTIFY } from '../utils'
 // const { createThemeComponent } = useTheme()
 
 export const BUTTON_THEMES: any = {
-  main: defineAsyncComponent(() => import('./base-button.vue')),
+  main: defineComponent(() => import('./base-button.vue')),
 }
 
 export const BUTTON_LOOKS_SOLID: any = {

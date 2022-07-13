@@ -1,5 +1,5 @@
 import { computed, ExtractPropTypes } from 'vue'
-import { defineAsyncComponent } from '@vue/runtime-core'
+import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../plugins/theme'
 import { ROUNDED } from '../utils'
 
@@ -8,7 +8,7 @@ import { ROUNDED } from '../utils'
 export const BADGE_ROUNDED: any = ROUNDED
 
 export const BADGE_THEMES: any = {
-  main: defineAsyncComponent(() => import('./base-badge.vue')),
+  main: defineComponent(() => import('./base-badge.vue')),
 }
 
 export const BADGE_LOOKS: any = {

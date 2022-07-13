@@ -1,12 +1,12 @@
 import { computed, ExtractPropTypes, ref, SetupContext } from 'vue'
-import { defineAsyncComponent } from '@vue/runtime-core'
+import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../../plugins/theme'
 import { controlSetup, CONTROL_PROPS } from '../control'
 
 // const { createThemeComponent } = useTheme()
 
 export const INPUT_THEMES: any = {
-  main: defineAsyncComponent(() => import('./base-input.vue')),
+  main: defineComponent(() => import('./base-input.vue')),
 }
 
 export const INPUT_LOOKS = {

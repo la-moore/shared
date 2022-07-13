@@ -1,11 +1,11 @@
 import { computed, ExtractPropTypes } from 'vue'
-import { defineAsyncComponent } from '@vue/runtime-core'
+import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../plugins/theme'
 
 // const { createThemeComponent } = useTheme()
 
 export const LINK_THEMES: any = {
-  main: defineAsyncComponent(() => import('./base-link.vue')),
+  main: defineComponent(() => import('./base-link.vue')),
 }
 
 export const LINK_LOOKS: any = {

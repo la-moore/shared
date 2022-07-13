@@ -1,11 +1,11 @@
 import { computed, ExtractPropTypes } from 'vue'
-import { defineAsyncComponent } from 'vue'
+import { defineComponent } from 'vue'
 // import { useTheme } from '../../plugins/theme'
 
 // const { createThemeComponent } = useTheme()
 
 export const ALERT_THEMES: any = {
-  main: defineAsyncComponent(() => import('./base-alert.vue')),
+  main: defineComponent(() => import('./base-alert.vue')),
 }
 
 export const ALERT_LOOKS: any = {

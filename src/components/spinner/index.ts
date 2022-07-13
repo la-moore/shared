@@ -1,11 +1,11 @@
 import { computed, ExtractPropTypes } from 'vue'
-import { defineAsyncComponent } from '@vue/runtime-core'
+import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../plugins/theme'
 
 // const { createThemeComponent } = useTheme()
 
 export const SPINNER_THEMES: any = {
-  main: defineAsyncComponent(() => import('./base-spinner.vue')),
+  main: defineComponent(() => import('./base-spinner.vue')),
 }
 
 export const SPINNER_SIZES: any = {
