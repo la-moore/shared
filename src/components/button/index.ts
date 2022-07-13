@@ -2,8 +2,7 @@ import { computed, ExtractPropTypes } from 'vue'
 // import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../plugins/theme'
 import Button from './base-button.vue'
-import get from 'lodash/get'
-import { ROUNDED, JUSTIFY } from '../utils'
+import { ROUNDED, JUSTIFY, get } from '../utils'
 
 // const { createThemeComponent } = useTheme()
 
