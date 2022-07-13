@@ -1,14 +1,15 @@
 import { computed, ExtractPropTypes } from 'vue'
-import { defineComponent } from '@vue/runtime-core'
+// import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../plugins/theme'
+import Button from './base-button.vue'
 import get from 'lodash/get'
 import { ROUNDED, JUSTIFY } from '../utils'
 
 // const { createThemeComponent } = useTheme()
 
-export const BUTTON_THEMES: any = {
-  main: defineComponent(() => import('./base-button.vue')),
-}
+// export const BUTTON_THEMES: any = {
+//   main: defineComponent(() => import('./base-button.vue')),
+// }
 
 export const BUTTON_LOOKS_SOLID: any = {
   white: 'text-gray-400 bg-white hover:bg-gray-100 active:bg-gray-200 focus:text-gray-600',
@@ -136,7 +137,7 @@ function setup(params) {
   }
 }
 
-const Button = BUTTON_THEMES.main
+// const Button = BUTTON_THEMES.main
 
 export {
   Button,
