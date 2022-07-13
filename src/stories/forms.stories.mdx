@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title="Guides/Forms" />
+
+# Forms
+
+Use [**Vee Validate**](vee-validate.logaretm.com/v4/) and [**yup**](https://www.npmjs.com/package/yup) for forms.
+
+```html
+<form @submit="onSubmit">
+    <base-input
+      v-model="fieldEmail"
+      :error="formErrors['email']"
+    />
+    <base-button :loading="isSubmitting" />
+</form>
+```
+
+```js
+import { useForm, useField } from 'vee-validate'
+import * as yup from 'yup'
+
+const validationSchema = yup.object({
+  email: yup.string().required(),
+})
+
+export default defineComponent({
+  setup(props) {
+    const { handleSubmit, errors: formErrors, isSubmitting } = useForm({
+      initialValues: { email: '' },
+      validationSchema
+    })
+
+    const { value: fieldEmail } = useField('email')
+
+    const onSubmit = handleSubmit(async (values) => {
+      // ...
+    })
+
+    return {
+      onSubmit,
+      fieldEmail,
+      formErrors,
+      isSubmitting
+    }
+  }
+})
+```
