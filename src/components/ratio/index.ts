@@ -1,12 +1,13 @@
 import { computed, ExtractPropTypes } from 'vue'
-import { defineComponent } from '@vue/runtime-core'
+import Ratio from './base-ratio.vue'
+// import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../plugins/theme'
 
 // const { createThemeComponent } = useTheme()
 
-export const RATIO_THEMES: any = {
-  main: defineComponent(() => import('./base-ratio.vue')),
-}
+// export const RATIO_THEMES: any = {
+//   main: defineComponent(() => import('./base-ratio.vue')),
+// }
 
 export const RATIO_SIZES: any = {
   contain: 'bg-contain',
@@ -50,7 +51,7 @@ function setup(params) {
   }
 }
 
-const Ratio = RATIO_THEMES.main
+// const Ratio = RATIO_THEMES.main
 
 export {
   Ratio,
