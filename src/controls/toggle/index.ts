@@ -1,6 +1,7 @@
 import { computed, ExtractPropTypes, SetupContext } from 'vue'
-import { defineComponent } from '@vue/runtime-core'
 import { controlSetup, CONTROL_PROPS } from '../control'
+import Toggle from './base-toggle.vue'
+// import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../../plugins/theme'
 
 // const { createThemeComponent } = useTheme()
@@ -15,9 +16,9 @@ export const TOGGLE_LOOKS: any = {
   disabled: 'bg-gray-200 text-gray-200 pointer-events-none',
 }
 
-export const TOGGLE_THEMES: any = {
-  main: defineComponent(() => import('./base-toggle.vue')),
-}
+// export const TOGGLE_THEMES: any = {
+//   main: defineComponent(() => import('./base-toggle.vue')),
+// }
 
 export const TOGGLE_PROPS = {
   ...CONTROL_PROPS,
@@ -54,7 +55,7 @@ function setup(params, ctx: SetupContext) {
   }
 }
 
-const Toggle = TOGGLE_THEMES.main
+// const Toggle = TOGGLE_THEMES.main
 
 export {
   Toggle,

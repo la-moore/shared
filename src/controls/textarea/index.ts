@@ -1,6 +1,7 @@
 import {ExtractPropTypes, SetupContext, ref, watch, computed} from 'vue'
-import { defineComponent } from '@vue/runtime-core'
+import Textarea from './base-textarea.vue'
 import { controlSetup, CONTROL_PROPS } from '../control'
+// import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../../plugins/theme'
 
 // const { createThemeComponent } = useTheme()
@@ -13,9 +14,9 @@ export const TEXTAREA_LOOKS = {
   disabled: 'pointer-events-none bg-gray-200 border-gray-300 dark:bg-gray-700 dark:border-gray-500',
 }
 
-export const TEXTAREA_THEMES: any = {
-  main: defineComponent(() => import('./base-textarea.vue')),
-}
+// export const TEXTAREA_THEMES: any = {
+//   main: defineComponent(() => import('./base-textarea.vue')),
+// }
 
 export const TEXTAREA_PROPS = {
   ...CONTROL_PROPS,
@@ -80,7 +81,7 @@ function setup(params, ctx: SetupContext) {
   }
 }
 
-const Textarea = TEXTAREA_THEMES.main
+// const Textarea = TEXTAREA_THEMES.main
 
 export {
   Textarea,
