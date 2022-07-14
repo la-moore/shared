@@ -14,6 +14,7 @@ export const BADGE_ROUNDED: any = ROUNDED
 
 export const BADGE_LOOKS: any = {
   primary: 'bg-primary-100 text-primary-700 dark:bg-primary-700 dark:text-primary-100',
+  white: 'bg-white text-gray-500 dark:bg-gray-900 dark:text-gray-300',
   secondary: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-100',
   success: 'bg-green-100 text-green-700 dark:bg-green-700 dark:text-green-100',
   destructive: 'bg-red-100 text-red-700 dark:bg-red-700 dark:text-red-100',
