@@ -1,13 +1,14 @@
 import { computed, ExtractPropTypes } from 'vue'
-import { defineComponent } from '@vue/runtime-core'
-// import { useTheme } from '../../plugins/theme'
 import { ROUNDED } from '../utils'
+import Avatar from './base-avatar.vue'
+// import { defineComponent } from '@vue/runtime-core'
+// import { useTheme } from '../../plugins/theme'
 
 // const { createThemeComponent } = useTheme()
 
-export const AVATAR_THEMES: any = {
-  main: defineComponent(() => import('./base-avatar.vue'))
-}
+// export const AVATAR_THEMES: any = {
+//   main: defineComponent(() => import('./base-avatar.vue'))
+// }
 
 export const AVATAR_ROUNDED: any = ROUNDED
 export const AVATAR_LOOKS: any = {
@@ -162,7 +163,7 @@ function setup(params) {
   }
 }
 
-const Avatar = AVATAR_THEMES.main
+// const Avatar = AVATAR_THEMES.main
 
 export {
   Avatar,

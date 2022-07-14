@@ -1,8 +1,8 @@
 import { computed, ExtractPropTypes, ref, SetupContext } from 'vue'
+import { controlSetup, CONTROL_PROPS } from '../control'
+import Input from './base-input.vue'
 // import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../../plugins/theme'
-import Input from './base-input.vue'
-import { controlSetup, CONTROL_PROPS } from '../control'
 
 // const { createThemeComponent } = useTheme()
 

@@ -1,5 +1,6 @@
-import {SetupContext, defineComponent, ref, computed, ExtractPropTypes} from 'vue'
+import { SetupContext, ref, computed, ExtractPropTypes } from 'vue'
 import { CONTROL_PROPS, controlSetup } from '../control'
+import Radiobox from './base-radiobox.vue'
 // import { useTheme } from '../../../plugins/theme'
 
 // const { createThemeComponent } = useTheme()
@@ -14,9 +15,9 @@ export const RADIOBOX_LOOKS: any = {
   disabled: 'bg-gray-300 border-gray-300 p-2',
 }
 
-export const RADIOBOX_THEMES = {
-  main: defineComponent(() => import('./base-radiobox.vue')),
-}
+// export const RADIOBOX_THEMES = {
+//   main: defineComponent(() => import('./base-radiobox.vue')),
+// }
 
 export const RADIOBOX_PROPS = {
   ...CONTROL_PROPS,
@@ -64,7 +65,7 @@ function setup(params, ctx: SetupContext) {
   }
 }
 
-const Radiobox = RADIOBOX_THEMES.main
+// const Radiobox = RADIOBOX_THEMES.main
 
 export {
   Radiobox,

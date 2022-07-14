@@ -1,6 +1,6 @@
 import {ExtractPropTypes, SetupContext, ref, watch, computed} from 'vue'
-import Textarea from './base-textarea.vue'
 import { controlSetup, CONTROL_PROPS } from '../control'
+import Textarea from './base-textarea.vue'
 // import { defineComponent } from '@vue/runtime-core'
 // import { useTheme } from '../../../plugins/theme'
 
