@@ -1,13 +1,8 @@
-import { computed, ExtractPropTypes } from 'vue'
-import Alert from './base-alert.vue'
-// import { defineComponent } from 'vue'
-// import { useTheme } from '../../plugins/theme'
+import { computed, defineAsyncComponent, ExtractPropTypes } from 'vue'
 
-// const { createThemeComponent } = useTheme()
-
-// export const ALERT_THEMES: any = {
-//   main: defineComponent(() => import('./base-alert.vue')),
-// }
+export const ALERT_THEMES: any = {
+  main: defineAsyncComponent(() => import('./base-alert.vue'))
+}
 
 export const ALERT_LOOKS: any = {
   primary: 'bg-primary-50 border-primary-400 text-primary-700 dark:bg-primary-700 dark:border-primary-400 dark:text-primary-100',
@@ -45,7 +40,7 @@ function setup(params) {
   }
 }
 
-// const Alert = ALERT_THEMES.main
+const Alert = ALERT_THEMES.main
 
 export {
   Alert,

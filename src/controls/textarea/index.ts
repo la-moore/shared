@@ -1,10 +1,5 @@
-import {ExtractPropTypes, SetupContext, ref, watch, computed} from 'vue'
+import { ExtractPropTypes, SetupContext, ref, watch, computed, defineAsyncComponent } from 'vue'
 import { controlSetup, CONTROL_PROPS } from '../control'
-import Textarea from './base-textarea.vue'
-// import { defineComponent } from '@vue/runtime-core'
-// import { useTheme } from '../../../plugins/theme'
-
-// const { createThemeComponent } = useTheme()
 
 export const TEXTAREA_LOOKS = {
   main: 'focus-within:border-blue-300 dark:focus-within:border-blue-600 dark:border-gray-500',
@@ -14,9 +9,9 @@ export const TEXTAREA_LOOKS = {
   disabled: 'pointer-events-none bg-gray-200 border-gray-300 dark:bg-gray-700 dark:border-gray-500',
 }
 
-// export const TEXTAREA_THEMES: any = {
-//   main: defineComponent(() => import('./base-textarea.vue')),
-// }
+export const TEXTAREA_THEMES: any = {
+  main: defineAsyncComponent(() => import('./base-textarea.vue')),
+}
 
 export const TEXTAREA_PROPS = {
   ...CONTROL_PROPS,
@@ -81,7 +76,7 @@ function setup(params, ctx: SetupContext) {
   }
 }
 
-// const Textarea = TEXTAREA_THEMES.main
+const Textarea = TEXTAREA_THEMES.main
 
 export {
   Textarea,

@@ -1,10 +1,5 @@
-import { computed, ExtractPropTypes, SetupContext } from 'vue'
-import Checkbox from './base-checkbox.vue'
+import { computed, ExtractPropTypes, SetupContext, defineAsyncComponent } from 'vue'
 import { controlSetup, CONTROL_PROPS } from '../control'
-// import { defineComponent } from '@vue/runtime-core'
-// import { useTheme } from '../../../plugins/theme'
-
-// const { createThemeComponent } = useTheme()
 
 export const CHECKBOX_LOOKS: any = {
   primary: 'bg-primary-600 text-white',
@@ -16,9 +11,9 @@ export const CHECKBOX_LOOKS: any = {
   disabled: 'bg-gray-300 pointer-events-none',
 }
 
-// export const CHECKBOX_THEMES: any = {
-//   main: defineComponent(() => import('./base-checkbox.vue')),
-// }
+export const CHECKBOX_THEMES: any = {
+  main: defineAsyncComponent(() => import('./base-checkbox.vue')),
+}
 
 export const CHECKBOX_PROPS = {
   ...CONTROL_PROPS,
@@ -55,7 +50,7 @@ function setup(params, ctx: SetupContext) {
   }
 }
 
-// const Checkbox = CHECKBOX_THEMES.main
+const Checkbox = CHECKBOX_THEMES.main
 
 export {
   Checkbox,

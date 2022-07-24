@@ -1,14 +1,9 @@
-import { computed, ExtractPropTypes, ref, SetupContext } from 'vue'
+import { computed, ExtractPropTypes, ref, SetupContext, defineAsyncComponent } from 'vue'
 import { controlSetup, CONTROL_PROPS } from '../control'
-import Input from './base-input.vue'
-// import { defineComponent } from '@vue/runtime-core'
-// import { useTheme } from '../../../plugins/theme'
 
-// const { createThemeComponent } = useTheme()
-
-// export const INPUT_THEMES: any = {
-//   main: defineComponent(() => import('./base-input.vue')),
-// }
+export const INPUT_THEMES: any = {
+  main: defineAsyncComponent(() => import('./base-input.vue')),
+}
 
 export const INPUT_LOOKS = {
   main: 'focus-within:border-blue-300 dark:focus-within:border-blue-600 dark:border-gray-500',
@@ -76,7 +71,7 @@ function setup(params, ctx: SetupContext) {
   }
 }
 
-// const Input = INPUT_THEMES.main
+const Input = INPUT_THEMES.main
 
 export {
   Input,

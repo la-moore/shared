@@ -1,13 +1,8 @@
-import { computed, ExtractPropTypes } from 'vue'
-import Link from './base-link.vue'
-// import { defineComponent } from '@vue/runtime-core'
-// import { useTheme } from '../../plugins/theme'
+import { computed, ExtractPropTypes, defineAsyncComponent } from 'vue'
 
-// const { createThemeComponent } = useTheme()
-
-// export const LINK_THEMES: any = {
-//   main: defineComponent(() => import('./base-link.vue')),
-// }
+export const LINK_THEMES: any = {
+  main: defineAsyncComponent(() => import('./base-link.vue')),
+}
 
 export const LINK_LOOKS: any = {
   current: 'text-current hover:opacity-70 active:opacity-50',
@@ -52,7 +47,7 @@ function setup(params) {
   }
 }
 
-// const Link = LINK_THEMES.main
+const Link = LINK_THEMES.main
 
 export {
   Link,
